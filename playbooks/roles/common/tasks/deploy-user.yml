@@ -12,7 +12,7 @@
     groups: "sudo,{{ deploy_user }}"
   become: yes
 
-- name: Add deploy user ssh key
+- name: Add ssh key of deploy user
   copy:
     src: "{{ deploy_user }}.pub"
     dest: "/etc/ssh/authorized_keys/{{ deploy_user }}.pub"

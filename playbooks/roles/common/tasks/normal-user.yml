@@ -1,0 +1,23 @@
+---
+
+- name: Create user group vic
+  group:
+    name: vic
+    state: present
+    gid: 1001
+
+- name: Create user vic
+  user:
+    name: vic
+    comment: vic
+    uid: 1001
+    groups: sudo,vic,tty,mail
+  become: yes
+
+- name: Add ssh key of user vic
+  copy:
+    src: vic.pub
+    dest: /etc/ssh/authorized_keys/vic.pub
+    owner: root
+    group: root
+    mode: 644
