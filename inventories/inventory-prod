@@ -1,0 +1,3 @@
+[all:vars]
+deploy_user=deploy
+become_user=deploy

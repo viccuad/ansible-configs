@@ -1,0 +1,16 @@
+---
+- name: disable pc speaker (chmod dir)
+  file:
+    path: /etc/modprobe.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: disable pc speaker
+  copy:
+    content: "blacklist pcspkr"
+    dest: /etc/modprobe.d/pcspkr-blacklist.conf
+    owner: root
+    group: root
+    mode: 0644

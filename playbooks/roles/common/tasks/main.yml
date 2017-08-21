@@ -1,0 +1,6 @@
+---
+
+- include: pcspkr.yml
+- include: ssh-server.yml
+- include: deploy-user.yml
+- include: packages.yml

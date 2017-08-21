@@ -1,0 +1,13 @@
+- name: Install minimal packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - git
+    - vim
+    - htop
+    - tmux
+    - yubikey-personalization # for the yubikey udev rules
+    - popularity-contest
+    - grep

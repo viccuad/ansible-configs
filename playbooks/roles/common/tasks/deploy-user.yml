@@ -1,0 +1,21 @@
+---
+
+- name: Create deploy group
+  group:
+    name: "{{ deploy_user }}"
+    state: present
+
+- name: Create deploy user
+  user:
+    name: "{{ deploy_user }}"
+    comment: "Deploy User"
+    groups: "sudo,{{ deploy_user }}"
+  become: yes
+
+- name: Add deploy user ssh key
+  copy:
+    src: "{{ deploy_user }}.pub"
+    dest: "/etc/ssh/authorized_keys/{{ deploy_user }}.pub"
+    owner: root
+    group: root
+    mode: 644
