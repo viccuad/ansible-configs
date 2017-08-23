@@ -37,10 +37,8 @@
 
 - name: Install fail2ban
   apt:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-   - fail2ban
+    name: fail2ban
+    state: present
 
 - name: Configure fail2ban
   template:
