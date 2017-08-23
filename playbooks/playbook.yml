@@ -3,10 +3,11 @@
   become: yes
 
   pre_tasks:
-    - name: Update apt cache if needed
+    - name: Update apt cache if needed and autoremove packages
       apt:
         update_cache: yes
         cache_valid_time: 3600
+        autoremove: yes
 
   roles:
     - common
