@@ -8,3 +8,4 @@
 - include: git.yml
 - include: pass.yml
 - include: weechat.yml
+- include: beets.yml
