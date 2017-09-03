@@ -16,3 +16,8 @@
   become: yes
   roles:
     - workstation
+
+- hosts: dotfiles
+  become: yes
+  roles:
+    - dotfiles

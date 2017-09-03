@@ -1,0 +1,47 @@
+# This is a shim config that loads the rest, inside ~/zsh/
+
+
+# shortcut to this dotfiles path is $ZSH
+export ZSH=$HOME/.zsh
+
+
+# Load all of your configurations from ~/.zsh/
+for config_file ($ZSH/*.zsh(N)); do
+    source $config_file
+done
+unset config_file
+
+# load all custom configurations from custom/
+for config_file ($ZSH/custom/*.zsh(N)); do
+    source $config_file
+done
+unset config_file
+
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -Uz compinit
+compinit
+
+# load every completion after autocomplete loads
+# for file in ${(M)config_files:#*/completion.zsh}
+# do
+#   source $file
+# done
+
+# unset config_files
+
+# {% if ansible_os_family == "Debian" %}
+# load git-prompt
+source /usr/lib/git-core/git-sh-prompt
+# {% elif grains['osrelease'] == '42.2' %}
+# source /etc/bash_completion.d/git-prompt.sh
+# {% endif %}
+
+# load autojump:
+# source /usr/share/autojump/autojump.sh
+
+# {% if ansible_os_family == "Debian" %}
+# load shell syntax highlighting. Must be last because it loads ZLE widgets:
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# {% endif %}
