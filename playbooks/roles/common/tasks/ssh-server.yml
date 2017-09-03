@@ -1,12 +1,13 @@
 ---
 
-- name: Install openssh server
+- name: install openssh server
   apt:
     name: "{{ item }}"
     state: latest
   with_items:
    - openssh-server
   notify: restart ssh
+
 
 - name: create ssh keys directory
   file:
@@ -16,7 +17,8 @@
     group: root
     mode: 0755
 
-- name: Configure openssh server
+
+- name: configure openssh server
   template:
     src: sshd_config.j2
     dest: /etc/ssh/sshd_config
@@ -26,7 +28,7 @@
     validate: '/usr/sbin/sshd -T -f %s'
   notify: restart ssh
 
-- name: Be sure there is no deprecated host keys around
+- name: be sure there is no deprecated host keys around
   file:
     path: "/etc/ssh/{{ item }}"
     state: absent
@@ -35,12 +37,14 @@
     - ssh_host_dsa_key.pub
   notify: restart ssh
 
+
 - name: Install fail2ban
   apt:
     name: fail2ban
     state: present
 
-- name: Configure fail2ban
+
+- name: configure fail2ban
   template:
     src: jail.local
     dest: /etc/fail2ban/jail.local

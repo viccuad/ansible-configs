@@ -1,4 +1,6 @@
-- name: Install minimal packages
+---
+
+- name: install minimal packages
   apt:
     name: "{{ item }}"
     state: present
