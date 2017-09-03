@@ -5,3 +5,4 @@
 - include: tmux.yml
 - include: vim.yml
 - include: gnupg.yml
+- include: git.yml

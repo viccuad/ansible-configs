@@ -1,0 +1,26 @@
+---
+
+- name: install git packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - git
+    - tig
+
+
+- name: copy git files
+  copy:
+    src: git/
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: copy git config
+  template:
+    src: git/.gitconfig.j2
+    dest: "/home/{{ normal_user }}/.gitconfig"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
