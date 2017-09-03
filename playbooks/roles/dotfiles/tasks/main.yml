@@ -9,3 +9,4 @@
 - include: pass.yml
 - include: weechat.yml
 - include: beets.yml
+- include: debuggers.yml

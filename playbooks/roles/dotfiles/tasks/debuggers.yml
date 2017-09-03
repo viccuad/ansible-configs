@@ -1,0 +1,31 @@
+---
+
+- name: install debuggers packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - gdb
+    - gdb-multiarch
+    - rr
+    - ltrace
+    - strace
+    - valgrind
+    - tcpdump
+    - net-tools
+    - nmap
+    - winpdb
+
+
+- name: copy debuggers files
+  synchronize:
+    src: debuggers/
+    dest: "/home/{{ normal_user }}/"
+    perms: yes
+    recursive: yes
+    links: yes
+    rsync_opts:
+      - "--exclude=.git*"
+  become: yes
+  become_user: "{{ normal_user }}"
