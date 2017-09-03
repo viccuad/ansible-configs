@@ -1,0 +1,47 @@
+---
+
+- name: install golang packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - golang
+    - gocode
+
+
+- name: Set gopath fact
+  set_fact:
+    gopath: $HOME/code/go
+
+
+- name: set GOPATH
+  blockinfile:
+    dest: "/home/{{ normal_user }}/.zshenv"
+    block: |
+            export GOPATH="{{ gopath }}"
+    marker: "# {mark} go block"
+
+
+- name: add GO bins to PATH
+  replace:
+    dest: /home/vic/.zshenv
+    regexp: '\$PATH:'
+    replace: '$PATH:$HOME/code/go/bin:'
+
+
+- name: install go deps not packaged yet
+  # deps that aren't packaged yet:
+  shell: |
+          GOPATH="{{ gopath }}" go get -u -v github.com/golang/lint/golint
+          GOPATH="{{ gopath }}" go get -u -v github.com/rogpeppe/godef
+          GOPATH="{{ gopath }}" go get -u -v golang.org/x/tools/cmd/guru
+          GOPATH="{{ gopath }}" go get -u -v golang.org/x/tools/cmd/gorename
+          GOPATH="{{ gopath }}" go get -u -v golang.org/x/tools/cmd/goimports
+          GOPATH="{{ gopath }}" go get -u -v golang.org/x/tools/cmd/godoc
+          GOPATH="{{ gopath }}" go get -u -v github.com/kisielk/errcheck
+          GOPATH="{{ gopath }}" go get -u -v github.com/mdempsky/unconvert
+          GOPATH="{{ gopath }}" go get -u -v github.com/alecthomas/gometalinter
+          GOPATH="{{ gopath }}" "{{ gopath }}"/bin/gometalinter --install --update
+  become:  yes
+  become_user: "{{ normal_user }}"

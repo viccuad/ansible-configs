@@ -16,3 +16,4 @@
 # - include: nvim.yml
 - include: signing-party.yml
 - include: virtualenvwrapper.yml
+- include: golang.yml
