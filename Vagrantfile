@@ -22,7 +22,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Run Ansible provisioner once for all VMs at the end
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbooks/playbook.yml"
-    ansible.inventory_path = "inventories/inventory-vagr"
+    ansible.inventory_path = "inventories/vagrant"
     ansible.limit = "all" # run ansible in parallel for all machines
     ansible.verbose = "v"
     ansible.extra_vars = {
