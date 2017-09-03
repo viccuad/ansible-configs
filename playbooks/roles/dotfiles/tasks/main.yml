@@ -15,3 +15,4 @@
 - include: debian.yml
 # - include: nvim.yml
 - include: signing-party.yml
+- include: virtualenvwrapper.yml

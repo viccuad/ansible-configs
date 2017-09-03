@@ -1,0 +1,8 @@
+#!/usr/bin/zsh
+# This hook is sourced after every virtualenv is deactivated.
+
+# Remove precmd_functions array to have default precmd() (and therefore prompts)
+unset precmd_functions
+
+# Update cached $PATH entries
+rehash
