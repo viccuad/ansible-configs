@@ -46,3 +46,11 @@
     url: https://sks-keyservers.net/sks-keyservers.netCA.pem
     dest: /usr/share/gnupg/sks-keyservers.netCA.pem
     checksum: sha256:0666ee848e03a48f3ea7bb008dbe9d63dfde280af82fb4412a04bf4e24cab36b
+
+
+- name: import gpg public key
+  shell: |
+          gpg --recv-keys "{{ normal_user_gpgkey}}"
+          echo "{{ normal_user_gpgkey}}:6:" | gpg --import-ownertrust
+  become: yes
+  become_user: "{{ normal_user }}"
