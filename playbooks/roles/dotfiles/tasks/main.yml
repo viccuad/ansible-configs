@@ -2,3 +2,4 @@
 
 - include: zsh.yml
 - include: emacs.yml
+- include: tmux.yml
