@@ -12,3 +12,4 @@
 - include: debuggers.yml
 - include: lxc.yml
 - include: vagrant.yml
+- include: debian.yml

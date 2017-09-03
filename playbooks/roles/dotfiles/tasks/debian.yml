@@ -1,0 +1,158 @@
+---
+
+- name: install debian packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    # normal usage:
+    - reportbug
+    - debsums
+    - apt-listbugs
+    - apt-listchanges
+    - how-can-i-help
+    - gdebi
+    # build tools:
+    - autoconf
+    - automake
+    - cmake
+    - autotools-dev
+    - dpkg-dev-el
+    - devscripts-el
+    - debian-el
+    # debian tools:
+    - debian-policy
+    - debhelper
+    - dh-make
+    - dh-autoreconf
+    - debian-goodies
+    - debian-archive-keyring
+    - debian-keyring
+    - debianutils
+    - debootstrap
+    - deborphan
+    - devscripts
+    - fakeroot
+    - patch
+    - patchutils
+    - pbuilder
+    - cowbuilder
+    - ccache
+    - eatmydata
+    - quilt
+    - xutils-dev
+    - diffoscope
+    - lintian
+    - dupload
+    - dput-ng
+    - git-buildpackage
+    - python-notify
+    - git-dpm
+    # python packages:
+    - python-all-dev
+    - python3-all-dev
+    - python-stdeb
+    - python3-stdeb
+    # autopkgtest
+    - apt-cacher-ng
+    - debci
+    - autopkgtest
+
+
+- name: clone reproducible-misc
+  git:
+    repo: https://anonscm.debian.org/git/reproducible/misc.git
+    dest: "/home/{{ normal_user }}/debian/reproducible-misc"
+    update: no
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: copy debian dotfiles
+  copy:
+    src: debian/files/
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: copy debian personal docs
+  copy:
+    src: debian/docs/
+    dest: "/home/{{ normal_user }}/debian/docs"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: copy pbuilder files
+  synchronize:
+    src: gnupg/
+    dest: "/home/{{ normal_user }}/"
+    perms: yes
+    recursive: yes
+    links: yes
+    rsync_opts:
+      - "--exclude=.git*"
+  become: yes
+  become_user: "{{ normal_user }}"
+  # TODO set up results so I can write into that folder, so when I upload with
+  # dput, dput can write the output of the upload
+  # either at home or in /var/cache/
+
+
+- name: add debian env vars
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.zshenv'
+    block: |
+            # debian:
+            # export DEBFULLNAME=""
+            # export DEBEMAIL=""
+            export DEB_BUILD_OPTIONS="parallel={{ ansible_processor_vcpus - 1 }}"
+    marker: "# {mark} debian block"
+
+
+- name: add debian aliases
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.zsh/aliases.zsh'
+    block: |
+            alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+            alias rebuild="${HOME}/debian/reproducible-misc/prebuilder/rebuild.sh -b ${HOME}/pbuilder/sid-amd64-base-reproducible.tgz"
+            alias wrap-and-sort='wrap-and-sort -ast'
+            alias pbuilder="sudo -E pbuilder"
+    marker: "# {mark} debian block"
+
+
+- name: add debian specifics to ~/.gitconfig
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.gitconfig'
+    block: |
+            [dpm]
+              pristineTarCommit = true
+            [url "git://git.debian.org"]
+              insteadOf = git+ssh://git.debian.org
+            [url "git+ssh://git.debian.org"]
+              pushInsteadOf = git+ssh://git.debian.org
+    marker: "# {mark} debian block"
+
+
+- name: add hosts to ~/.ssh/config
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.ssh/config'
+    create: yes
+    block: |
+            Host svn.debian.org git.debian.org bzr.debian.org hg.debian.org darcs.debian.org arch.debian.org alioth.debian.org
+                User viccuad-guest
+    marker: "# {mark} debian block"
+
+
+- name: add pbuilder to sudoers.d
+  blockinfile:
+    dest: /etc/sudoers.d/pbuilder
+    create: yes
+    block: |
+            Cmnd_Alias  PBUILDERS = /usr/sbin/pbuilder, /usr/bin/pdebuild, /usr/bin/debuild-pbuilder, /usr/sbin/cowbuilder
+            Defaults! PBUILDERS       setenv, env_keep+="HOME DIST ARCH"
+            {{ normal_user }}  ALL=(ALL) PBUILDERS
+    marker: "# {mark} debian block"
+    validate: 'visudo -cf %s'
