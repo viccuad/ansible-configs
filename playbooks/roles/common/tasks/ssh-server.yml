@@ -28,6 +28,14 @@
     validate: '/usr/sbin/sshd -T -f %s'
   notify: restart ssh
 
+
+- name: be sure sshd is running and enabled
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+
+
 - name: be sure there is no deprecated host keys around
   file:
     path: "/etc/ssh/{{ item }}"
@@ -52,3 +60,11 @@
     group: root
     mode: 0644
   notify: restart fail2ban
+
+
+- name: be sure fail2ban is running and enabled
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+

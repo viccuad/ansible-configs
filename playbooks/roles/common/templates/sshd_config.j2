@@ -125,3 +125,10 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
+
+# for gpg forwarding over ssh. Enable automatic removal of stale
+# sockets when connecting to the remote machine. Otherwise you will
+# first have to remove the socket on the remote machine before
+# forwarding works:
+StreamLocalBindUnlink yes
