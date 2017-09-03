@@ -1,8 +1,13 @@
+New incarnation of my dotfiles, plus many more.
+
+For the dotfiles themselves, look at `playbooks/roles/dotfiles/`.
+
+
 # Using it with Vagrant #
 
 Ansible will use the `vagrant` user to ssh.
 
-Once you have lxc-net and resolvconf set up for <vm>.lxc, do the usual `vagrant
+Once you have lxc-net and resolvconf set up for <container>.lxc, do the usual `vagrant
 up`, `vagrant provision`, or if you want:
 
 ```bash
