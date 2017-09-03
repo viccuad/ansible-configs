@@ -1,0 +1,24 @@
+#! /bin/bash
+
+set -e
+
+host=$1
+if [ -z "$host" ]; then
+    echo "Supply a hostname"
+    exit 1
+fi
+
+# remove any existing agent socket (in theory `StreamLocalBindUnlink yes` does this,
+# but in practice, not so much - https://bugzilla.mindrot.org/show_bug.cgi?id=2601)
+
+local_socket="$(gpgconf --list-dir agent-extra-socket)"
+remote_socket="$(ssh $host gpgconf --list-dir agent-socket)"
+
+ssh $host rm -f
+# ssh -t -R ~/.gnupg/S.gpg-agent:.gnupg/S.gpg-agent-extra "$host" \
+ssh -t -R "$remote_socket":"$local_socket" "$host" \
+    sh -c "echo; echo \"Perform remote GPG operations and hit enter\"; \
+        read; \
+        sleep 2; \
+        rm -f \"$remote_socket\"; \
+        gpgconf --kill gpg-agent"

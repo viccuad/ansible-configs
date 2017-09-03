@@ -4,3 +4,4 @@
 - include: emacs.yml
 - include: tmux.yml
 - include: vim.yml
+- include: gnupg.yml
