@@ -3,7 +3,7 @@ New incarnation of my dotfiles, plus many more.
 For the dotfiles themselves, look at `playbooks/roles/dotfiles/`.
 
 
-# Using it with Vagrant #
+# Deploying against Vagrant #
 
 Ansible will use the `vagrant` user to ssh.
 
@@ -15,7 +15,7 @@ $ ansible-playbook playbooks/playbook.yml -i inventories/vagrant
 ```
 
 
-# Using it directly #
+# Deploying against production #
 
 Ansible will use the `deploy` user to ssh (see roles/common/vars)
 
