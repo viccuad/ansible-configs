@@ -11,3 +11,4 @@
 - include: beets.yml
 - include: debuggers.yml
 - include: lxc.yml
+- include: vagrant.yml

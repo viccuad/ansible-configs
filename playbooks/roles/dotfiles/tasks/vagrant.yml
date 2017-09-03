@@ -1,0 +1,20 @@
+---
+
+- name: install vagrant packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - vagrant
+      - bridge-utils
+      - vagrant-lxc
+
+
+- name: set vagrant env vars
+  blockinfile:
+    dest: "/home/{{ normal_user }}/.zshenv"
+    block: |
+            export VAGRANT_DEFAULT_PROVIDER="lxc"
+            # export VAGRANT_LOG=INFO
+    marker: "# {mark} vagrant block"
