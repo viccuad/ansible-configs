@@ -1,5 +1,3 @@
-{{ ansible_managed }}
-
 # STABLE
 # deb http://deb.debian.org/debian/ stretch main contrib non-free
 # deb-src http://deb.debian.org/debian/ stretch main contrib non-free

@@ -1,15 +1,21 @@
 ---
 
-- name: Setup workstation sources.list
-  file:
+- name: setup workstation sources.list
+  copy:
     src: sources.list
     dest: /etc/apt/sources.list
     owner: root
     group: root
     mode: 0644
-  notify: Upgrade all packages
+  notify: perform dist-upgrade
 
-- name: Install workstation packages
+
+# apply the handler before installing packages, instead of waiting for the end
+# of the playbook
+- meta: flush_handlers
+
+
+- name: install workstation packages
   apt:
     name: "{{ item }}"
     state: present

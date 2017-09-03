@@ -1,6 +1,7 @@
 ---
 
-- name: Upgrade all packages
+- name: perform dist-upgrade
   apt:
     update_cache: yes
     upgrade: dist
+    autoremove: yes
