@@ -10,3 +10,4 @@
 - include: weechat.yml
 - include: beets.yml
 - include: debuggers.yml
+- include: lxc.yml
