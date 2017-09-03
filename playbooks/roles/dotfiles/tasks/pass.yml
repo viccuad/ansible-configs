@@ -1,0 +1,17 @@
+---
+
+- name: install pass packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - pass
+    - suckless-tools
+    - xdotool
+
+
+- name: add pass alias
+  lineinfile:
+    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
+    line: "alias passmenu='/usr/share/doc/pass/examples/dmenu/passmenu --type'"
