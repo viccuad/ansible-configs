@@ -1,0 +1,47 @@
+# left intentionally commented:
+# [user]
+#	name = John Doe
+#	email = john@doe.false
+#	signingkey = 0xA2571E3312255B34
+[credential]
+	helper = cache --timeout=3600
+[giggle]
+	main-window-maximized = true
+	main-window-geometry = 467x239+0+54
+	history-view-vpane-position = 564
+	main-window-view = HistoryView
+	file-view-vpane-position = 676
+	file-view-hpane-position = 249
+	show-graph = true
+[alias]
+	lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+	lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+	l = log --oneline --decorate --graph --all
+	s = status
+	ds = diff --stages
+	aa = add --all
+	pa = push --all --follow-tags origin
+	last = log -1 HEAD
+	unstage = reset HEAD --
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	status = auto
+[help]
+	autocorrect = 1
+[http]
+	sslVerify = true
+[push]
+	# default = simple is new since Git 2.0, use default = current if you
+	# use older version of Git
+	default = simple
+[core]
+	excludesfile = /home/{{ normal_user }}/.gitignore_global
+[diff]
+	tool = meld
+[merge]
+	tool = vimdiff
+[pull]
+	# https://git-scm.com/book/en/v2/Git-Branching-Rebasing#Rebase-vs.-Merge
+	# rebase = true
