@@ -1,0 +1,8 @@
+~/.weechat/logs/irc.server.freenode.*
+~/.weechat/logs/irc.freenode.*
+{
+compress
+missingok
+notifempty
+copytruncate
+}

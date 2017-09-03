@@ -1,0 +1,4 @@
+logs/*
+certs/*
+weechat.log
+sec.conf

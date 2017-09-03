@@ -7,3 +7,4 @@
 - include: gnupg.yml
 - include: git.yml
 - include: pass.yml
+- include: weechat.yml
