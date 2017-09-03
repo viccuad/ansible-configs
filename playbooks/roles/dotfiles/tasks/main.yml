@@ -3,3 +3,4 @@
 - include: zsh.yml
 - include: emacs.yml
 - include: tmux.yml
+- include: vim.yml
