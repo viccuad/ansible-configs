@@ -6,6 +6,7 @@
     state: present
     install_recommends: no
   with_items:
+    - rsync # for ansible synchronize
     - git
     - vim
     - htop

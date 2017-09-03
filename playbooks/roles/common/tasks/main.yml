@@ -27,8 +27,8 @@
     name: "{{ timezone }}"
   notify: restart cron
 
+- include: packages.yml
 - include: pcspkr.yml
 - include: ssh-server.yml
 - include: deploy-user.yml
 - include: normal-user.yml
-- include: packages.yml
