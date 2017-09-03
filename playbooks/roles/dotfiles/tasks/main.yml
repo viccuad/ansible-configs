@@ -14,3 +14,4 @@
 - include: vagrant.yml
 - include: debian.yml
 # - include: nvim.yml
+- include: signing-party.yml

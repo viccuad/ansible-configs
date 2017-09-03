@@ -1,0 +1,24 @@
+---
+
+- name: install pass packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - signing-party
+
+
+- name: copy caff files
+  synchronize:
+    src: signing-party/
+    dest: "/home/{{ normal_user }}/"
+    perms: yes
+    recursive: yes
+    links: yes
+    rsync_opts:
+      - "--exclude=.git*"
+      - "--perms"
+      - "--chmod=u+rwx,g-rwx,o-rwx"
+  become: yes
+  become_user: "{{ normal_user }}"

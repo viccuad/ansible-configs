@@ -1,0 +1,16 @@
+#Ignore everything
+*
+
+# ...even if they are in subdirectories
+!*/
+
+# don't ignore gitignore
+!.gitignore
+
+# Don't ignore selected files
+!gnupghome/gpg.conf
+!gnupghome/gpg-agent.conf
+!gnupghome/scdaemon.conf
+!gpg.conf
+!gpg-agent.conf
+!scdaemon.conf
