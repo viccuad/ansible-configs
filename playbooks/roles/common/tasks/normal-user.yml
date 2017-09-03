@@ -1,24 +1,26 @@
 ---
 
-- name: Create user group vic
+- name: create user group {{ normal_user }}
   group:
-    name: vic
+    name: "{{ normal_user }}"
     state: present
     gid: 1001
 
-- name: Create user vic
+
+- name: create user {{ normal_user }}
   user:
-    name: vic
-    comment: vic
+    name: "{{ normal_user }}"
+    comment: "{{ normal_user }}"
     uid: 1001
-    groups: sudo,vic,tty,mail
+    groups: "sudo,{{ normal_user }},tty,mail"
+    # shell: /bin/zsh TODO
   become: yes
 
 
-- name: Add ssh key of user vic
+- name: add ssh key of user {{ normal_user }}
   copy:
-    src: vic.pub
-    dest: /etc/ssh/authorized_keys/vic.pub
+    src: "{{ normal_user }}.pub"
+    dest: "/etc/ssh/authorized_keys/{{ normal_user }}.pub"
     owner: root
     group: root
     mode: 644

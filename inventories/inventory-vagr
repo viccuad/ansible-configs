@@ -12,3 +12,4 @@ ansible_ssh_user=vagrant
 ansible_ssh_private_key_file="~/.vagrant.d/insecure_private_key"
 become_user=vagrant
 deploy_user=vagrant
+normal_user=vic
