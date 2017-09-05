@@ -54,6 +54,7 @@
               UserKnownHostsFile=/dev/null
     marker: "# {mark} lxc block"
 
+
 - name: be sure lxc-net is running and enabled
   service:
     name: lxc-net
