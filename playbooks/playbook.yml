@@ -16,7 +16,7 @@
 - hosts: workstation
   become: yes
   roles:
-    - workstation
+    - testing-repos
 
 
 - name: dotfiles

@@ -1,6 +1,6 @@
 ---
 
-- name: setup workstation sources.list
+- name: setup testing sources.list
   copy:
     src: sources.list
     dest: /etc/apt/sources.list
@@ -13,14 +13,3 @@
 # apply the handler before installing packages, instead of waiting for the end
 # of the playbook
 - meta: flush_handlers
-
-
-- name: install workstation packages
-  apt:
-    name: "{{ item }}"
-    state: present
-    install_recommends: no
-  with_items:
-    - build-essential
-    - silversearcher-ag
-    - dict
