@@ -5,7 +5,10 @@ For the dotfiles themselves, look at `playbooks/roles/dotfiles/`.
 
 # Deploying against Vagrant #
 
-Ansible will use the `vagrant` user to ssh.
+Ansible will use the `vagrant` user to ssh (I'm using vagrant's public insecure
+ssh key because my ssh keys come from a smartcard; this setup seems as less
+hassle to me than creating a ssh key just for this and later forgetting about
+it).
 
 Once you have lxc-net and resolvconf set up for <container>.lxc, do the usual `vagrant
 up`, `vagrant provision`, or if you want:
