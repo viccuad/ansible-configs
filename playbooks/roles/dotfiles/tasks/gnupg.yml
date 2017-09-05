@@ -50,7 +50,7 @@
 
 - name: import gpg public key
   shell: |
-          gpg --recv-keys "{{ normal_user_gpgkey}}"
-          echo "{{ normal_user_gpgkey}}:6:" | gpg --import-ownertrust
+          gpg --recv-keys "{{ normal_user_gpgkey }}"
+          echo "{{ normal_user_gpgkey }}:6:" | gpg --import-ownertrust
   become: yes
   become_user: "{{ normal_user }}"
