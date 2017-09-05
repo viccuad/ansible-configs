@@ -430,6 +430,7 @@ you should place your code here."
       (set-face-background 'linum  (face-attribute 'hl-line :background))
 
       (setq fci-rule-color "#292929")
+      (set-face-background 'hl-line "#292929")
 
       (set-face-italic 'font-lock-comment-face t)
 
