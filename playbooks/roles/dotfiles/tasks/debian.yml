@@ -87,18 +87,14 @@
 
 - name: copy pbuilder files
   synchronize:
-    src: gnupg/
-    dest: "/home/{{ normal_user }}/"
+    src: debian/pbuilder/
+    dest: /
     perms: yes
     recursive: yes
     links: yes
     rsync_opts:
       - "--exclude=.git*"
-  become: yes
-  become_user: "{{ normal_user }}"
-  # TODO set up results so I can write into that folder, so when I upload with
-  # dput, dput can write the output of the upload
-  # either at home or in /var/cache/
+      - "--chown=root:root"
 
 
 - name: add debian env vars
@@ -106,8 +102,8 @@
     dest: '/home/{{ normal_user }}/.zshenv'
     block: |
             # debian:
-            # export DEBFULLNAME=""
-            # export DEBEMAIL=""
+            export DEBFULLNAME="{{ normal_user_name }}"
+            export DEBEMAIL="{{ normal_user_email }}"
             export DEB_BUILD_OPTIONS="parallel={{ ansible_processor_vcpus - 1 }}"
     marker: "# {mark} debian block"
 
