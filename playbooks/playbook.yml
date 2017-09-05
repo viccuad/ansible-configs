@@ -18,7 +18,23 @@
     - workstation
 
 
-- hosts: dotfiles
+- name: dotfiles
+  hosts: dotfiles
   become: yes
   roles:
-    - dotfiles
+    - zsh
+    - emacs
+    - tmux
+    - vim
+    - gnupg
+    - git
+    - pass
+    - weechat
+    - lxc
+    - vagrant
+    - debian
+    # - nvim
+    - signing-party
+    - virtualenvwrapper
+    - beets
+    - golang

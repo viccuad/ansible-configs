@@ -1,0 +1,43 @@
+---
+
+- name: install nvim packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - neovim
+    - python-neovim # TODO not in stretch nor testing
+
+
+- name: copy nvim files
+  synchronize:
+    src: .
+    dest: "/home/{{ normal_user }}/"
+    perms: yes
+    recursive: yes
+    links: yes
+    rsync_opts:
+      - "--exclude=.git*"
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: set nvim env vars
+  blockinfile:
+    dest: "/home/{{ normal_user }}/.zshenv"
+    block: |
+            export NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+            export NVIM_TUI_ENABLE_TRUE_COLOR=1
+    marker: "# {mark} nvim block"
+
+- name: add nvim aliases
+  blockinfile:
+    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
+    block: |
+            alias nv="nvim"
+            # Open last modified file in vim:
+            alias nVim="nvim `ls -t | head -1`"
+            # Open a server instance of vim:
+            alias nvis="nvim --servername VIM"
+    marker: "# {mark} nvim block"

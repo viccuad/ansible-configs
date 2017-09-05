@@ -1,0 +1,17 @@
+---
+
+- name: copy vim files
+  copy:
+    src: .
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: set SUDOEDITOR and MANPAGER
+  blockinfile:
+    dest: "/home/{{ normal_user }}/.zshenv"
+    block: |
+            export SUDO_EDITOR="vim"
+            export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+    marker: "# {mark} vim block"

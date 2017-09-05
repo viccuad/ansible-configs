@@ -1,0 +1,85 @@
+---
+
+- name: install lxc packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - lxc
+      - bridge-utils
+
+
+- name: set nested_container fact
+  shell: systemd-detect-virt
+  register: nested_container
+
+
+- name: copy lxc-net config
+  # https://wiki.debian.org/LXC/SimpleBridge#Using_lxc-net
+  template:
+    src: lxc-net.j2
+    dest: /etc/default/lxc-net
+    # owner: "{{ normal_user }}"
+    # group: "{{ normal_user }}"
+  notify: restart lxc-net
+
+
+- name: copy lxc default.conf config
+  # https://wiki.debian.org/LXC/SimpleBridge#Using_lxc-net
+  template:
+    src: default.conf.j2
+    dest: /etc/lxc/default.conf
+    # owner: "{{ normal_user }}"
+    # group: "{{ normal_user }}"
+  notify: restart lxc-net
+
+
+- name: workaround, create ~/.ssh
+  # TODO https://github.com/ansible/ansible/issues/20986
+  file:
+    path: ~/.ssh
+    state: directory
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: do not check lxc ssh host keys
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.ssh/config'
+    create: yes
+    block: |
+            Host *.lxc
+              StrictHostKeyChecking no
+              UserKnownHostsFile=/dev/null
+    marker: "# {mark} lxc block"
+
+
+- name: be sure lxc-net is running and enabled
+  service:
+    name: lxc-net
+    state: started
+    enabled: yes
+
+
+- name: add lxc to sudoers.d
+  # run lxc commands as root, preserving environment:
+  lineinfile:
+    dest: /etc/sudoers.d/lxc
+    create: yes
+    line: '{{ normal_user }}  ALL = NOPASSWD:SETENV: /usr/bin/lxc-*'
+    validate: 'visudo -cf %s'
+
+
+- name: install resolvconf
+  apt:
+    name: resolvconf
+    state: present
+  # another option is using /etc/NetworkManager/dnsmasq.d/lxc.conf
+
+
+- name: enable .lxc DNS resolution for the host
+  template:
+    src: head.j2
+    dest: /etc/resolvconf/resolv.conf.d/head
+  notify: rerun resolvconf

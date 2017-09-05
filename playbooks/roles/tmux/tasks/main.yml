@@ -1,0 +1,32 @@
+---
+
+- name: install tmux packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - tmux
+    - ncurses-term # for the tmux-256color terminfo
+    - xsel
+
+
+- name: copy tmux files
+  copy:
+    src: .
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: set tmux_version fact
+  shell: tmux -V | cut -d' ' -f2
+  register: tmux_version
+
+
+- name: copy tmux config
+  template:
+    src: .tmux.conf.j2
+    dest: "/home/{{ normal_user }}/.tmux.conf"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"

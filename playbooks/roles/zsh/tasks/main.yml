@@ -1,0 +1,30 @@
+---
+
+- name: install zsh packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - zsh
+    - trash-cli
+    - zsh-syntax-highlighting
+    - autojump
+    - git # for prompt
+    - silversearcher-ag
+    - dict
+
+
+- name: copy zsh files
+  copy:
+    src: .
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: set zsh as default shell of {{ normal_user }}
+  user:
+    name: "{{ normal_user }}"
+    shell: /bin/zsh
+  become: yes
