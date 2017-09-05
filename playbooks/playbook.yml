@@ -1,9 +1,10 @@
 ---
 
-- hosts: all
+- name: bootstrap
+  hosts: all
   become: yes
   roles:
-    - common
+    - bootstrap
   pre_tasks:
     - name: update apt cache if needed and autoremove packages
       apt:

@@ -22,10 +22,10 @@
     state: link
 
 
-- name: set timezone
-  timezone:
-    name: "{{ timezone }}"
-  notify: restart cron
+# - name: set timezone # new in version 2.2
+#   timezone:
+#     name: "{{ timezone }}"
+#   notify: restart cron
 
 - include: packages.yml
 - include: pcspkr.yml
