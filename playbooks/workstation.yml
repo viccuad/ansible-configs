@@ -1,0 +1,22 @@
+---
+
+- hosts: workstation
+  become: yes
+  roles:
+    - testing-repos
+    - zsh
+    - emacs
+    - tmux
+    - vim
+    - gnupg
+    - git
+    - pass
+    - weechat
+    - lxc
+    - vagrant
+    - debian
+    # - nvim
+    - signing-party
+    - virtualenvwrapper
+    - beets
+    - golang

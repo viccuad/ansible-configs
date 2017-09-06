@@ -6,9 +6,6 @@ aserver.lxc
 anofflinepc.lxc
 arouter.lxc
 
-[dotfiles]
-aworkstation.lxc
-
 
 [all:vars]
 ansible_connection=ssh
