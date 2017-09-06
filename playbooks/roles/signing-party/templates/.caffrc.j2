@@ -1,8 +1,8 @@
 # $Id: caffrc.sample 505 2013-10-18 08:16:20Z weasel $
 # vim:ft=perl:
 
-$CONFIG{'owner'}       = 'John Doe';       # TODO
-$CONFIG{'email'}       = 'john@doe.com';   # TODO
+$CONFIG{'owner'}       = '{{ normal_user_name }}';
+$CONFIG{'email'}       = '{{ normal_user_email }}';
 
 # you can get your long keyid from
 #   gpg --with-colons --list-key <yourkeyid|name|emailaddress..>
@@ -13,8 +13,8 @@ $CONFIG{'email'}       = 'john@doe.com';   # TODO
 # This is the list of keys whose signatures you want to mail around.  Usually
 # you would list all your keys here.  To specify which keys to sign with, set
 # local-user.  See the manpage for further details.
-$CONFIG{'keyid'}       = [ qw{A2591E231E251F36} ];
-$CONFIG{'also-encrypt-to'} = [ qw{A2591E231E251F36} ];
+$CONFIG{'keyid'}       = [ qw{ {{ normal_user_gpgkey }} } ];
+$CONFIG{'also-encrypt-to'} = [ qw{ {{ normal_user_gpgkey }} } ];
 $CONFIG{'caffhome'}    = $ENV{'HOME'}.'/.caff';
 
 # The options below need not be changed for normal operation.
@@ -43,7 +43,7 @@ $CONFIG{'caffhome'}    = $ENV{'HOME'}.'/.caff';
 # $CONFIG{'ask-sign'}       = 1;
 
 # Forward mails also to myself
-$CONFIG{'bcc'} = 'john@doe.com'; # TODO
+$CONFIG{'bcc'} = '{{ normal_user_email }}';
 # Mail template to use
 $CONFIG{'mail-template'} = <<'EOM'
 Hi,

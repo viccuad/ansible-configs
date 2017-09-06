@@ -9,6 +9,13 @@
     - signing-party
 
 
+- name: copy .caffrc config
+  template:
+    src: .caffrc.j2
+    dest: "/home/{{ normal_user }}/.caffrc"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
 - name: copy caff files
   synchronize:
     src: .
