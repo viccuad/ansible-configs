@@ -1,0 +1,14 @@
+---
+
+- name: install xfce terminal
+  package:
+    name: xfce4-terminal
+    state: present
+
+
+- name: copy xfce terminal configs
+  copy:
+    src: files/
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
