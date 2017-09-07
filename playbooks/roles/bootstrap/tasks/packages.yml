@@ -13,4 +13,5 @@
     - tmux
     - yubikey-personalization # for the yubikey udev rules
     - popularity-contest
+    - debsecan
     - grep
