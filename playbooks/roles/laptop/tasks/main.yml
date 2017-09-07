@@ -1,0 +1,42 @@
+---
+
+- name: install laptop-related packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - tlp
+    - tp-smapi-dkms
+    - acpi-call-dkms
+
+
+- name: add alias for charge-batteries-totally
+  lineinfile:
+    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
+    line: 'alias charge-batteries-totally="sudo tlp fullcharge BAT0; sudo tlp fullcharge BAT1"'
+
+
+- name: enable mac spoofing for wifi and ethernet
+  # See https://blogs.gnome.org/thaller/2016/08/26/mac-address-spoofing-in-networkmanager-1-4-0
+  blockinfile:
+    dest: /etc/NetworkManager/conf.d/30-mac-randomization.conf
+    block: |
+            [device-mac-randomization]
+            # "yes" is already the default for scanning
+            wifi.scan-rand-mac-address=yes
+
+            [connection-mac-randomization]
+            ethernet.cloned-mac-address=random
+            wifi.cloned-mac-address=random
+    marker: "# {mark} ansible block"
+
+
+- name: copy tlp config
+  copy:
+    src: tlp
+    dest: /etc/default/tlp
+  notify: restart tlp
+
+
+# - include: firewalld with this vars TODO

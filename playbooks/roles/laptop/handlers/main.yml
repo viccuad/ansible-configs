@@ -1,0 +1,6 @@
+---
+
+- name: restart tlp
+  service:
+    name: tlp
+    state: restarted
