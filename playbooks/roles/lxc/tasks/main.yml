@@ -10,6 +10,11 @@
       - bridge-utils
 
 
+- name: set nested_container fact
+  shell: systemd-detect-virt
+  register: nested_container
+
+
 - name: copy lxc-net config
   # https://wiki.debian.org/LXC/SimpleBridge#Using_lxc-net
   template:

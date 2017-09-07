@@ -28,11 +28,6 @@
 #   notify: restart cron
 
 
-- name: set nested_container fact
-  shell: systemd-detect-virt
-  register: nested_container
-
-
 - include: packages.yml
 - include: pcspkr.yml
 - include: ssh-server.yml
