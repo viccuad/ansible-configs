@@ -10,7 +10,7 @@
     - gocode
 
 
-- name: Set gopath fact
+- name: set gopath fact
   set_fact:
     gopath: $HOME/code/go
 
