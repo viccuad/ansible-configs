@@ -14,7 +14,7 @@ Once you have lxc-net and resolvconf set up for <container>.lxc, do the usual `v
 up`, `vagrant provision`, or if you want:
 
 ```bash
-$ ansible-playbook playbooks/all.yml -i inventories/vagrant
+$ ansible-playbook playbooks/all.yml -i inventories/vagrant -vv
 ```
 
 
