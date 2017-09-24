@@ -7,7 +7,6 @@
     install_recommends: yes
   with_items:
     - golang
-    - gocode
 
 
 - name: set gopath fact
@@ -33,6 +32,7 @@
 - name: install go deps not packaged yet
   # deps that aren't packaged yet:
   shell: |
+          GOPATH="{{ gopath }}" go get -u github.com/nsf/gocode
           GOPATH="{{ gopath }}" go get -u -v github.com/golang/lint/golint
           GOPATH="{{ gopath }}" go get -u -v github.com/rogpeppe/godef
           GOPATH="{{ gopath }}" go get -u -v golang.org/x/tools/cmd/guru
