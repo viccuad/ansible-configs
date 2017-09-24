@@ -90,7 +90,7 @@ values."
      vimscript
      python
      django
-     (go :variables go-use-gometalinter t)
+     go
      shell-scripts
      sql
      vagrant
