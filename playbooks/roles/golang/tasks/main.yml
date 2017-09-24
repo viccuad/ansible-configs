@@ -9,6 +9,19 @@
     - golang
 
 
+- name: copy golang files
+  synchronize:
+    src: .
+    dest: "/home/{{ normal_user }}/"
+    perms: yes
+    recursive: yes
+    links: yes
+    rsync_opts:
+      - "--exclude=.git*"
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
 - name: set gopath fact
   set_fact:
     gopath: $HOME/code/go
