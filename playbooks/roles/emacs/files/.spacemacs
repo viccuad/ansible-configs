@@ -40,19 +40,11 @@ values."
      helm
      emacs-lisp
      (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete
-                      auto-completion-tab-key-behavior 'cycle
-                      auto-completion-complete-with-key-sequence nil
-                      auto-completion-complete-with-key-sequence-delay 0.1
                       auto-completion-private-snippets-directory nil ;; use ~/.emacs.d/private/snippets
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t
                       auto-completion-enable-sort-by-usage t)
-     (spell-checking :variables
-                     spell-checking-enable-by-default t
-                     spell-checking-enable-auto-dictionary nil ;; detect the current language from the buffer content
-                     ;; enable-flyspell-auto-completion t pop-up for spelling errors automatically
-                     )
+     spell-checking
      syntax-checking
      ;; semantic ;; display current function interface at the top of the screen
      git
@@ -60,10 +52,7 @@ values."
                       version-control-diff-tool 'git-gutter
                       version-control-diff-side 'left
                       )
-     (colors :variables
-             ;; colors-enable-rainbow-identifiers t
-             ;; colors-enable-nyan-cat-progress-bar t
-             )
+     colors
      evil-cleverparens
      evil-commentary
      evil-snipe
@@ -77,9 +66,7 @@ values."
      gtags
      extra-langs
      org
-     (shell :variables
-            shell-default-height 30
-            shell-default-position 'bottom)
+     shell
      html
      (latex :variables
             ;; latex-build-command "LatexMk -pdflatex='xelatex --shell-escape'"
@@ -106,7 +93,7 @@ values."
      themes-megapack
      command-log
      ;; private layers:
-     notmuch
+     ;; notmuch
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -528,16 +515,16 @@ you should place your code here."
 
 ;;;; GIT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (global-git-commit-mode t) ;; use spacemacs as $EDITOR for editing git commit messages:
+  (global-git-commit-mode t) ;; use spacemacs as $EDITOR for editing git commit messages
 
 ;;;; WHITESPACE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; (setq-default
   ;;  whitespace-line-column 80)
 
-  (spacemacs/toggle-whitespace-globally-on)
-  (add-hook 'prog-mode-hook #'whitespace-mode)
-  (add-hook 'text-mode-hook #'whitespace-mode)
+  ;; (spacemacs/toggle-whitespace-globally-on)
+  ;; (add-hook 'prog-mode-hook #'whitespace-mode)
+  ;; (add-hook 'text-mode-hook #'whitespace-mode)
 
   (setq whitespace-style '(
                            ;; via display table:
@@ -630,12 +617,12 @@ you should place your code here."
 
   (setq
    evil-escape-key-sequence "jk" ;; but also use evil-escape to escape from "everything" in Emacs
-   evil-want-fine-undo nil ;; use vim undo, to undo last insert mode as a chunk:
+   evil-want-fine-undo nil ;; use vim undo, to undo last insert mode as a chunk
    evil-move-cursor-back nil ;; don't move cursor back when going to normal mode from insert
    evil-shift-round nil ;; this makes possible to put the shifting back how it was when using > and then <
    )
 
-  (fset 'evil-visual-update-x-selection 'ignore) ;; prevent visual selections to override system clipboard:
+  (fset 'evil-visual-update-x-selection 'ignore) ;; prevent visual selections to override system clipboard
 
   ;; make j & k behave as g j & g k:
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -692,9 +679,6 @@ you should place your code here."
   ;; text-mode
   (add-hook 'text-mode-hook 'auto-fill-mode)
 
-  ;; dired-mode
-  (add-hook 'dired-mode-hook 'deer) ;; needs ranger layer
-
   ;; Makefile
   (add-hook 'makefile-mode-hook 'whitespace-mode)
 
@@ -710,8 +694,7 @@ you should place your code here."
   (setq python-check-command "flake8") ;; check syntax after every save
 
   ;; LATEX
-  ;; automatically update pdf preview on each recompile
-  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode) ;; automatically update pdf preview on each recompile
 
   ;; (setq TeX-show-compilation t)
   (setq TeX-source-correlate-mode t) ;; enable synctex, .pdf to .tex backward search
@@ -720,7 +703,7 @@ you should place your code here."
 
 ;;;; WIDTH ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (setq-default tab-width 4)  ;; set default tab char's display width to 4 spaces
+  ;; (setq-default tab-width 4)  ;; set default tab char's display width to 4 spaces
 
   ;; TAB key:
   ;; (setq-default tab-always-indent t)         ;; make tab key always call a indent command.
@@ -886,8 +869,6 @@ you should place your code here."
 ;;;; TODO ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; emacs doesn't see debian-el editing d/control etc as prog-mode nor text-mode
-  ;; wrap
-  ;; get autocompletion tooltips on terminal https://github.com/expez/company-quickhelp/issues/24
   ;; fix colors on diffs and patches
   ;; make emacsclient independent and don't close, if 2 instances have the same buffer open
   ;; highlight tabs and indentation
