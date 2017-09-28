@@ -363,7 +363,7 @@ you should place your code here."
 
 ;;;; SPACEMACS ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (spacemacs/toggle-evil-cleverparens-on)
+  ;; (spacemacs/toggle-evil-cleverparens-on)
   ;; (spacemacs/toggle-aggressive-indent-globally-on)
 
   ;; truncate lines in buffer (there is no hook for buffers and the setting is
