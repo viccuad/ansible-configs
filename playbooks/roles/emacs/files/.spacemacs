@@ -90,7 +90,6 @@ values."
      speed-reading
      ranger
      gnus
-     themes-megapack
      command-log
      ;; private layers:
      ;; notmuch
@@ -141,7 +140,7 @@ values."
    ;; (default t)
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout 10
+   dotspacemacs-elpa-timeout nil
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
