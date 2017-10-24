@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     lxc.customize 'cgroup.memory.limit_in_bytes', '256M'
   end
 
-  hostnames = ['aworkstation', 'aserver', 'anofflinepc','arouter']
+  hostnames = ['aworkstation', 'aserver', 'anofflinepc','arouter', 'adesktop', 'alaptop', 'anas', 'ahtpc']
 
   hostnames.each do |name|
   config.vm.define "#{name}" do |system|
