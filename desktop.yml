@@ -6,7 +6,6 @@
 - hosts: desktop
   become: yes
   roles:
-    - testing-repos # TODO
     - desktopenv
     - xfce-terminal
     - fonts
