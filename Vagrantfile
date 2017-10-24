@@ -15,6 +15,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.memory = 2048
   end
 
+  config.vm.network :private_network, :libvirt__network_name => 'default'
+
   hostnames = ['aworkstation', 'aserver', 'anofflinepc','arouter', 'adesktop', 'alaptop', 'anas', 'ahtpc']
 
   hostnames.each do |name|
