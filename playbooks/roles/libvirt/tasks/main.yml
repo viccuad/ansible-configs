@@ -1,0 +1,70 @@
+---
+
+- name: install libvirt packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - qemu-kvm
+      - libvirt-clients
+      - libvirt-daemon
+      - libvirt-daemon-system
+      - bridge-utils
+      - virt-top
+      - virt-manager
+
+
+- name: set nested_qemu fact
+  shell: systemd-detect-virt
+  register: nested_qemu
+
+
+- name: define default libvirt network
+  virt_net:
+    command: define
+    name: default
+    xml: '{{ lookup("template", "default.xml.j2") }}'
+    state: 'present'
+  notify: restart libvirtd
+  notify: restart libvirt-guests
+
+
+- name: workaround, create ~/.ssh
+  # TODO https://github.com/ansible/ansible/issues/20986
+  file:
+    path: ~/.ssh
+    state: directory
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: do not check libvirt ssh host keys
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.ssh/config'
+    create: yes
+    block: |
+            Host *.libvirt
+              StrictHostKeyChecking no
+              UserKnownHostsFile=/dev/null
+    marker: "# {mark} libvirt block"
+
+
+- name: be sure libvirtd is running and enabled
+  service:
+    name: libvirtd
+    state: started
+    enabled: yes
+
+
+- name: install resolvconf
+  apt:
+    name: resolvconf
+    state: present
+
+
+- name: enable .libvirt DNS resolution for the host
+  blockinfile:
+    block: '{{ lookup("template", "tail.j2") }}'
+    dest: /etc/resolvconf/resolv.conf.d/tail
+  notify: rerun resolvconf

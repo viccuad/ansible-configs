@@ -1,0 +1,24 @@
+<network>
+  <name>default</name>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr0' stp='on' delay='0'/>
+  <domain name='libvirt' localOnly='yes'/>
+{% if nested_qemu.stdout == 'qemu' %}
+  <ip address='10.1.4.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='10.1.4.2' end='10.1.4.254'/>
+    </dhcp>
+  </ip>
+{% else %}
+  <ip address='10.1.3.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='10.1.3.2' end='10.1.3.254'/>
+    </dhcp>
+  </ip>
+{% endif %}
+</network>
+

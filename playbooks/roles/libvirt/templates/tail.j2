@@ -1,0 +1,5 @@
+{% if nested_qemu.stdout == 'qemu' %}
+nameserver 10.1.4.1 # nested libvirt
+{% else %}
+nameserver 10.1.3.1 # libvirt
+{% endif %}
