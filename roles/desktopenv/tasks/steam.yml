@@ -1,0 +1,36 @@
+---
+
+- name: enable multiarch for steam
+  shell: dpkg --add-architecture i386
+  become: yes
+  notify: update apt cache if needed and autoremove packages
+
+
+- name: save agreement to steam license
+  shell: /bin/echo /usr/bin/debconf steam/license note | /usr/bin/debconf-set-selections
+  become: yes
+
+
+- name: save agreement to steam question
+  shell: /bin/echo /usr/bin/debconf steam/question select "I AGREE" | /usr/bin/debconf-set-selections
+  become: yes
+
+
+- name: install steam packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - steam
+      - steam-devices
+
+
+- name: copy steam files
+  copy:
+    src: steam
+    dest: "/home/{{ normal_user }}/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+  become: yes
+  become_user: "{{ normal_user }}"

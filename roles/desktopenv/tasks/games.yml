@@ -1,0 +1,14 @@
+---
+
+- name: install game packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - minetest
+      - retroarch
+      - zsnes
+      - mednafen
+      - pcsx2
+

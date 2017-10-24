@@ -1,0 +1,65 @@
+---
+
+- name: install gui packages from main
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - emacs25 # gui
+      - task-gnome-desktop
+      - dconf-gsettings-backend
+      - fwupd
+      - gnome-software-plugin-flatpak
+      - firefox-esr
+      - xul-ext-ublock-origin
+      - xul-ext-https-everywhere
+      - xul-ext-itsalltext
+      - xul-ext-noscript
+      - dconf-gsettings-backend
+      - firewall-applet
+      - calibre
+      - ardour
+      - chromium
+      # - drumgizmo # TODO
+      - dgedit
+      - guitarix
+      - gparted
+      - meld
+      - gnome-shell-pomodoro
+      - torbrowser-launcher
+      - vlc
+      - virt-manager
+      - gnome-shell-extensions
+      - vrms
+      - pinentry-gnome3
+      - yubioath-desktop
+      - yubikey-personalization
+      - yubikey-personalization-gui
+      - intel-gpu-tools
+
+
+- name: install packages from contrib/nonfree
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - unrar
+      - intel-microcode
+      - iucode-tool
+
+
+- name: create gnome keybindings for passmenu
+  shell: |
+          gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/ binding '<Super>F2'
+          gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/ command '.dotfiles/pass/nostow/bin/passmenu --type'
+          gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/ name 'Passmenu'
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- include: icons.yml
+- include: themes.yml
+- include: steam.yml
+- include: games.yml
