@@ -9,6 +9,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     lxc.customize 'cgroup.memory.limit_in_bytes', '256M'
   end
 
+  config.vm.provider :libvirt do |libvirt|
+    libvirt.nested = true
+    libvirt.cpu_mode = "host-model"
+    libvirt.memory = 2048
+  end
+
   hostnames = ['aworkstation', 'aserver', 'anofflinepc','arouter', 'adesktop', 'alaptop', 'anas', 'ahtpc']
 
   hostnames.each do |name|
@@ -19,6 +25,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.define :adesktop do |desktop|
+    desktop.vm.host_name = "adesktop"
+    desktop.vm.provider :libvirt do |domain|
+      domain.memory = 6144
+      domain.cpus = 2
+    end
+  end
+
+  config.vm.define :arouter do |router|
+    router.vm.host_name = "arouter"
+    router.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 1
+    end
   end
 
   # Run Ansible provisioner once for all VMs at the end
