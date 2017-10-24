@@ -1,5 +1,8 @@
 ---
 
+- include: bootstrap.yml
+
+
 - hosts: workstation
   become: yes
   roles:

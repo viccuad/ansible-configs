@@ -1,17 +1,5 @@
 ---
 
-- name: bootstrap
-  hosts: all
-  become: yes
-  roles:
-    - bootstrap
-  pre_tasks:
-    - name: update apt cache if needed and autoremove packages
-      apt:
-        update_cache: yes
-        cache_valid_time: 3600
-        autoremove: yes
-
-
+- include: bootstrap.yml
 - include: workstation.yml
 - include: router.yml
