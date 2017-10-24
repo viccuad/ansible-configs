@@ -3,3 +3,4 @@
 - include: bootstrap.yml
 - include: workstation.yml
 - include: router.yml
+- include: desktop.yml
