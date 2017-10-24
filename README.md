@@ -14,7 +14,7 @@ Once you have lxc-net and resolvconf set up for <container>.lxc, do the usual `v
 up`, `vagrant provision`, or if you want:
 
 ```bash
-$ ansible-playbook playbooks/all.yml -i inventories/vagrant -vv
+$ ansible-playbook all.yml -i inventories/vagrant -vv
 ```
 
 
@@ -23,7 +23,7 @@ $ ansible-playbook playbooks/all.yml -i inventories/vagrant -vv
 Ansible will use the `deploy` user to ssh (see roles/common/vars)
 
 ```bash
-$ ansible-playbook playbooks/all.yml -i inventories/production
+$ ansible-playbook all.yml -i inventories/production
 ```
 
 
@@ -37,7 +37,7 @@ $ usermod -aG sudo deploy
 ```
 
 ``` bash
-$ ssh-copy-id -f playbooks/roles/common/files/deploy.pub <target host>
+$ ssh-copy-id -f roles/common/files/deploy.pub <target host>
 ```
 
 

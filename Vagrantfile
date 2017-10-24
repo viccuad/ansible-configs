@@ -19,16 +19,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  # Run Ansible provisioner once for all VMs at the end
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "playbooks/all.yml"
-    ansible.inventory_path = "inventories/vagrant"
-    ansible.limit = "all" # run ansible in parallel for all machines
-    ansible.verbose = "v"
-    ansible.extra_vars = {
-      ansible_ssh_user: 'vagrant',
-      ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
-    }
   end
+
+  # Run Ansible provisioner once for all VMs at the end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.playbook = "all.yml"
+  #   ansible.inventory_path = "inventories/vagrant"
+  #   ansible.limit = "all" # run ansible in parallel for all machines
+  #   ansible.verbose = "v"
+  #   ansible.extra_vars = {
+  #     ansible_ssh_user: 'vagrant',
+  #     ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
+  #   }
+  # end
 
 end
