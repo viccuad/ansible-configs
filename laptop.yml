@@ -2,6 +2,9 @@
 
 - include: bootstrap.yml
 - include: workstation.yml
-- include: router.yml
 - include: desktop.yml
-- include: laptop.yml
+
+- hosts: laptop
+  become: yes
+  roles:
+    - laptop
