@@ -79,7 +79,7 @@
 
 
 - name: enable .lxc DNS resolution for the host
-  template:
-    src: head.j2
-    dest: /etc/resolvconf/resolv.conf.d/head
+  blockinfile:
+    block: '{{ lookup("template", "tail.j2") }}'
+    dest: /etc/resolvconf/resolv.conf.d/tail
   notify: rerun resolvconf
