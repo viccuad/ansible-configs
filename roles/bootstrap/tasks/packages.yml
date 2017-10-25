@@ -8,11 +8,37 @@
   with_items:
     - rsync # for ansible synchronize
     - acl   # so ansible can share tmp files with unprivileged users
+    - python
+    - python3
+    - apt-transport-https
+    - ca-certificates
+    - cron-apt
+    - etckeeper
+    - htop
+    - iptables
+    - less
+    - lsof
+    - moreutils
+    - screen
+    - sudo
+    - traceroute
+    - tree
+    - uptimed
+    - w3m
+    - wget
+    - zsh
     - git
     - vim
     - htop
+    - grep
     - tmux
     - yubikey-personalization # for the yubikey udev rules
     - popularity-contest
+    - pastebinit
     - debsecan
-    - grep
+    - lmsensors
+
+
+- name: Intall needrestart everywhere (but not on my main laptop)
+  apt: name=needrestart state=present
+  when: "'laptop' not in group_names"

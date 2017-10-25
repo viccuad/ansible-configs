@@ -16,3 +16,7 @@
   service:
     name: cron
     state: restarted
+
+
+- name: restart uptimed
+  service: name=uptimed state=restarted
