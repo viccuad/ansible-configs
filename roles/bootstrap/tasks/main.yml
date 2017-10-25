@@ -6,3 +6,4 @@
 - include: ssh-server.yml
 - include: deploy-user.yml
 - include: normal-user.yml
+- include: confs.yml

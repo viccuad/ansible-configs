@@ -1,0 +1,14 @@
+#
+# {{ ansible_managed }}
+#
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+XKBVARIANT=""
+# <Menu> will act as a compose key (compose:menu) and <CapsLock> will act as third control key
+XKBOPTIONS=compose:menu,ctrl:nocaps
+
+BACKSPACE="guess"

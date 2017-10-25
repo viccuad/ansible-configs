@@ -1,0 +1,51 @@
+---
+
+- name: install the keyboard conf
+  file:
+    src: keyboard
+    dest: /etc/default/keyboard
+    owner: root
+    group: root
+    mode: 0644
+
+
+# - name: drop pointless files from /etc/skel
+#   file: path={{ item }} state=absent
+#   with_items:
+#     - /etc/skel/.bash_logout
+#     - /etc/skel/.bashrc
+
+
+- name: add a dummy .zshrc file in skel
+  copy:
+    content: "# This is your personal configuration file for zsh.\n# Config here will override system configuration."
+    dest: /etc/skel/.zshrc
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: configure uptimed to send emails
+  lineinfile:
+    dest: /etc/uptimed.conf
+    regexp: '^SEND_EMAIL=\d'
+    line: "SEND_EMAIL=1"
+  notify: restart uptimed
+
+
+- name: Install systemd-send-email
+  file:
+    src: systemd-send-email
+    dest: /usr/local/bin/systemd-send-email
+    owner: root
+    group: root
+    mode: 0755
+
+
+- name: Install systemd-send-email@.service
+  file:
+    src: systemd-send-email@.service
+    dest: /etc/systemd/system/systemd-send-email@.service
+    owner: root
+    group: root
+    mode: 0644
