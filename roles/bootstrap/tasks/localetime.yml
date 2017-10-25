@@ -1,0 +1,28 @@
+---
+
+- name: generate locales
+  locale_gen:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - en_US.UTF-8
+    - en_DK.UTF-8
+    - es_ES.UTF-8
+    - de_DE.UTF-8
+
+
+- name: set locale
+  command: /usr/sbin/update-locale LANG=en_DK.UTF8 LC_ALL=en_DK.UTF8
+
+
+- name: set localtime
+  file:
+    src: "/usr/share/zoneinfo/{{ timezone }}"
+    dest: /etc/localtime
+    state: link
+
+
+# - name: set timezone # new in version 2.2
+#   timezone:
+#     name: "{{ timezone }}"
+#   notify: restart cron
