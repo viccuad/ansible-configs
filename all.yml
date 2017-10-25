@@ -2,6 +2,7 @@
 
 - include: bootstrap.yml
 - include: workstation.yml
+- include: server.yml
 - include: router.yml
 - include: desktop.yml
 - include: laptop.yml

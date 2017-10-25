@@ -1,0 +1,14 @@
+---
+
+- include: bootstrap.yml
+
+- hosts: server
+  become: yes
+  roles:
+    - stretch-repos
+    - zsh
+    - vim
+    - git
+    - pass
+    - gnupg
+    - tmux
