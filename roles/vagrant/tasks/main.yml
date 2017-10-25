@@ -16,6 +16,6 @@
   blockinfile:
     dest: "/home/{{ normal_user }}/.zshenv"
     block: |
-            export VAGRANT_DEFAULT_PROVIDER="lxc"
+            export VAGRANT_DEFAULT_PROVIDER="libvirt"
             # export VAGRANT_LOG=INFO
     marker: "# {mark} vagrant block"
