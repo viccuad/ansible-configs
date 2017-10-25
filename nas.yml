@@ -1,0 +1,10 @@
+---
+
+- include: bootstrap.yml
+- include: server.yml
+
+
+- hosts: nas
+  become: yes
+  roles:
+    - stretch-repos
