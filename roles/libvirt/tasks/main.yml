@@ -26,8 +26,9 @@
     name: default
     xml: '{{ lookup("template", "default.xml.j2") }}'
     state: 'present'
-  notify: restart libvirtd
-  notify: restart libvirt-guests
+  notify:
+    - restart libvirtd
+    - restart libvirt-guests
 
 
 - name: workaround, create ~/.ssh
