@@ -38,20 +38,53 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define :adesktop do |desktop|
-    desktop.vm.host_name = "adesktop"
+  config.vm.define :desktop do |desktop|
+    desktop.vm.host_name = "desktop"
     desktop.vm.provider :libvirt do |domain|
       domain.memory = 6144
       domain.cpus = 2
     end
+    desktop.vm.network :private_network,
+      :libvirt__network_name => 'lan',
+      :ip => "10.30.0.0"
   end
 
-  config.vm.define :arouter do |router|
-    router.vm.host_name = "arouter"
+  config.vm.define :nas do |nas|
+    nas.vm.host_name = "nas"
+    nas.vm.network :private_network,
+      :libvirt__network_name => 'lan',
+      :ip => "10.30.0.0"
+  end
+
+  config.vm.define :router do |router|
+    router.vm.host_name = "router"
     router.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 1
     end
+    router.vm.network :private_network,
+                      :libvirt__network_name => 'street',
+                      :ip => "10.20.0.0"
+    router.vm.network :private_network,
+      :libvirt__network_name => 'lan',
+      :ip => "10.30.0.0"
+    router.vm.network :private_network,
+      :libvirt__network_name => 'wifi',
+      :ip => "10.40.0.0"
+    router.vm.network :private_network,
+      :libvirt__network_name => 'wifi-guest',
+      :ip => "10.41.0.0"
+  end
+
+  config.vm.define :laptop do |laptop|
+    laptop.vm.host_name = "laptop"
+    laptop.vm.provider :libvirt do |domain|
+      domain.memory = 6144
+      domain.cpus = 2
+    end
+    laptop.vm.network :private_network,
+      :libvirt__network_name => 'wifi',
+      :ip => "10.30.0.0"
   end
 
   # Run Ansible provisioner once for all VMs at the end
