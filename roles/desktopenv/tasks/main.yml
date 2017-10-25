@@ -26,6 +26,7 @@
       - guitarix
       - gparted
       - meld
+      - git-gui
       - gnome-shell-pomodoro
       - torbrowser-launcher
       - vlc
