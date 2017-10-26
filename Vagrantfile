@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.network :private_network, :libvirt__network_name => 'default'
 
-  hostnames = ['workstation', 'server', 'offlinepc','router', 'desktop', 'laptop', 'nas', 'htpc']
+  hostnames = ['router','workstation', 'server', 'offlinepc','desktop', 'laptop', 'nas', 'htpc']
 
   hostnames.each do |name|
   config.vm.define "#{name}" do |system|
