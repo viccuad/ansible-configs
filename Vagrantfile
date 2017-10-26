@@ -86,17 +86,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       :libvirt__network_name => 'wifi',
       :ip => "10.30.0.0"
   end
-
-  # Run Ansible provisioner once for all VMs at the end
-  # config.vm.provision "ansible" do |ansible|
-  #   ansible.playbook = "all.yml"
-  #   ansible.inventory_path = "inventories/vagrant"
-  #   ansible.limit = "all" # run ansible in parallel for all machines
-  #   ansible.verbose = "v"
-  #   ansible.extra_vars = {
-  #     ansible_ssh_user: 'vagrant',
-  #     ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
-  #   }
-  # end
-
 end
