@@ -1,7 +1,7 @@
 ---
 
 - name: install the keyboard conf
-  file:
+  template:
     src: keyboard
     dest: /etc/default/keyboard
     owner: root
@@ -25,16 +25,8 @@
     mode: 0644
 
 
-- name: configure uptimed to send emails
-  lineinfile:
-    dest: /etc/uptimed.conf
-    regexp: '^SEND_EMAIL=\d'
-    line: "SEND_EMAIL=1"
-  notify: restart uptimed
-
-
 - name: Install systemd-send-email
-  file:
+  template:
     src: systemd-send-email
     dest: /usr/local/bin/systemd-send-email
     owner: root
@@ -43,9 +35,17 @@
 
 
 - name: Install systemd-send-email@.service
-  file:
+  template:
     src: systemd-send-email@.service
     dest: /etc/systemd/system/systemd-send-email@.service
     owner: root
     group: root
     mode: 0644
+
+
+- name: configure uptimed to send emails
+  lineinfile:
+    dest: /etc/uptimed.conf
+    regexp: '^SEND_EMAIL=\d'
+    line: "SEND_EMAIL=1"
+  notify: restart uptimed
