@@ -6,6 +6,11 @@ aserver.lxc
 anofflinepc.lxc
 arouter.lxc
 
+[upgradeable]
+router
+nas
+htpc
+
 
 [all:vars]
 ansible_connection=ssh

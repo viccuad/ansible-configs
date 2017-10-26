@@ -1,0 +1,28 @@
+---
+
+- name: Upgrade the hosts
+  hosts: upgradeable
+  gather_facts: no
+  become: yes
+  vars_prompt:
+    - name: "upgrade"
+      prompt: "Do you want to also run the upgrade? [Y,n]"
+      default: "y"
+      private: no
+  tasks:
+    - apt: update_cache=yes cache_valid_time=14400 # apt-get update only if old than 4 hours
+    - apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - aptitude
+    - shell: "apt-'get' --just-print upgrade"
+      changed_when: false
+      register: output
+    - debug:
+        var: output.stdout_lines
+      when: "output.stdout != 'None'"
+    - apt:
+        upgrade: safe
+      register: aptout
+      when: "output.stdout != 'None' and upgrade in ('y','Y')"
