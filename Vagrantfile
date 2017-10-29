@@ -18,6 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :private_network, :libvirt__network_name => 'default'
 
   hostnames = ['router','workstation', 'server', 'offlinepc','desktop', 'laptop', 'nas', 'htpc']
+  config.vm.synced_folder ".", "/vagrant", type: "sshfs"
 
   hostnames.each do |name|
   config.vm.define "#{name}" do |system|

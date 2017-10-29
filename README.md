@@ -2,6 +2,15 @@ New incarnation of my dotfiles, plus many more.
 
 For the dotfiles themselves, look at `playbooks/roles/dotfiles/`.
 
+# Dependencies #
+
+```
+vagrant
+vagrant-libvirt
+vagrant-sshfs
+ansible
+```
+
 
 # Deploying against Vagrant #
 
