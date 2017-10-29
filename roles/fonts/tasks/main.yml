@@ -18,3 +18,15 @@
 - name: reload font cache
   shell: fc-cache -f
   become: yes
+
+
+- name: install font packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - fonts-font-awesome
+    - fonts-powerline
+    - fonts-hack-ttf
+    - fonts-lmodern
