@@ -1,0 +1,7 @@
+---
+
+- hosts: router
+  become: yes
+  roles:
+    - bootstrap
+    - stretch-repos
