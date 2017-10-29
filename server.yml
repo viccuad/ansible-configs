@@ -1,10 +1,9 @@
 ---
 
-- include: bootstrap.yml
-
 - hosts: server
   become: yes
   roles:
+    - bootstrap
     - stretch-repos
     - zsh
     - vim

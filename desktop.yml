@@ -1,11 +1,11 @@
 ---
 
-- include: bootstrap.yml
 - include: workstation.yml
 
 - hosts: desktop
   become: yes
   roles:
+    - bootstrap
     - desktopenv
     - xfce-terminal
     - fonts
