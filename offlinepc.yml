@@ -1,0 +1,14 @@
+---
+
+- hosts: offlinepc
+  become: yes
+  roles:
+    - bootstrap
+    - zsh
+    - emacs
+    - tmux
+    - vim
+    - gnupg
+    - git
+    - pass
+    - signing-party
