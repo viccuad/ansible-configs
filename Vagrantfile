@@ -5,18 +5,14 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.provider :lxc do |lxc|
-    lxc.customize 'cgroup.memory.limit_in_bytes', '256M'
-  end
-
   config.vm.provider :libvirt do |libvirt|
+    libvirt.memory = 1024
     libvirt.nested = true
     libvirt.cpu_mode = "host-model"
-    libvirt.memory = 2048
+    libvirt.random :model => 'random' # Passthrough /dev/random from host
   end
 
   config.vm.box = "debian/stretch64"
-
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
 
   hostnames = ['router','dotfiles','server','offlinepc','desktop','laptop','nas','htpc']
@@ -42,6 +38,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     :libvirt__forward_mode => 'veryisolated',
                     :libvirt__dhcp_enabled => false,
                     :libvirt__network_name => 'switch_lan'
+    router.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 1
+      # second ssd on the pcengines:
+      domain.storage :file, :device => 'vdb', :size => '1G', :type => 'raw'
     end
   end
 
@@ -94,6 +95,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       :libvirt__forward_mode => 'veryisolated',
                       :libvirt__dhcp_enabled => false,
                       :libvirt__network_name => 'switch_lan'
+    nas.vm.provider :libvirt do |domain|
+      domain.memory = 512
+      # 4 disks for raid 10 setup on the gnubee pc1:
+      domain.storage :file, :device => 'vdb', :size => '1G', :type => 'raw'
+      domain.storage :file, :device => 'vdc', :size => '1G', :type => 'raw'
+      domain.storage :file, :device => 'vdd', :size => '1G', :type => 'raw'
+      domain.storage :file, :device => 'vde', :size => '1G', :type => 'raw'
+    end
   end
 
   config.vm.define :htpc do |htpc|
