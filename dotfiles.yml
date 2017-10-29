@@ -1,11 +1,9 @@
 ---
 
-- include: bootstrap.yml
-
-
-- hosts: workstation
+- hosts: dotfiles
   become: yes
   roles:
+    - bootstrap
     - testing-repos
     - zsh
     - emacs

@@ -1,10 +1,12 @@
-[workstation]
-aworkstation.lxc
 
 [server]
 aserver.lxc
 anofflinepc.lxc
 arouter.lxc
+
+[dotfiles]
+[dotfiles:children]
+desktop
 
 [upgradeable]
 router
