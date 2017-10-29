@@ -5,3 +5,4 @@
 - import_playbook: router.yml
 - import_playbook: desktop.yml
 - import_playbook: laptop.yml
+- import_playbook: nas.yml
