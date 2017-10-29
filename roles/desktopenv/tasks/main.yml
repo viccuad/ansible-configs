@@ -62,7 +62,7 @@
   become_user: "{{ normal_user }}"
 
 
-- include: icons.yml
-- include: themes.yml
-- include: steam.yml
-- include: games.yml
+- import_tasks: icons.yml
+- import_tasks: themes.yml
+- import_tasks: steam.yml
+- import_tasks: games.yml

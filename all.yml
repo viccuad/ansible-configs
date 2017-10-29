@@ -1,7 +1,7 @@
 ---
 
-- include: workstation.yml
-- include: server.yml
-- include: router.yml
-- include: desktop.yml
-- include: laptop.yml
+- import_playbook: workstation.yml
+- import_playbook: server.yml
+- import_playbook: router.yml
+- import_playbook: desktop.yml
+- import_playbook: laptop.yml

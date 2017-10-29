@@ -1,8 +1,5 @@
 ---
 
-- include: workstation.yml
-- include: desktop.yml
-
 - hosts: laptop
   become: yes
   roles:

@@ -1,9 +1,8 @@
 ---
 
-- include: server.yml
+- import_playbook: server.yml
 
 
 - hosts: nas
   become: yes
   roles:
-    - stretch-repos
