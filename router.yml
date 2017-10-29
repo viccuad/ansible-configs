@@ -5,3 +5,4 @@
   roles:
     - bootstrap
     - stretch-repos
+    - freedombox

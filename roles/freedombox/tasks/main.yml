@@ -1,0 +1,27 @@
+---
+
+- name: install freedombox packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - freedombox-setup
+
+
+- name: exec freedombox-setup (if freedombox not installed yet)
+  shell: '/usr/lib/freedombox/setup &> /var/log/freedombox-setup.log'
+  args:
+    creates: /var/log/freedombox-setup.log
+
+
+- name: register variable for freedombox-first-run.log file
+  stat: path=/var/log/freedombox-first-run.log
+  register: freedombox_log
+
+
+- name: reboot host (if freedombox not installed yet)
+  shell: sleep 2 && shutdown -r now "rebooting after running freedombox-setup"
+  async: 1
+  poll: 0
+  when: freedombox_log.stat.exists == False
