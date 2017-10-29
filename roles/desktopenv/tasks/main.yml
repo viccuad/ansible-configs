@@ -53,16 +53,8 @@
       - iucode-tool
 
 
-- name: create gnome keybindings for passmenu
-  shell: |
-          gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/ binding '<Super>F2'
-          gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/ command '.dotfiles/pass/nostow/bin/passmenu --type'
-          gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/ name 'Passmenu'
-  become: yes
-  become_user: "{{ normal_user }}"
-
-
 - import_tasks: icons.yml
 - import_tasks: themes.yml
 - import_tasks: steam.yml
 - import_tasks: games.yml
+- import_tasks: gnome-settings.yml
