@@ -5,4 +5,5 @@
   roles:
     - bootstrap
     - stretch-repos
+    - pcengines-apu3b4
     - freedombox
