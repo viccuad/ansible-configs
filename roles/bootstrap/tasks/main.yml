@@ -7,10 +7,10 @@
     autoremove: yes
 
 
-- include: localetime.yml
-- include: packages.yml
-- include: pcspkr.yml
-- include: ssh-server.yml
-- include: deploy-user.yml
-- include: normal-user.yml
-- include: confs.yml
+- import_tasks: localetime.yml
+- import_tasks: pcspkr.yml
+- import_tasks: systemwide-confs.yml
+- import_tasks: packages.yml
+- import_tasks: ssh-server.yml
+- import_tasks: normal-user.yml
+- import_tasks: deploy-user.yml
