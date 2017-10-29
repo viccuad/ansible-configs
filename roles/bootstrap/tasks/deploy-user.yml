@@ -13,9 +13,13 @@
   become: yes
 
 - name: Add ssh key of deploy user
+- name: Add ssh key of deploy user (vagrant env)
   copy:
-    src: "{{ deploy_user }}.pub"
+    remote_src: True
+    src: "/home/vagrant/.ssh/authorized_keys"
     dest: "/etc/ssh/authorized_keys/{{ deploy_user }}.pub"
     owner: root
     group: root
     mode: 644
+  become: yes
+  when: "'vagrant' in group_names"

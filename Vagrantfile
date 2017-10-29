@@ -15,26 +15,20 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.memory = 2048
   end
 
+  config.vm.box = "debian/stretch64"
   config.vm.network :private_network, :libvirt__network_name => 'default'
 
-  hostnames = ['router','workstation', 'server', 'offlinepc','desktop', 'laptop', 'nas', 'htpc']
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
 
+  hostnames = ['router','dotfiles','server','offlinepc','desktop','laptop','nas','htpc']
   hostnames.each do |name|
   config.vm.define "#{name}" do |system|
-    system.vm.box = "debian/stretch64"
     system.vm.host_name = "#{name}"
-    system.ssh.insert_key = false # use insecure_private_key, don't expose VMs outside
-
     system.vm.provision "ansible" do |ansible|
         ansible.playbook = "#{name}.yml"
         ansible.inventory_path = "inventories/vagrant"
         ansible.limit = "all" # run ansible in parallel for all machines
-        ansible.verbose = "v"
-        ansible.extra_vars = {
-          ansible_ssh_user: 'vagrant',
-          ansible_ssh_private_key_file: "~/.vagrant.d/insecure_private_key"
-        }
+        ansible.verbose = "vv"
       end
     end
   end
