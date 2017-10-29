@@ -10,7 +10,9 @@
       default: "y"
       private: no
   tasks:
-    - apt: update_cache=yes cache_valid_time=14400 # apt-get update only if old than 4 hours
+    - apt:
+        update_cache: yes
+        cache_valid_time: 14400 # apt-get update only if old than 4 hours
     - apt:
         name: "{{ item }}"
         state: present
