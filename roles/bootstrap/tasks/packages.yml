@@ -42,6 +42,3 @@
     - nload
 
 
-- name: Intall needrestart everywhere (but not on my main laptop)
-  apt: name=needrestart state=present
-  when: "'laptop' not in group_names"

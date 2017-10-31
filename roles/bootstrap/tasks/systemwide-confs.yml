@@ -20,7 +20,9 @@
 
 - name: add a dummy .zshrc file in skel
   copy:
-    content: "# This is your personal configuration file for zsh.\n# Config here will override system configuration."
+    content: |
+              "# This is your personal configuration file for zsh."
+              "# Config here will override system configuration."
     dest: /etc/skel/.zshrc
     owner: root
     group: root
