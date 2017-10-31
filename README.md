@@ -5,10 +5,7 @@ For the dotfiles themselves, look at `playbooks/roles/dotfiles/`.
 # Dependencies #
 
 ```
-vagrant
-vagrant-libvirt
-vagrant-sshfs
-ansible
+vagrant vagrant-libvirt vagrant-sshfs ansible
 ```
 
 
@@ -38,7 +35,7 @@ $ ansible-playbook all.yml -i inventories/production
 
 ## Setting up a new host ##
 
-As usual, yadda yadda:
+Yadda yadda:
 
 ```bash
 $ adduser deploy
@@ -50,18 +47,30 @@ $ ssh-copy-id -f roles/common/files/deploy.pub <target host>
 ```
 
 
-# Building a Stretch image #
+# Creating your own Stretch image #
 
-If you don't trust the Debian Stretch in Vagrant servers, you can build your own
-Stretch lxc image (following the official scripts) and use it for the
-Vagrantfile.
-
-Change the Vagrantfile so it is looking for an image called `stretch`.
-
+Change the Vagrantfile so it is looking for an image called `stretch.box`.
 Inside this repo, do:
 
 ```
-$ git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
-$ sudo make -C debian-vm-templates/custom-lxc-vagrant stretch
-$ vagrant up
+git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
+sudo make -C debian-vm-templates/custom-lxc-vagrant stretch
+vagrant box add stretch.box --name stretch.box
+rm stretch.box
+vagrant up
+```
+
+
+# Creating your own Buster image #
+
+Change the Vagrantfile so it is looking for an image called `buster.box`.
+Inside this repo, do:
+
+```
+git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
+sed -i 'Ns/.*/DISTRIBUTIONS = jessie stretch buster sid/' debian-vm-templates/vmdebootstrap-libvirt-vagrant/Makefile
+sudo make -C debian-vm-templates/vmdebootstrap-libvirt-vagrant buster
+vagrant box add buster.box --name buster.box
+rm buster.box
+vagrant up
 ```
