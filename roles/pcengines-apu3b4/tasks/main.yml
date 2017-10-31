@@ -8,6 +8,46 @@
   with_items:
     - lm-sensors
     - flashrom
+    - build-essential
+    - dkms
+    - checkinstall
+
+
+- name: install current kernel headers
+  shell: apt-get install -y linux-headers-$(uname -r)
+
+
+- name: copy leds-apu2 source files
+  # from https://github.com/qu1x/leds-apu2.git
+  copy:
+    src: leds-apu2_qu1x/
+    dest: /usr/src/leds-apu2-1.0.0/
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: install leds-apu2 kernel module with DKMS
+  shell: dkms install leds-apu2/1.0.0
+
+
+- name: copy apu2led source files
+  # from  https://daduke.org/linux/apu2
+  copy:
+    src: apu2led/
+    dest: /usr/src/apu2led/
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: make and checkinstall apu2led
+  shell: |
+          # create adhoc .deb:
+          cd /usr/src/apu2led
+          make
+          checkinstall --pkgname apu2led --pkgrelease 1.0 --pkglicense GPL-2+ \
+            --maintainer me@viccuad.me --nodoc -y
 
 
 - name: configure grub to show output during boot
