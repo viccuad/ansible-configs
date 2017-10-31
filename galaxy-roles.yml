@@ -1,0 +1,5 @@
+# install with:
+# ansible-galaxy install -r galaxy-roles.yml --roles-path ./roles --force
+
+- src: https://github.com/jacoelho/ansible-softwareraid
+  name: softwareraid
