@@ -1,1 +1,3 @@
 .vagrant
+*.box
+debian-vm-templates
