@@ -6,3 +6,19 @@
     - bootstrap
     - role: apt-sources
       sources: stretch
+    - role: softwareraid
+      software_raid_alerts_email: "root"
+      software_raid_create_kwargs: "--run" # force the creation if there are any prompts
+      software_raid_devices:
+      - device: /dev/md0
+        level: 10
+        components:
+          - /dev/vdb
+          - /dev/vdc
+          - /dev/vdd
+          - /dev/vde
+        filesystem_type: "ext4"
+        mount_point: "/mnt/volume"
+        mount_options: "noatime,noexec,nodiratime"
+        dump: 0
+        passno: 0
