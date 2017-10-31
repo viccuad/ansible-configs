@@ -13,6 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.box = "debian/stretch64"
+  config.vm.box_download_checksum = "3625435cbc6ace0a033f64e9495de65286d92d6560dfefe9239a3f9ab02f98a0"
+  config.vm.box_download_checksum_type = "sha256"
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
 
   hostnames = ['router','dotfiles','server','offlinepc','desktop','laptop','nas','htpc']
