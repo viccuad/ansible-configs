@@ -5,6 +5,7 @@
     name: "{{ deploy_user }}"
     state: present
 
+
 - name: Create deploy user
   user:
     name: "{{ deploy_user }}"
