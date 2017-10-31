@@ -1,0 +1,28 @@
+---
+
+- name: no "main" sources.list file
+  file:
+    path: /etc/apt/sources.list
+    state: absent
+  notify: apt update
+
+
+- block:
+  - name: remove .list files not in sources var
+    file:
+      path: "/etc/apt/sources.list.d/{{ item }}.list"
+      state: absent
+    with_items: "{{ all_sources | difference(sources) }}"
+  - name: install .list files
+    template:
+      src: "sources/{{ item }}"
+      dest: "/etc/apt/sources.list.d/{{ item }}.list"
+      owner: root
+      group: root
+      mode: 0644
+    with_items: "{{ sources }}"
+    notify: apt update
+
+
+# apply the handlers now instead of waiting for the end of the playbook
+- meta: flush_handlers

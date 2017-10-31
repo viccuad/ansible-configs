@@ -4,7 +4,8 @@
   become: yes
   roles:
     - bootstrap
-    - stretch-repos
+    - role: apt-sources
+      sources: stretch
     - zsh
     - vim
     - git

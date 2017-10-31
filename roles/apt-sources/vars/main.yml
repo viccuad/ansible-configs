@@ -1,0 +1,9 @@
+---
+
+all_sources:
+  - stretch
+  - stretch-backports
+  - buster
+  - testing
+  - unstable
+  - experimental

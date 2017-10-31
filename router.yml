@@ -4,6 +4,7 @@
   become: yes
   roles:
     - bootstrap
-    - stretch-repos
+    - role: apt-sources
+      sources: stretch
     - pcengines-apu3b4
     - freedombox

@@ -1,0 +1,5 @@
+# Unstable
+deb http://deb.debian.org/debian/ unstable main contrib non-free
+deb-src http://deb.debian.org/debian/ unstable main contrib non-free
+
+deb http://debug.mirrors.debian.org/debian-debug/ unstable-debug main

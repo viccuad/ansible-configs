@@ -4,6 +4,8 @@
   become: yes
   roles:
     - bootstrap
+    - role: apt-sources
+      sources: stretch
     - zsh
     - emacs
     - tmux
