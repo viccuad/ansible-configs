@@ -3,4 +3,31 @@
 - hosts: laptop
   become: yes
   roles:
+    - bootstrap
+    - role: apt-sources
+      sources: buster
+    # dotfiles roles:
+    - zsh
+    - emacs
+    - tmux
+    - vim
+    - gnupg
+    - git
+    - debuggers
+    - pass
+    - weechat
+    - lxc
+    - libvirt
+    - vagrant
+    - debian
+    # - nvim
+    - signing-party
+    - virtualenvwrapper
+    - beets
+    - golang
+    # desktop roles:
+    - desktopenv
+    - xfce-terminal
+    - fonts
+    # laptop roles:
     - laptop
