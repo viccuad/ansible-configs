@@ -1,8 +1,8 @@
 [router]
-arouter ansible_ssh_host=192.168.111.10 ansible_ssh_private_key_file=.vagrant/machines/router/libvirt/private_key
+arouter ansible_host=192.168.111.10 ansible_private_key_file=.vagrant/machines/router/libvirt/private_key
 
 [nas]
-anas ansible_ssh_host=192.168.111.5 ansible_ssh_private_key_file=.vagrant/machines/nas/libvirt/private_key
+anas ansible_host=192.168.111.5 ansible_private_key_file=.vagrant/machines/nas/libvirt/private_key
 
 [server]
 [server:children]
@@ -10,23 +10,23 @@ router
 nas
 
 [dotfiles]
-adotfiles ansible_ssh_host=192.168.111.2 ansible_ssh_private_key_file=.vagrant/machines/dotfiles/libvirt/private_key
+adotfiles ansible_host=192.168.111.2 ansible_private_key_file=.vagrant/machines/dotfiles/libvirt/private_key
 [dotfiles:children]
 desktop
 
 [desktop]
-adesktop ansible_ssh_host=192.168.111.3 ansible_ssh_private_key_file=.vagrant/machines/desktop/libvirt/private_key
+adesktop ansible_host=192.168.111.3 ansible_private_key_file=.vagrant/machines/desktop/libvirt/private_key
 [desktop:children]
 laptop
 
 [laptop]
-alaptop ansible_ssh_host=192.168.111.4 ansible_ssh_private_key_file=.vagrant/machines/laptop/libvirt/private_key
+alaptop ansible_host=192.168.111.4 ansible_private_key_file=.vagrant/machines/laptop/libvirt/private_key
 
 [htpc]
-anhtpc ansible_ssh_host=192.168.111.6 ansible_ssh_private_key_file=.vagrant/machines/htpc/libvirt/private_key
+anhtpc ansible_host=192.168.111.6 ansible_private_key_file=.vagrant/machines/htpc/libvirt/private_key
 
 [offlinepc]
-anofflinepc ansible_ssh_host=192.168.111.7 ansible_ssh_private_key_file=.vagrant/machines/offlinepc/libvirt/private_key
+anofflinepc ansible_host=192.168.111.7 ansible_private_key_file=.vagrant/machines/offlinepc/libvirt/private_key
 
 [upgradeable]
 [upgradeable:children]
@@ -47,7 +47,7 @@ aofflinepc
 [all:vars]
 host_key_checking=False
 ansible_connection=ssh
-ansible_ssh_user=vagrant
+ansible_user=vagrant
 become_user=vagrant
 deploy_user=vagrant
 normal_user=vic
