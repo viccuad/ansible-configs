@@ -1,6 +1,8 @@
 New incarnation of my dotfiles, plus many more.
 
-For the dotfiles themselves, look at `playbooks/roles/dotfiles/`.
+For the dotfiles themselves, look at the roles being used in the `dotfiles.yml`
+playbook.
+
 
 # Dependencies #
 
@@ -11,13 +13,11 @@ vagrant vagrant-libvirt vagrant-sshfs ansible
 
 # Deploying against Vagrant #
 
-Ansible will use the `vagrant` user to ssh (I'm using vagrant's public insecure
-ssh key because my ssh keys come from a smartcard; this setup seems as less
-hassle to me than creating a ssh key just for this and later forgetting about
-it).
+```bash
+vagrant up
+```
 
-Once you have lxc-net and resolvconf set up for <container>.lxc, do the usual `vagrant
-up`, `vagrant provision`, or if you want:
+or if you want to call ansible outside of vagrant:
 
 ```bash
 $ ansible-playbook all.yml -i inventories/vagrant -vv
@@ -26,7 +26,7 @@ $ ansible-playbook all.yml -i inventories/vagrant -vv
 
 # Deploying against production #
 
-Ansible will use the `deploy` user to ssh (see roles/common/vars)
+Ansible will use the `deploy` user to ssh (see roles/common/vars).
 
 ```bash
 $ ansible-playbook all.yml -i inventories/production
