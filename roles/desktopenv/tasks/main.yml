@@ -11,6 +11,7 @@
       - dconf-gsettings-backend
       - fwupd
       - gnome-software-plugin-flatpak
+      - xdg-desktop-portal-gtk
       - firefox-esr
       - xul-ext-ublock-origin
       - xul-ext-https-everywhere
@@ -31,6 +32,7 @@
       - git-gui
       - gnome-shell-pomodoro
       - torbrowser-launcher
+      - gnome-mpv
       - vlc
       - virt-manager
       - gnome-shell-extensions
