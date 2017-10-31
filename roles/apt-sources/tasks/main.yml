@@ -1,13 +1,10 @@
 ---
 
-- name: no "main" sources.list file
-  file:
-    path: /etc/apt/sources.list
-    state: absent
-  notify: apt update
-
-
 - block:
+  - name: no "main" sources.list file
+    file:
+      path: /etc/apt/sources.list
+      state: absent
   - name: remove .list files not in sources var
     file:
       path: "/etc/apt/sources.list.d/{{ item }}.list"
@@ -21,7 +18,7 @@
       group: root
       mode: 0644
     with_items: "{{ sources }}"
-    notify: apt update
+    notify: apt dist-upgrade
 
 
 # apply the handlers now instead of waiting for the end of the playbook
