@@ -1,0 +1,5 @@
+---
+
+- hosts: htpc
+  become: yes
+  # roles:
