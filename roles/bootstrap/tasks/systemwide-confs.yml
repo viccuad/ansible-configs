@@ -9,6 +9,15 @@
     mode: 0644
 
 
+- name: add an alias.sh in /etc/profile.d
+  template:
+    src: alias.sh
+    dest: /etc/profile.d/alias.sh
+    owner: root
+    group: root
+    mode: 0644
+
+
 - name: add a dummy .zshrc file in skel
   copy:
     content: "# This is your personal configuration file for zsh.\n# Config here will override system configuration."
