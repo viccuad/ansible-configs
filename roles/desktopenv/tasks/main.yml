@@ -57,6 +57,7 @@
 
 - import_tasks: icons.yml
 - import_tasks: themes.yml
+- import_tasks: gnome-settings.yml
 - import_tasks: steam.yml
 - import_tasks: games.yml
 - import_tasks: gnome-settings.yml
