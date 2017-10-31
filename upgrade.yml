@@ -10,21 +10,26 @@
       default: "y"
       private: no
   tasks:
-    - apt:
+    - name: update apt cache if needed and autoremove packages
+      apt:
         update_cache: yes
         cache_valid_time: 14400 # apt-get update only if old than 4 hours
-    - apt:
+        autoremove: yes
+    - name: install aptitude
+      apt:
         name: "{{ item }}"
         state: present
       with_items:
         - aptitude
-    - shell: "apt-'get' --just-print upgrade"
+    - name: show apt-get upgrade
+      shell: "apt-'get' --just-print upgrade"
       changed_when: false
       register: output
     - debug:
         var: output.stdout_lines
       when: "output.stdout != 'None'"
-    - apt:
+    - name: do safe-upgrade
+      apt:
         upgrade: safe
       register: aptout
       when: "output.stdout != 'None' and upgrade in ('y','Y')"
