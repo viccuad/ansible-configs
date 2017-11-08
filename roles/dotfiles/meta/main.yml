@@ -1,0 +1,21 @@
+---
+
+dependencies:
+  - zsh
+  - emacs
+  - tmux
+  - vim
+  - gnupg
+  - git
+  - debuggers
+  - pass
+  - weechat
+  - lxc
+  - libvirt
+  - vagrant
+  - debian
+  # - nvim
+  - signing-party
+  - virtualenvwrapper
+  - beets
+  - golang
