@@ -6,8 +6,5 @@
     - bootstrap
     - role: apt-sources
       sources: buster
-    # desktop roles:
-    - desktopenv
-    - xfce-terminal
-    - fonts
     - dotfiles
+    - desktop

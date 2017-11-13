@@ -7,9 +7,6 @@
     - role: apt-sources
       sources: buster
     - dotfiles
-    # desktop roles:
-    - desktopenv
-    - xfce-terminal
-    - fonts
     # laptop roles:
+    - desktop
     - laptop
