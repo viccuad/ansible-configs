@@ -4,8 +4,7 @@
   become: yes
   roles:
     - bootstrap
-    - role: apt-sources
-      sources: stretch
+    - server
     - role: softwareraid
       software_raid_alerts_email: "root"
       software_raid_create_kwargs: "--run" # force the creation if there are any prompts

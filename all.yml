@@ -1,7 +1,6 @@
 ---
 
 - import_playbook: dotfiles.yml
-- import_playbook: server.yml
 - import_playbook: router.yml
 - import_playbook: desktop.yml
 - import_playbook: laptop.yml

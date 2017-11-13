@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_download_checksum_type = "sha256"
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
 
-  hostnames = ['router','dotfiles','server','offlinepc','desktop','laptop','nas','htpc']
+  hostnames = ['router','dotfiles','offlinepc','desktop','laptop','nas','htpc']
   hostnames.each do |name|
   config.vm.define "#{name}" do |system|
     system.vm.host_name = "#{name}"
