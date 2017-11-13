@@ -1,0 +1,78 @@
+---
+
+- name: install gui packages from main
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - emacs25-lucid # gui
+      - task-gnome-desktop
+      - dconf-gsettings-backend
+      - fwupd
+      - gnome-software-plugin-flatpak
+      - xdg-desktop-portal-gtk
+      - firefox-esr
+      - xul-ext-ublock-origin
+      - xul-ext-https-everywhere
+      - xul-ext-itsalltext
+      - xul-ext-noscript
+      - dconf-gsettings-backend
+      - network-manager-ssh-gnome
+      - network-manager-openvpn-gnome
+      - firewall-applet
+      - calibre
+      - ardour
+      - chromium
+      # - drumgizmo # TODO
+      - dgedit
+      - guitarix
+      - gparted
+      - meld
+      - git-gui
+      - gnome-shell-pomodoro
+      - torbrowser-launcher
+      - gnome-mpv
+      - vlc
+      - virt-manager
+      - gnome-shell-extensions
+      - vrms
+      - pinentry-gnome3
+      # - yubioath-desktop # TODO
+      - yubikey-personalization
+      - yubikey-personalization-gui
+      - intel-gpu-tools
+
+
+- name: install packages from contrib/nonfree
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - unrar
+      # - intel-microcode
+      # - iucode-tool
+
+
+- name: set gnome settings with dconf
+  # export settings with:
+  # gsettings list-recursively | grep -i org.gnome.desktop | sort | uniq > gsettings_export
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ dconfsettings }}"
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: create gnome keybindings for passmenu
+  dconf:
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items: "{{ passmenusettings }}"
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+# - import_tasks: gnome-extensions.yml

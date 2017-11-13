@@ -1,0 +1,203 @@
+passmenusettings:
+  - {
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/binding"
+      ,
+      value: "'<Super>F2'"
+    }
+  - {
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/command"
+      ,
+      value: "'/dotfiles/pass/nostow/bin/passmenu --type'"
+    }
+  - {
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/name"
+      ,
+      value: "'Passmenu'"
+    }
+
+dconfsettings:
+  - {
+      key: "/org/gnome/desktop/background/picture-uri"
+      ,
+      value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
+    }
+  - {
+      key: "/org/gnome/desktop/datetime/automatic-timezone"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/input-sources/sources"
+      ,
+      value: "[('xkb', 'us+altgr-intl')]"
+    }
+  - {
+      key: "/org/gnome/desktop/input-sources/xkb-options"
+      ,
+      value: "['terminate:ctrl_alt_bksp', 'caps:ctrl_modifier', 'compose:prsc', 'lv3:ralt_switch']"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/clock-format"
+      ,
+      value: "'24h'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/clock-show-date"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/clock-show-seconds"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/cursor-theme"
+      ,
+      value: "'Paper'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/document-font-name"
+      ,
+      value: "'Sans 12'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/enable-animations"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/font-name"
+      ,
+      value: "'Cantarell 12'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/gtk-theme"
+      ,
+      value: "'Materia-light-compact'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/icon-theme"
+      ,
+      value: "'Paper'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/monospace-font-name"
+      ,
+      value: "'DejaVu Sans Mono for Powerline 12'"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/scaling-factor"
+      ,
+      value: "uint32 0"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/show-battery-percentage"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/interface/text-scaling-factor"
+      ,
+      value: "1.0"
+    }
+  - {
+      key: "/org/gnome/desktop/media-handling/automount-open"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/media-handling/automount"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/media-handling/autorun-never"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/media-handling/autorun-x-content-ignore"
+      ,
+      value: "@as []"
+    }
+  - {
+      key: "/org/gnome/desktop/media-handling/autorun-x-content-open-folder"
+      ,
+      value: "@as []"
+    }
+  - {
+      key: "/org/gnome/desktop/media-handling/autorun-x-content-start-app"
+      ,
+      value: "@as []"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/hide-identity"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/old-files-age"
+      ,
+      value: "uint32 30"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/recent-files-max-age"
+      ,
+      value: "-1"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/remember-app-usage"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/remember-recent-files"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/remove-old-temp-files"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/remove-old-trash-files"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/report-technical-problems"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/send-software-usage-stats"
+      ,
+      value: "false"
+    }
+  - {
+      key: "/org/gnome/desktop/privacy/show-full-name-in-top-bar"
+      ,
+      value: "true"
+    }
+  - {
+      key: "/org/gnome/desktop/screensaver/color-shading-type"
+      ,
+      value: "'solid'"
+    }
+  - {
+      key: "/org/gnome/desktop/screensaver/picture-uri"
+      ,
+      value: "'file:///usr/share/backgrounds/gnome/adwaita-timed.xml'"
+    }
+  - {
+      key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-down"
+      ,
+      value: "['<Super>j', '<Control><Alt>Down']"
+    }
+  - {
+      key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-up"
+      ,
+      value: "['<Super>k', '<Control><Alt>Up']"
+    }

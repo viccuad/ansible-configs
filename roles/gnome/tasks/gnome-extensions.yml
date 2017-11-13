@@ -1,0 +1,31 @@
+---
+
+- name: install gnome-shell extensions
+  shell: |
+          ./gnomeshell-extension-manage.sh --install --extension-id 503 # always zoom workspaces
+          ./gnomeshell-extension-manage.sh --install --extension-id 16 # automove windows
+          ./gnomeshell-extension-manage.sh --install --extension-id 517 # caffeine
+          ./gnomeshell-extension-manage.sh --install --extension-id 97 # coverflow alttab
+          ./gnomeshell-extension-manage.sh --install --extension-id 307 # dash to dock
+          ./gnomeshell-extension-manage.sh --install --extension-id 351 # icon hider
+          ./gnomeshell-extension-manage.sh --install --extension-id 277 # impatience
+          ./gnomeshell-extension-manage.sh --install --extension-id 104 # invert window color
+          ./gnomeshell-extension-manage.sh --install --extension-id 55 # media player indicator
+          ./gnomeshell-extension-manage.sh --install --extension-id 1267 # no title bar
+          ./gnomeshell-extension-manage.sh --install --extension-id 905 # refresh wifi connections
+          ./gnomeshell-extension-manage.sh --install --extension-id 355 # status area spacing
+          ./gnomeshell-extension-manage.sh --install --extension-id 826 # suspend button
+          ./gnomeshell-extension-manage.sh --install --extension-id 120 # system monitor
+          ./gnomeshell-extension-manage.sh --install --extension-id 1031 # topicons plus
+          ./gnomeshell-extension-manage.sh --install --extension-id 858 # volume mixer
+          ./gnomeshell-extension-manage.sh --install --extension-id 10  # window navigator
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: enable gnome-shell extensions
+  # export settings with:
+  # gsettings list-recursively | grep -i org.gnome.desktop | sort | uniq > gsettings_export
+  shell: "gsettings set org.gnome.shell enabled-extensions ['caffeine@patapon.info', 'hide-app-icon@mrapp.sourceforge.com', 'refresh-wifi@kgshank.net',  'alwayszoomworkspaces@jamie.thenicols.net', 'system-monitor@paradoxxx.zero.gmail.com', 'pomodoro@arun.codito.in', 'auto-move-windows@gnome-shell-extensions.gcampax.github.com', 'user-theme@gnome-shell-extensions.gcampax.github.com', 'windowsNavigator@gnome-shell-extensions.gcampax.github.com', 'TopIcons@phocean.net', 'mediaplayer@patapon.info', 'invert-window@maiself', 'icon-hider@kalnitsky.org', 'no-title-bar@franglais125.gmail.com', 'suspend-button@laserb', 'status-area-horizontal-spacing@mathematical.coffee.gmail.com', 'shell-volume-mixer@derhofbauer.at', 'impatience@gfxmonk.net', 'workspace-indicator@gnome-shell-extensions.gcampax.github.com']"
+  become: yes
+  become_user: "{{ normal_user }}"
