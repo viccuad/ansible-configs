@@ -1,0 +1,11 @@
+---
+
+dependencies:
+  - unattended
+  - { role: apt-sources, sources: stretch }
+  - zsh
+  - vim
+  - git
+  - pass
+  - gnupg
+  - tmux
