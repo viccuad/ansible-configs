@@ -1,0 +1,9 @@
+---
+
+dependencies:
+  - gnome
+  - icons
+  - themes
+  - fonts
+  - xfce-terminal
+  - games
