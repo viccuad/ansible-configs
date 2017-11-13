@@ -37,6 +37,3 @@
     src: tlp
     dest: /etc/default/tlp
   notify: restart tlp
-
-
-# - include: firewalld with this vars TODO

@@ -7,6 +7,5 @@
     - role: apt-sources
       sources: buster
     - dotfiles
-    # laptop roles:
     - desktop
     - laptop

@@ -6,5 +6,4 @@
     - bootstrap
     - role: apt-sources
       sources: buster
-    - dotfiles
     - desktop

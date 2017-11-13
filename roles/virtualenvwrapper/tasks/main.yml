@@ -24,6 +24,7 @@
             source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
     marker: "# {mark} virtualenvwrapper block"
 
+
 - name: add virtualenvwrapper aliases
   blockinfile:
     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"

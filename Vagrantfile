@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.memory = 1024
     libvirt.nested = true
     libvirt.cpu_mode = "host-model"
-    libvirt.random :model => 'random' # Passthrough /dev/random from host
+    libvirt.random :model => 'random' # Passthrough /dev/random
   end
 
   config.vm.box = "debian/stretch64"
@@ -36,15 +36,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       :libvirt__dhcp_enabled => false,
                       :ip => "192.168.111.10"
     router.vm.network :private_network,
-                    :auto_config => false,
-                    :libvirt__forward_mode => 'veryisolated',
-                    :libvirt__dhcp_enabled => false,
-                    :libvirt__network_name => 'switch_lan'
+                      :auto_config => false,
+                      :libvirt__forward_mode => 'veryisolated',
+                      :libvirt__dhcp_enabled => false,
+                      :libvirt__network_name => 'switch_lan'
+    router.vm.network :private_network,
+                      :auto_config => false,
+                      :libvirt__forward_mode => 'veryisolated',
+                      :libvirt__dhcp_enabled => false,
+                      :libvirt__network_name => 'switch_wifi'
     router.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 1
-      # second ssd on the pcengines:
-      domain.storage :file, :device => 'vdb', :size => '1G', :type => 'raw'
     end
   end
 
@@ -53,6 +56,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                        :libvirt__network_name => 'ansible_mgmt',
                        :libvirt__dhcp_enabled => false,
                        :ip => "192.168.111.2"
+    dotfiles.vm.provider :libvirt do |domain|
+      domain.memory = 6144
+      domain.cpus = 2
+    end
   end
 
   config.vm.define :desktop do |desktop|
@@ -99,7 +106,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       :libvirt__network_name => 'switch_lan'
     nas.vm.provider :libvirt do |domain|
       domain.memory = 512
-      # 4 disks for raid 10 setup on the gnubee pc1:
+      # 4 disks for raid 10 setup:
       domain.storage :file, :device => 'vdb', :size => '1G', :type => 'raw'
       domain.storage :file, :device => 'vdc', :size => '1G', :type => 'raw'
       domain.storage :file, :device => 'vdd', :size => '1G', :type => 'raw'
@@ -117,5 +124,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                    :libvirt__forward_mode => 'veryisolated',
                    :libvirt__dhcp_enabled => false,
                    :libvirt__network_name => 'switch_lan'
+  end
+  config.vm.define :offlinepc do |offlinepc|
+    offlinepc.vm.network :private_network,
+                    :libvirt__network_name => 'ansible_mgmt',
+                    :libvirt__dhcp_enabled => false,
+                    :ip => "192.168.111.7"
   end
 end

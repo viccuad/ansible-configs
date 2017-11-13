@@ -1,13 +1,17 @@
 New incarnation of my dotfiles, plus many more.
 
-For the dotfiles themselves, look at the roles being used in the `dotfiles.yml`
-playbook.
+# Where are your dotfiles? #
+
+Look at the [roles][roles] that the `dotfiles` role depends onto, [here][dotfiles]
+
+[roles]: https://github.com/viccuad/ansible-configs/tree/master/roles
+[dotfiles]: https://github.com/viccuad/ansible-configs/blob/master/roles/dotfiles/meta/main.yml
 
 
 # Dependencies #
 
 ```
-vagrant vagrant-libvirt vagrant-sshfs ansible
+apt install vagrant vagrant-libvirt vagrant-sshfs ansible
 ```
 
 
@@ -20,7 +24,7 @@ vagrant up
 or if you want to call ansible outside of vagrant:
 
 ```bash
-$ ansible-playbook all.yml -i inventories/vagrant -vv
+$ ansible-playbook -i inventories/vagrant -vv all.yml
 ```
 
 
@@ -29,7 +33,7 @@ $ ansible-playbook all.yml -i inventories/vagrant -vv
 Ansible will use the `deploy` user to ssh (see roles/common/vars).
 
 ```bash
-$ ansible-playbook all.yml -i inventories/production
+$ ansible-playbook -i inventories/production all.yml
 ```
 
 
