@@ -1,0 +1,31 @@
+---
+
+- name: install cockpit packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - cockpit
+    # suggested packages:
+    - cockpit-doc
+    - cockpit-docker
+    - cockpit-packagekit
+    # - cockpit-pcp # does not exist
+    # not listed as deps:
+    - cockpit-machines
+
+
+# - name: enable cockpit on firewalld internal zone
+#   # TODO needs python-firewall for python2, not packaged
+#   # https://github.com/ansible/ansible-modules-extras/issues/1282~
+#   firewalld:
+#     zone: internal
+#     service: cockpit
+#     permanent: true
+#     state: enabled
+
+
+- name: enable cockpit on firewalld internal zone
+  command: firewall-cmd --permanent --add-service=cockpit --zone=internal
+  notify: reload firewalld
