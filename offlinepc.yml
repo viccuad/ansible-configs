@@ -14,3 +14,7 @@
     - git
     - pass
     - signing-party
+  tasks:
+    - apt:
+        name: apt-offline
+        state: present
