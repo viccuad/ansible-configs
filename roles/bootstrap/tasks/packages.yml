@@ -11,11 +11,12 @@
     - firewalld
     - sudo
     - etckeeper
-    - iptables
     - htop
+    - psmisc
     - less
     - lsof
     - traceroute
+    - dnsutils
     - nethogs
     - nload
     - git
