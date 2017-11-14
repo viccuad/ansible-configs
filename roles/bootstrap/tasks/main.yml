@@ -12,5 +12,6 @@
 - import_tasks: systemwide-confs.yml
 - import_tasks: packages.yml
 - import_tasks: ssh-server.yml
+- import_tasks: ntp.yml
 - import_tasks: normal-user.yml
 - import_tasks: deploy-user.yml

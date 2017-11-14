@@ -18,5 +18,11 @@
     state: restarted
 
 
+- name: restart ntp
+  service:
+    name: ntp
+    state: restarted
+
+
 - name: reload firewalld
   command: firewall-cmd --reload

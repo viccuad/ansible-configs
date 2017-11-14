@@ -1,0 +1,14 @@
+---
+
+- name: install ntpd
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+   - ntp
+  notify: restart ntp
+
+
+- name: open firewalld for ntp
+  command: firewall-cmd --permanent --add-service=ntp
+  notify: reload firewalld
