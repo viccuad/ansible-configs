@@ -16,3 +16,7 @@
   service:
     name: cron
     state: restarted
+
+
+- name: reload firewalld
+  command: firewall-cmd --reload

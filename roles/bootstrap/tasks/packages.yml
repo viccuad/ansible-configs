@@ -8,6 +8,7 @@
   with_items:
     - rsync # for ansible synchronize
     - acl   # so ansible can share tmp files with unprivileged users
+    - firewalld
     - sudo
     - etckeeper
     - iptables
@@ -27,3 +28,8 @@
     - debsecan
 
 
+- name: enable and start firewalld
+  service:
+    name: firewalld
+    state: started
+    enabled: yes

@@ -36,6 +36,11 @@
     enabled: yes
 
 
+- name: open firewalld for sshd
+  command: firewall-cmd --permanent --add-service=ssh
+  notify: reload firewalld
+
+
 - name: be sure there is no deprecated host keys around
   file:
     path: "/etc/ssh/{{ item }}"
