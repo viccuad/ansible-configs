@@ -7,3 +7,4 @@ dependencies:
   - fonts
   - xfce-terminal
   - games
+  - flatpak

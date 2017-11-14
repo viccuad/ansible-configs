@@ -1,0 +1,14 @@
+---
+
+- name: install non gui flatpak packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - flatpak
+
+
+- name: add flathub repo
+  shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  become: yes
