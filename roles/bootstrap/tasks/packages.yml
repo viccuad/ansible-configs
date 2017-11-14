@@ -26,6 +26,7 @@
     - yubikey-personalization # for the yubikey udev rules
     - pastebinit
     - debsecan
+    - popularity-contest
 
 
 - name: enable and start firewalld
@@ -33,3 +34,10 @@
     name: firewalld
     state: started
     enabled: yes
+
+
+- name: enable popularity-contest
+  lineinfile: >
+    dest=/etc/popularity-contest.conf
+    regexp=^PARTICIPATE= line=PARTICIPATE="yes"
+  when: "'vagrant' not in group_names"
