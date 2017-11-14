@@ -12,7 +12,12 @@
 
 
 - name: set locale
-  command: /usr/sbin/update-locale LANG=en_DK.UTF8 LC_ALL=en_DK.UTF8
+  copy:
+    content: |
+              # contents managed by ansible
+              LC_ALL=en_DK.UTF8
+              LANG=en_DK.UTF8
+    dest: /etc/default/locale
 
 
 - name: set timezone
