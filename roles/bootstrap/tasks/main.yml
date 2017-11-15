@@ -3,6 +3,8 @@
 - name: update apt cache if needed and autoremove packages
   apt:
     update_cache: yes
+    # TODO bug, always reports changed:
+    # https://github.com/ansible/ansible/issues/29507
     cache_valid_time: 3600
     autoremove: yes
 
