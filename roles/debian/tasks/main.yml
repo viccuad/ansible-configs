@@ -97,6 +97,16 @@
       - "--chown=root:root"
 
 
+- name: make sure /var/cache/pbuilder/deps/Packages file exists
+  copy:
+    content: ""
+    dest: /var/cache/pbuilder/deps/Packages
+    force: no
+    group: root
+    owner: root
+    mode: 0755
+
+
 - name: add debian env vars
   blockinfile:
     dest: '/home/{{ normal_user }}/.zshenv'
