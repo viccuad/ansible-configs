@@ -18,5 +18,31 @@
          ansible_distribution_major_version == '9'
 
 
+- name: register variable for freedombox-first-run.log file
+  stat:
+    path: /var/log/freedombox-first-run.log
+  register: first_run
 
 
+- name: reboot host (if freedombox not installed yet)
+  shell: sleep 2 && shutdown -r now "rebooting after running freedombox-setup"
+  async: 1
+  poll: 0
+
+
+- name: pause (if freedombox not installed yet)
+  # This pause is mandatory, otherwise the existing control connection gets reused!
+  pause:
+    seconds: 30
+
+
+- name: wait for host to be up (if freedombox not installed yet)
+  become: no
+  connection: local
+  local_action: wait_for
+  args:
+    host: "{{ ansible_host }}"
+    port: "{{ ansible_port | default(22) }}"
+    state: started
+    delay: 60
+    timeout: 180
