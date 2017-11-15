@@ -28,12 +28,17 @@
   shell: sleep 2 && shutdown -r now "rebooting after running freedombox-setup"
   async: 1
   poll: 0
+  when: first_run.stat.exists == false
 
 
 - name: pause (if freedombox not installed yet)
   # This pause is mandatory, otherwise the existing control connection gets reused!
   pause:
     seconds: 30
+  when: |
+         first_run.stat.exists == false and
+         ansible_distribution == 'Debian' and
+         ansible_distribution_major_version == '9'
 
 
 - name: wait for host to be up (if freedombox not installed yet)
@@ -46,6 +51,10 @@
     state: started
     delay: 60
     timeout: 180
+  when: |
+         first_run.stat.exists == false and
+         ansible_distribution == 'Debian' and
+         ansible_distribution_major_version == '9'
 
 
 - name: enable plinth only on firewalld internal zone
