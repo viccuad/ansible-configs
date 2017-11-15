@@ -7,3 +7,8 @@
     - server
     - pcengines-apu3b4
     - freedombox
+    - role: apt-sources
+      sources:
+        - stretch
+        - stretch-backports # for cockpit
+    - cockpit
