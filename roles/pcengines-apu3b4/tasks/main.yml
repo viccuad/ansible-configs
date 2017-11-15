@@ -14,6 +14,9 @@
 
 
 - name: install current kernel headers
+  # dkms package recommends the kernel headers package but if there has been a
+  # dist-upgrade afterwards, those headers don't correspond to the kernel
+  # currently running now
   shell: apt-get install -y linux-headers-$(uname -r)
 
 
@@ -27,8 +30,16 @@
     mode: 0644
 
 
+- name: check for installed leds-apu2 kernel module
+  shell: modinfo leds-apu2 > /dev/null
+  changed_when: false
+  failed_when: false
+  register: installed_module
+
+
 - name: install leds-apu2 kernel module with DKMS
   shell: dkms install leds-apu2/1.0.0
+  when: installed_module.rc > 0
 
 
 - name: copy apu2led source files
@@ -47,7 +58,9 @@
           cd /usr/src/apu2led
           make
           checkinstall --pkgname apu2led --pkgrelease 1.0 --pkglicense GPL-2+ \
-            --maintainer me@viccuad.me --nodoc -y
+            --maintainer "{{ normal_user_email }}" --nodoc -y
+  args:
+    creates: /usr/bin/apu2led
 
 
 - name: configure grub to show output during boot
@@ -60,3 +73,7 @@
     - { regexp: '^GRUB_TERMINAL=', line: 'GRUB_TERMINAL=serial' }
     - { regexp: '^GRUB_SERIAL_COMMAND=', line: 'GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1"' }
   notify: update grub
+
+
+# apply the handlers now instead of waiting for the end of the playbook
+- meta: flush_handlers
