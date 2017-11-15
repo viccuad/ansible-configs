@@ -22,6 +22,7 @@
   stat:
     path: /var/log/freedombox-first-run.log
   register: first_run
+  changed_when: false
 
 
 - name: reboot host (if freedombox not installed yet)

@@ -17,6 +17,7 @@
 
 - name: set nested_qemu fact
   shell: systemd-detect-virt
+  changed_when: false
   register: nested_qemu
 
 
