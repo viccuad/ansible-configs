@@ -31,7 +31,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     ruby
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -76,6 +75,7 @@ values."
      markdown
      vimscript
      python
+     ruby
      django
      go
      shell-scripts
@@ -85,7 +85,6 @@ values."
      salt
      typography
      emoji
-     javascript
      selectric
      speed-reading
      ranger
@@ -140,7 +139,7 @@ values."
    ;; (default t)
    dotspacemacs-elpa-https t
    ;; Maximum allowed time in seconds to contact an ELPA repository.
-   dotspacemacs-elpa-timeout nil
+   dotspacemacs-elpa-timeout 3
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
    ;; new versions works via git commands, thus it calls GitHub services
@@ -405,6 +404,11 @@ you should place your code here."
        (let ((xterm-extra-capabilities xterm-tmux-extra-capabilities))
               (tty-run-terminal-initialization (selected-frame) "xterm")))
 
+  ;; pretty window borders
+  (let ((display-table (or standard-display-table (make-display-table))))
+    (set-display-table-slot display-table 'vertical-border (make-glyph-code ?│))
+    (setq standard-display-table display-table))
+
   ;; for monokai
       ;; custom set faces for autocompletion pop-ups
       (custom-set-faces
@@ -471,9 +475,6 @@ you should place your code here."
     (require 'evil-terminal-cursor-changer)
     (evil-terminal-cursor-changer-activate) ; or (etcc-on)
     )
-  ;; overwrite function to deactivate tmux prefixes and suffixes, so cursor
-  ;; disappears correctly:
-  (defun etcc--in-tmux? () ())
 
 ;;;; LINUM and HL-LINE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -514,16 +515,16 @@ you should place your code here."
 
 ;;;; GIT ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (global-git-commit-mode t) ;; use spacemacs as $EDITOR for editing git commit messages
+  (global-git-commit-mode t) ;; use spacemacs as $EDITOR for editing git commit messages:
 
 ;;;; WHITESPACE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   ;; (setq-default
   ;;  whitespace-line-column 80)
 
-  ;; (spacemacs/toggle-whitespace-globally-on)
-  ;; (add-hook 'prog-mode-hook #'whitespace-mode)
-  ;; (add-hook 'text-mode-hook #'whitespace-mode)
+  (spacemacs/toggle-whitespace-globally-on)
+  (add-hook 'prog-mode-hook #'whitespace-mode)
+  (add-hook 'text-mode-hook #'whitespace-mode)
 
   (setq whitespace-style '(
                            ;; via display table:
@@ -616,12 +617,12 @@ you should place your code here."
 
   (setq
    evil-escape-key-sequence "jk" ;; but also use evil-escape to escape from "everything" in Emacs
-   evil-want-fine-undo nil ;; use vim undo, to undo last insert mode as a chunk
+   evil-want-fine-undo nil ;; use vim undo, to undo last insert mode as a chunk:
    evil-move-cursor-back nil ;; don't move cursor back when going to normal mode from insert
    evil-shift-round nil ;; this makes possible to put the shifting back how it was when using > and then <
    )
 
-  (fset 'evil-visual-update-x-selection 'ignore) ;; prevent visual selections to override system clipboard
+  (fset 'evil-visual-update-x-selection 'ignore) ;; prevent visual selections to override system clipboard:
 
   ;; make j & k behave as g j & g k:
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -693,7 +694,8 @@ you should place your code here."
   (setq python-check-command "flake8") ;; check syntax after every save
 
   ;; LATEX
-  (add-hook 'doc-view-mode-hook 'auto-revert-mode) ;; automatically update pdf preview on each recompile
+  ;; automatically update pdf preview on each recompile
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
   ;; (setq TeX-show-compilation t)
   (setq TeX-source-correlate-mode t) ;; enable synctex, .pdf to .tex backward search
@@ -731,8 +733,6 @@ you should place your code here."
   (setq notmuch-search-oldest-first nil
         notmuch-crypto-process-mime t)
   (define-key global-map "\C-cn" 'notmuch)
-
-
 
 ;;  (setq notmuch-saved-searches
 ;;        '((:name "inbox"
