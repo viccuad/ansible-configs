@@ -1,0 +1,6 @@
+---
+
+- name: restart uptimed
+  service:
+    name: uptimed
+    state: restarted

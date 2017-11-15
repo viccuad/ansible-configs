@@ -7,3 +7,4 @@
     - role: apt-sources
       sources: buster
     - desktop
+    - unattended

@@ -1,0 +1,61 @@
+---
+
+- name: install server packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - apt-listchanges
+    - uptimed
+    - unattended-upgrades
+    # - needrestart
+
+
+- name: configure dpkg to retain old configs
+  blockinfile:
+    dest: /etc/dpkg/dpkg.cfg
+    block: |
+            force-confold
+            force-confdef
+    marker: "# {mark} unattended dist-upgrade block"
+
+
+- name: configure apt-listchanges to send mails
+  template:
+    src: listchanges.conf
+    dest: /etc/apt/listchanges.conf
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: configure unattended-upgrades
+  template:
+    src: "{{ item }}"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 20auto-upgrades
+    - 50unattended-upgrades
+
+
+- name: configure apt-listbugs
+  template:
+    src: "{{ item }}"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 10apt-listbugs
+
+
+- name: configure uptimed to send emails
+  lineinfile:
+    dest: /etc/uptimed.conf
+    regexp: '^SEND_EMAIL=\d'
+    line: "SEND_EMAIL=1"
+  notify: restart uptimed

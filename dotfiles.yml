@@ -4,6 +4,7 @@
   become: yes
   roles:
     - bootstrap
+    - unattended # to allow for upgrade to buster
     - role: apt-sources
       sources: buster
     - dotfiles
