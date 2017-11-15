@@ -34,13 +34,13 @@ let java_space_errors = 1
 let g:markdown_fenced_languages = ['asm', 'sh', 'bash=sh', 'c', 'python', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 augroup markdown_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown spell wrap nolinebreak nolist formatoptions-=t
+	autocmd BufNewFile,BufReadPost *.md setl filetype=markdown wrap nolinebreak nolist formatoptions-=t
 augroup END
 
 " TXT files
 augroup txt_files
 	autocmd!
-	autocmd BufNewFile,BufReadPost *.txt setl spell textwidth=80 wrapmargin=80
+	autocmd BufNewFile,BufReadPost *.txt setl textwidth=80 wrapmargin=80
 augroup END
 
 " Mail files from mutt
@@ -65,7 +65,7 @@ set list							" show listchars
 set wrap							" soft wrap long lines, visually, instead of changing the file
 set linebreak						" wrap long lines at characters in 'breakat' rather than at the last character that fits
 set breakindent						" wrapped lines are visually indented
-let &colorcolumn=join(range(73,220),",") " colors columns past 80
+" let &colorcolumn=join(range(73,220),",") " colors columns past 80
 set textwidth=80
 set formatoptions=tcrqljw 			" t autowrap to textwidth
 									" c autowrap comments to textwidth
