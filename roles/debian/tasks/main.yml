@@ -8,6 +8,7 @@
   with_items:
     # normal usage:
     - reportbug
+    - python3-gtkspellcheck
     - debsums
     - apt-listbugs
     - apt-listchanges
