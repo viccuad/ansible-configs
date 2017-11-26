@@ -9,6 +9,7 @@
     - tlp
     - tp-smapi-dkms
     - acpi-call-dkms
+    - anacron
 
 
 - name: add alias for charge-batteries-totally
