@@ -31,6 +31,7 @@
             export NVIM_TUI_ENABLE_TRUE_COLOR=1
     marker: "# {mark} nvim block"
 
+
 - name: add nvim aliases
   blockinfile:
     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
