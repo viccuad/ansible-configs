@@ -44,11 +44,3 @@ adesktop
 alaptop
 ahtpc
 aofflinepc
-
-[all:vars]
-host_key_checking=False
-ansible_connection=ssh
-ansible_user=vagrant
-become_user=vagrant
-deploy_user=vagrant
-normal_user=vic

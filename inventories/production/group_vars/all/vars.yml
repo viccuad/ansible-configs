@@ -1,0 +1,10 @@
+---
+
+ansible_user: "{{ vault_ansible_user }}"
+deploy_user: "{{ vault_deploy_user }}"
+become_user: "{{ vault_become_user }}"
+normal_user: "{{ vault_normal_user }}"
+
+normal_user_name: "{{ vault_normal_user_name }}"
+normal_user_email: "{{ vault_normal_user_email }}"
+normal_user_gpgkey: "{{ vault_normal_user_gpgkey }}"

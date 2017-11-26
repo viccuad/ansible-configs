@@ -24,7 +24,7 @@ vagrant up
 or if you want to call ansible outside of vagrant:
 
 ```bash
-$ ansible-playbook -i inventories/vagrant -vv all.yml
+$ ansible-playbook -i inventories/vagrant/hosts -vv all.yml
 ```
 
 
@@ -33,7 +33,7 @@ $ ansible-playbook -i inventories/vagrant -vv all.yml
 Ansible will use the `deploy` user to ssh (see roles/common/vars).
 
 ```bash
-$ ansible-playbook -i inventories/production all.yml
+$ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts all.yml --check
 ```
 
 
