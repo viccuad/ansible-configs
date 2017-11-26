@@ -14,6 +14,13 @@ Look at the [roles][roles] that the `dotfiles` role depends onto, [here][dotfile
 apt install vagrant vagrant-libvirt vagrant-sshfs ansible
 ```
 
+On opensuse 42.3:
+- Install vagrant rpm from vagrantup.com (at your own risk), as it isn't in the
+  repos and several from the buildservice homes of people are broken
+- Scratch the vagrant-sshfs plugin as it doesn't work (you will need
+  to comment the relevant line in the Vagranfile)
+- install ansible 2.4 from the repos
+
 
 # Deploying against Vagrant #
 
@@ -34,6 +41,11 @@ Ansible will use the `deploy` user to ssh (see roles/common/vars).
 
 ```bash
 $ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts all.yml --check
+```
+
+To decrypt/encrypt the vault:
+```
+ansible-vault encrypt vault.yml --vault-password-file=../../../../vault_pass.sh
 ```
 
 
