@@ -6,42 +6,44 @@
     state: present
     install_recommends: yes
   with_items:
-      - emacs25-lucid # gui
-      - task-gnome-desktop
-      - dconf-gsettings-backend
-      - fwupd
-      - gnome-software-plugin-flatpak
-      - xdg-desktop-portal-gtk
-      - firefox-esr
-      - xul-ext-ublock-origin
-      - xul-ext-https-everywhere
-      - xul-ext-itsalltext
-      - xul-ext-noscript
-      - dconf-gsettings-backend
-      - network-manager-ssh-gnome
-      - network-manager-openvpn-gnome
-      - firewall-applet
-      - calibre
-      - ardour
-      - chromium
-      # - drumgizmo # TODO
-      - dgedit
-      - guitarix
-      - gparted
-      - meld
-      - git-gui
-      - gnome-shell-pomodoro
-      - torbrowser-launcher
-      - gnome-mpv
-      - vlc
-      - virt-manager
-      - gnome-shell-extensions
-      - vrms
-      - pinentry-gnome3
-      # - yubioath-desktop # TODO
-      - yubikey-personalization
-      - yubikey-personalization-gui
-      - intel-gpu-tools
+    - anacron
+    - emacs25-lucid # gui
+    - task-gnome-desktop
+    - dconf-gsettings-backend
+    - fwupd
+    - gnome-software-plugin-flatpak
+    - xdg-desktop-portal-gtk
+    - firefox-esr
+    - xul-ext-ublock-origin
+    - xul-ext-https-everywhere
+    - xul-ext-itsalltext
+    - xul-ext-noscript
+    - dconf-gsettings-backend
+    - network-manager-ssh-gnome
+    - network-manager-openvpn-gnome
+    - firewall-applet
+    - calibre
+    - ardour
+    - chromium
+    # - drumgizmo # TODO
+    - dgedit
+    - guitarix
+    - gparted
+    - meld
+    - git-gui
+    - gnome-shell-pomodoro
+    - torbrowser-launcher
+    - gnome-mpv
+    - vlc
+    - virt-manager
+    - gnome-shell-extensions
+    - vrms
+    - pinentry-gnome3
+    # - yubioath-desktop # TODO
+    - yubikey-personalization
+    - yubikey-personalization-gui
+    - intel-gpu-tools
+    - revolt
 
 
 - name: install packages from contrib/nonfree
