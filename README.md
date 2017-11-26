@@ -42,26 +42,13 @@ $ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production
 Yadda yadda:
 
 ```bash
-$ adduser deploy
+$ adduser deploy # empty password to disable login by password
 $ usermod -aG sudo deploy
+$ echo "deploy ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/deploy
 ```
 
 ``` bash
-$ ssh-copy-id -f roles/common/files/deploy.pub <target host>
-```
-
-
-# Creating your own Stretch image #
-
-Change the Vagrantfile so it is looking for an image called `stretch.box`.
-Inside this repo, do:
-
-```
-git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
-sudo make -C debian-vm-templates/custom-lxc-vagrant stretch
-vagrant box add stretch.box --name stretch.box
-rm stretch.box
-vagrant up
+$ ssh-copy-id -f -i roles/bootstrap/files/vic.pub deploy@<target host>
 ```
 
 
