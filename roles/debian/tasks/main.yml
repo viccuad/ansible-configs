@@ -98,9 +98,19 @@
       - "--chown=root:root"
 
 
+- name: make sure /var/cache/pbuilder/deps directory exists
+  file:
+    state: directory
+    dest: /var/cache/pbuilder/deps/Packages
+    force: no
+    group: root
+    owner: root
+    mode: 0755
+
+
 - name: make sure /var/cache/pbuilder/deps/Packages file exists
-  copy:
-    content: ""
+  file:
+    state: touch
     dest: /var/cache/pbuilder/deps/Packages
     force: no
     group: root
