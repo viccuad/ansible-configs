@@ -53,6 +53,13 @@
     - 10apt-listbugs
 
 
+- name: configure popularity-contest
+  template:
+    src: popularity-contest.conf
+    dest: /etc/popularity-contest.conf
+    owner: root
+    group: root
+    mode: 0644
 - name: configure uptimed to send emails
   lineinfile:
     dest: /etc/uptimed.conf
