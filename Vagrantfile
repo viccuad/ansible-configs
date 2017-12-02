@@ -126,6 +126,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                    :libvirt__dhcp_enabled => false,
                    :libvirt__network_name => 'switch_lan'
   end
+
   config.vm.define :offlinepc do |offlinepc|
     offlinepc.vm.network :private_network,
                     :libvirt__network_name => 'ansible_mgmt',
