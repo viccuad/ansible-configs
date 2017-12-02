@@ -10,22 +10,14 @@ Look at the [roles][roles] that the `dotfiles` role depends onto, [here][dotfile
 
 # Dependencies #
 
+```bash
+$ apt install vagrant vagrant-libvirt vagrant-sshfs ansible
 ```
-apt install vagrant vagrant-libvirt vagrant-sshfs ansible
-```
-
-On opensuse 42.3:
-- Install vagrant rpm from vagrantup.com (at your own risk), as it isn't in the
-  repos and several from the buildservice homes of people are broken
-- Scratch the vagrant-sshfs plugin as it doesn't work (you will need
-  to comment the relevant line in the Vagranfile)
-- install ansible 2.4 from the repos
-
 
 # Deploying against Vagrant #
 
 ```bash
-vagrant up
+$ vagrant up
 ```
 
 or if you want to call ansible outside of vagrant:
@@ -44,8 +36,8 @@ $ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production
 ```
 
 To decrypt/encrypt the vault:
-```
-ansible-vault encrypt vault.yml --vault-password-file=../../../../vault_pass.sh
+```bash
+$ ansible-vault encrypt vault.yml --vault-password-file=../../../../vault_pass.sh
 ```
 
 
@@ -69,11 +61,11 @@ $ ssh-copy-id -f -i roles/bootstrap/files/vic.pub deploy@<target host>
 Change the Vagrantfile so it is looking for an image called `buster.box`.
 Inside this repo, do:
 
-```
-git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
-sed -i 'Ns/.*/DISTRIBUTIONS = jessie stretch buster sid/' debian-vm-templates/vmdebootstrap-libvirt-vagrant/Makefile
-sudo make -C debian-vm-templates/vmdebootstrap-libvirt-vagrant buster
-vagrant box add buster.box --name buster.box
-rm buster.box
-vagrant up
+```bash
+$ git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
+$ sed -i 'Ns/.*/DISTRIBUTIONS = jessie stretch buster sid/' debian-vm-templates/vmdebootstrap-libvirt-vagrant/Makefile
+$ sudo make -C debian-vm-templates/vmdebootstrap-libvirt-vagrant buster
+$ vagrant box add buster.box --name buster.box
+$ rm buster.box
+$ vagrant up
 ```
