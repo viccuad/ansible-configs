@@ -101,7 +101,7 @@
 - name: make sure /var/cache/pbuilder/deps directory exists
   file:
     state: directory
-    dest: /var/cache/pbuilder/deps/Packages
+    dest: /var/cache/pbuilder/deps
     force: no
     group: root
     owner: root
