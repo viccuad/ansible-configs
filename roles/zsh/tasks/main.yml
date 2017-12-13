@@ -23,6 +23,14 @@
     group: "{{ normal_user }}"
 
 
+- name: copy zshrc template
+  template:
+    src: .zshrc.j2
+    dest: "/home/{{ normal_user }}/.zshrc"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
 - name: set zsh as default shell of {{ normal_user }}
   user:
     name: "{{ normal_user }}"

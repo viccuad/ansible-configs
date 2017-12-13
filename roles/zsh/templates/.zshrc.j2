@@ -30,18 +30,18 @@ compinit
 
 # unset config_files
 
-# {% if ansible_os_family == "Debian" %}
+{% if ansible_os_family == "Debian" %}
 # load git-prompt
 source /usr/lib/git-core/git-sh-prompt
-# {% elif grains['osrelease'] == '42.2' %}
-# source /etc/bash_completion.d/git-prompt.sh
-# {% endif %}
+{% elif ansible_os_family == "Suse" %}
+source /etc/bash_completion.d/git-prompt.sh
+{% endif %}
 
 # load autojump:
 # source /usr/share/autojump/autojump.sh
 
-# {% if ansible_os_family == "Debian" %}
+{% if ansible_os_family == "Debian" %}
 # load shell syntax highlighting. Must be last because it loads ZLE widgets:
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# {% endif %}
+{% endif %}
