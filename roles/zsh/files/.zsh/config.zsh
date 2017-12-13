@@ -27,3 +27,6 @@ setopt APPEND_HISTORY # adds history
 setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share history across sessions
 setopt HIST_IGNORE_ALL_DUPS  # don't record duplicates in history
 setopt HIST_REDUCE_BLANKS   # remove superflous blanks from each line added to history
+
+# don't remove spaces before an and or a pipe symbol
+ZLE_SPACE_SUFFIX_CHARS=$'&|'
