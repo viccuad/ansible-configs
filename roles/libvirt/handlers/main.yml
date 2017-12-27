@@ -5,10 +5,12 @@
     name: libvirtd
     state: restarted
 
+
 - name: restart libvirt-guests
   service:
     name: libvirt-guests
     state: restarted
+
 
 - name: rerun resolvconf
   shell: |
