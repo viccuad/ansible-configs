@@ -16,3 +16,15 @@
   shell: |
           resolvconf --enable-updates
           resolvconf -u
+
+
+- name: reload kvm-intel kernel module
+  shell: |
+    rmmod kvm-intel
+    modprobe kvm-intel
+
+
+- name: reload kvm-amd kernel module
+  shell: |
+    rmmod kvm-amd
+    modprobe kvm-amd

@@ -1,0 +1,50 @@
+---
+
+- name: check if Intel processor
+  command: grep -q Intel /proc/cpuinfo
+  ignore_errors: true
+  register: is_intel
+
+
+- name: check if AMD processor
+  command: grep -q AMD /proc/cpuinfo
+  ignore_errors: true
+  register: is_amd
+
+
+- name: set nested_kvm_intel fact
+  shell: cat /sys/module/kvm_intel/parameters/nested
+  changed_when: false
+  register: nested_kvm_intel
+  when: is_intel|succeeded
+
+
+- name: set nested_kvm_amd fact
+  shell: cat /sys/module/kvm_amd/parameters/nested
+  changed_when: false
+  register: nested_kvm_amd
+  when: is_amd|succeeded
+
+
+- name: enable nested kvm on intel machines
+  blockinfile:
+    dest: '/etc/modprobe.d/kvm_intel.conf'
+    create: yes
+    block: |
+            options kvm-intel nested=1
+    marker: "# {mark} nested_kvm block"
+  notify: reload kvm-intel kernel module
+  when: is_intel|succeeded and nested_kvm_intel.stdout == "N"
+  become: yes
+
+
+- name: enable nested kvm on amd machines
+  blockinfile:
+    dest: '/etc/modprobe.d/kvm_amd.conf'
+    create: yes
+    block: |
+            options kvm-amd nested=y
+    marker: "# {mark} nested_kvm block"
+  notify: reload kvm-amd kernel module
+  when: is_amd|succeeded and nested_kvm_amd.stdout == "0"
+  become: yes
