@@ -7,9 +7,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider :libvirt do |libvirt|
     libvirt.memory = 1024
-    libvirt.nested = true
-    libvirt.cpu_mode = "host-model"
     libvirt.random :model => 'random' # Passthrough /dev/random
+    # Set up for nested kvm:
+    libvirt.machine_virtual_size = 15
+    libvirt.nested = true # there's no danger in enabling nested libvirt already
+    libvirt.cpu_mode = "host-passthrough" # recommended for nested kvm
+    if ENV['VAGRANTNESTED']
+      # setup for nested vagrant:
+      libvirt.management_network_name = 'vagrant-libvirt-nesting' # use different network interface
+      libvirt.management_network_address = '192.168.124.0/24'
+    end
   end
 
   config.vm.box = "debian/stretch64"
