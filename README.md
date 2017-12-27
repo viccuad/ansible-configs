@@ -26,6 +26,24 @@ or if you want to call ansible outside of vagrant:
 $ ansible-playbook -i inventories/vagrant/hosts -vv all.yml
 ```
 
+## Deploying nested VMs inside a *dotfiles* VM ##
+
+The *dotfiles* VM deployed with this *ansible-configs* project is already
+prepared for nested KVM. Remember that the host needs to have enabled nested KVM
+(you can achieve this by applying the libvirt task or dotfiles role).
+
+If you want to spawn nested vagrant VMs inside a *dotfiles* VM, do:
+
+```bash
+$ VAGRANTNESTED=yes vagrant up dotfiles`. For more
+```
+
+(This will deploy your vagrant *dotfiles* VM with a different setup of the
+libvirt management network interface. For more info, look at the `vagrantfile`)
+
+Now you can login into the *dotfiles* VM, and there you can either deploy again
+this project or any other vagrant project normally.
+
 
 # Deploying against production #
 
