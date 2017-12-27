@@ -4,7 +4,7 @@
 # {{ ansible_managed }}
 #
 
-# This script is used by systemd-send-email@.service, called by OnFailure=
-# from run-backup.service
+# This script is used by systemd-send-email@.service, normally to
+# be called by OnFailure=
 
 systemctl status --full "$2" 2>&1 | mail -s "status of $2" "$1"

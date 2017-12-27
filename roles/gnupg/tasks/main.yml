@@ -41,6 +41,7 @@
             fi
     marker: "# {mark} gnupg block"
 
+
 - name: download and install hkps ca for gpg
   get_url:
     url: https://sks-keyservers.net/sks-keyservers.netCA.pem
