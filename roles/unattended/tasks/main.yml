@@ -1,5 +1,7 @@
 ---
 
+# Manually: DEBIAN_FRONTEND=noninteractive apt -y full-upgrade
+
 - name: install server packages
   apt:
     name: "{{ item }}"
