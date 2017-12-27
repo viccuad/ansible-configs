@@ -15,6 +15,22 @@
       - virt-manager
 
 
+- name: add {{ normal_user }} user to libvirt group
+  user:
+    name: "{{ normal_user }}"
+    groups: "libvirt,libvirt-qemu"
+    append: yes
+  become: yes
+
+
+- name: add libvirt env vars
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.zshenv'
+    block: |
+            export LIBVIRT_DEFAULT_URI=qemu:///system
+    marker: "# {mark} libvirt block"
+
+
 - name: set nested_qemu fact
   shell: systemd-detect-virt
   changed_when: false
