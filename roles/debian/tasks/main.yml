@@ -61,6 +61,13 @@
     - autopkgtest
 
 
+- name: add {{ normal_user }} to debian-related groups
+  user:
+    name: "{{ normal_user }}"
+    groups: "sbuild"
+    append: yes
+
+
 - name: clone reproducible-misc
   git:
     repo: https://anonscm.debian.org/git/reproducible/misc.git
