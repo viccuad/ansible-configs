@@ -35,7 +35,7 @@ prepared for nested KVM. Remember that the host needs to have enabled nested KVM
 If you want to spawn nested vagrant VMs inside a *dotfiles* VM, do:
 
 ```bash
-$ VAGRANTNESTED=yes vagrant up dotfiles`. For more
+$ VAGRANTNESTED=yes vagrant up dotfiles
 ```
 
 (This will deploy your vagrant *dotfiles* VM with a different setup of the
