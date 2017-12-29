@@ -116,7 +116,7 @@ $build_source = 1;
 # wrong distribution when this option is set, for example experimental
 # packages will be built for upload to unstable when this is not what is
 # required.
-$distribution = unstable;
+# $distribution = unstable;
 
 # FORCE_ORIG_SOURCE
 # Type: BOOL
