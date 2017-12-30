@@ -61,6 +61,12 @@
     - autopkgtest
 
 
+- name: create sbuild group
+  group:
+    name: sbuild
+    state: present
+
+
 - name: add {{ normal_user }} to debian-related groups
   user:
     name: "{{ normal_user }}"
