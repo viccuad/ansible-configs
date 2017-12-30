@@ -73,6 +73,30 @@ $ echo "deploy ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/deploy
 $ ssh-copy-id -f -i roles/bootstrap/files/vic.pub deploy@<target host>
 ```
 
+# Deploying against *localhost* #
+
+Whether you are aiming for the vagrant or the production deployment, what you
+need to do is just add *localhost* under the correct group in
+`inventories/{vagrant,production}/hosts`. For example:
+
+``` bash
+    [dotfiles]
+    adotfiles ansible_host=192.168.111.2 ansible_private_key_file=.vagrant/machines/dotfiles/libvirt/private_key
+ -> localhost
+    [dotfiles:children]
+    desktop
+```
+
+And then run the normal deployment, in this case:
+
+```bash
+$ ansible-playbook -i inventories/vagrant/hosts -vv dotfiles.yml
+```
+
+I have chosen this approach so one can select whatever playbook to be
+applied to localhost, and at the same time minimize errors when applying
+playbooks locally.
+
 
 # Creating your own Buster image #
 
