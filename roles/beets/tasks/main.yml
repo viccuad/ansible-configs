@@ -18,5 +18,6 @@
     links: yes
     rsync_opts:
       - "--exclude=.git*"
+      - "--perms"
   become: yes
   become_user: "{{ normal_user }}"
