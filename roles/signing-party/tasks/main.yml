@@ -27,3 +27,5 @@
       - "--exclude=.git*"
       - "--perms"
       - "--chmod=u+rwx,g-rwx,o-rwx"
+  become: yes
+  become_user: "{{ normal_user }}"
