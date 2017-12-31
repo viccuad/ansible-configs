@@ -11,7 +11,7 @@
     - apt-listchanges
     - uptimed
     - unattended-upgrades
-    # - needrestart
+    - needrestart
 
 
 - name: configure dpkg to retain old configs
@@ -62,6 +62,25 @@
     owner: root
     group: root
     mode: 0644
+
+
+- name: configure needrestart
+  lineinfile:
+    dest: /etc/needrestart/needrestart.conf
+    regexp: '^#$nrconf{restart}'
+    line: "$nrconf{restart} = 'a';"
+
+
+- name: workaround needrestart bug #876459
+  # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=876459
+  template:
+    src: workaround_needrestart
+    dest: /etc/needrestart/conf.d/noninteractive.conf
+    owner: root
+    group: root
+    mode: 0644
+
+
 - name: configure uptimed to send emails
   lineinfile:
     dest: /etc/uptimed.conf
