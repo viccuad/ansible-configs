@@ -1,4 +1,4 @@
-# Switch to list mode if debconf is running noninteractive 
+# Switch to list mode if debconf is running noninteractive
 $nrconf{restart} = (exists($ENV{DEBIAN_FRONTEND}) &&
 $ENV{DEBIAN_FRONTEND} eq 'noninteractive' ? 'l' : 'i');
 
