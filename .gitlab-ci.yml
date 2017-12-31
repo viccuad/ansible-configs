@@ -4,7 +4,12 @@ image: "viccuad/debian-buster-ansible"
 before_script:
   - ansible --version
 
-syntax-check:
+test-syntax:
   script:
     # Basic role syntax check
     - ansible-playbook -i inventories/vagrant/hosts all.yml --syntax-check
+
+# test-style:
+# Commented out until https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882066
+#   script:
+#     - ansible-lint tasks/* defaults/* vars/* all.yml .gitlab-ci.yml
