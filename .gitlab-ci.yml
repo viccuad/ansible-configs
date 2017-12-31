@@ -1,0 +1,10 @@
+---
+image: "viccuad/debian-buster-ansible"
+
+before_script:
+  - ansible --version
+
+syntax-check:
+  script:
+    # Basic role syntax check
+    - ansible-playbook -i inventories/vagrant/hosts all.yml --syntax-check
