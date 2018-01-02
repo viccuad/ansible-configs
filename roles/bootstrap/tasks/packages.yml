@@ -27,6 +27,7 @@
     - yubikey-personalization # for the yubikey udev rules
     - pastebinit
     - debsecan
+    - keyboard-configuration
     - popularity-contest
 
 
