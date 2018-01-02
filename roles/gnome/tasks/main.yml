@@ -32,6 +32,11 @@
     - meld
     - git-gui
     - gnome-shell-pomodoro
+    - gnome-shell-extension-caffeine
+    - gnome-shell-extension-impatience
+    - gnome-shell-extension-system-monitor
+    - gnome-shell-extension-suspend-button
+    - gnome-shell-extension-top-icons-plus
     - torbrowser-launcher
     - gnome-mpv
     - vlc
@@ -75,6 +80,3 @@
   with_items: "{{ passmenusettings }}"
   become: yes
   become_user: "{{ normal_user }}"
-
-
-# - import_tasks: gnome-extensions.yml
