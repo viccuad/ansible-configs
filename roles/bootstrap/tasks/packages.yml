@@ -42,4 +42,4 @@
   lineinfile: >
     dest=/etc/popularity-contest.conf
     regexp=^PARTICIPATE= line=PARTICIPATE="yes"
-  when: "'vagrant' not in group_names"
+  when: '"vagrant" not in inventory_file'
