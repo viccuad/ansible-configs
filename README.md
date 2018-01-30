@@ -111,3 +111,11 @@ $ vagrant box add buster.box --name buster.box
 $ rm buster.box
 $ vagrant up
 ```
+
+
+# Running gitlab-ci tests in your local machine #
+
+``` bash
+$ apt install docker gitlab-ci-multi-runner
+$ gitlab-ci-multi-runner exec docker <test-to-run>
+```
