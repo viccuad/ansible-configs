@@ -13,6 +13,8 @@ alias th='trash --verbose'
 function xdg () {
     xdg-open "$*" 2>/dev/null &
 }
-#
+
+alias fullcharge="sudo tlp fullcharge BAT0; sudo tlp fullcharge BAT1"
+
 # suse:
 alias ssh-suse="ssh -X vic@viccuad.suse.de"
