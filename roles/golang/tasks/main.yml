@@ -36,10 +36,10 @@
 
 
 - name: add GO bins to PATH
-  replace:
+  lineinfile:
     dest: /home/vic/.zshenv
-    regexp: '\$PATH:'
-    replace: '$PATH:$HOME/code/go/bin:'
+    line: 'PATH=$PATH:$HOME/code/go/bin'
+    insertafter: "# Construct path:"
 
 
 - name: install go deps not packaged yet
