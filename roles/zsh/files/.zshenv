@@ -5,5 +5,3 @@ PATH="$PATH:$HOME/.local/bin"
 export PATH
 export MANPATH="/usr/local/man:/usr/local/share/man:/usr/share/man"
 export CLICOLOR=true
-
-
