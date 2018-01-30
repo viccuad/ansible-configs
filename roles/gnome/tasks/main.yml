@@ -58,8 +58,8 @@
     install_recommends: yes
   with_items:
       - unrar
-      # - intel-microcode
-      # - iucode-tool
+      - intel-microcode
+      - iucode-tool
 
 
 - name: set gnome settings with dconf
