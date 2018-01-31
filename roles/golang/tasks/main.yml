@@ -38,7 +38,7 @@
 - name: add GO bins to PATH
   lineinfile:
     dest: /home/vic/.zshenv
-    line: 'PATH=$PATH:$HOME/code/go/bin'
+    line: 'PATH="$PATH:$HOME/code/go/bin"'
     insertafter: "# Construct path:"
 
 
