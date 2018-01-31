@@ -50,14 +50,14 @@
     - git-buildpackage
     - python-notify
     - git-dpm
+    - dgit
     # python packages:
     - python-all-dev
     - python3-all-dev
     - python-stdeb
     - python3-stdeb
-    # autopkgtest
+    # autopkgtest:
     - apt-cacher-ng
-    - debci
     - autopkgtest
 
 
