@@ -186,3 +186,15 @@
             {{ normal_user }}  ALL=(ALL) PBUILDERS
     marker: "# {mark} debian block"
     validate: 'visudo -cf %s'
+
+
+- name: add debian keyserver (from debian-keyring.deb) as read-only to ~/.gnupg/gpg.conf
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.gnupg/gpg.conf'
+    create: yes
+    block: |
+            # Add the debian keyrring as read-only from the debian-keyring package:
+            # see /usr/share/doc/debian-keyring/README.gz
+            keyring /usr/share/keyrings/debian-keyring.gpg
+    marker: "# {mark} debian block"
+    insertafter: EOF
