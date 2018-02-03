@@ -15,25 +15,32 @@
       - libglib2.0-dev-bin # for materia theme install.sh
 
 
-- name: clone materia repo to /usr/src/themes
+- name: clone materia repo to /usr/local/src/themes
   git:
     repo: https://github.com/nana-4/materia-theme.git
-    dest: /usr/src/themes/materia-theme
+    dest: /usr/local/src/themes/materia-theme
     update: no
   become: yes
 
 
+- name: create ~/.themes directory
+  file:
+    path: "/home/{{ normal_user }}/.themes"
+    state: directory
+
+
 - name: install materia theme
-  shell: /usr/src/themes/materia-theme/install.sh
+  shell: /usr/local/src/themes/materia-theme/install.sh -d /home/{{ normal_user }}/.themes
   become: yes
+  become_user: "{{ normal_user }}"
   args:
-    creates: /usr/share/themes/Materia-light-compact
+    creates: /home/{{ normal_user }}/.themes/Materia-light-compact
 
 
 - name: install materia GDM theme
   # this needs materia gtk theme previously installed:
   # https://github.com/nana-4/materia-theme/wiki/GDM-Theme
-  shell: cp --backup /usr/share/themes/Materia-light-compact/gnome-shell/gnome-shell-theme.gresource /usr/share/themes/gnome-shell/gnome-shell-theme.gresource
+  shell: cp --backup /home/{{ normal_user }}/.themes/Materia-light-compact/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/gnome-shell-theme.gresource
   args:
-    creates: /usr/share/themes/gnome-shell/gnome-shell-theme.gresource.gresource~
+    creates: /usr/share/gnome-shell/gnome-shell-theme.gresource.gresource~
   become: yes
