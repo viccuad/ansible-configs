@@ -91,7 +91,7 @@ dconfsettings:
   - {
       key: "/org/gnome/desktop/interface/monospace-font-name"
       ,
-      value: "'DejaVu Sans Mono for Powerline 12'"
+      value: "'DejaVu Sans Mono Book 11'"
     }
   - {
       key: "/org/gnome/desktop/interface/scaling-factor"
@@ -141,7 +141,7 @@ dconfsettings:
   - {
       key: "/org/gnome/desktop/privacy/hide-identity"
       ,
-      value: "false"
+      value: "true"
     }
   - {
       key: "/org/gnome/desktop/privacy/old-files-age"
