@@ -1,0 +1,74 @@
+---
+
+# TODO from flatpak. Doesn't work, doesn't have access to PATH and shell
+#
+# - name: install vscode flatpak
+#     flatpak install -y --from https://flathub.org/repo/appstream/com.visualstudio.code.flatpakref
+#
+#
+# - name: add code alias
+#   lineinfile:
+#     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
+#     line: 'alias code="com.visualstudio.code --reuse-window"'
+#
+#
+# - name: copy vscode files
+#   copy:
+#     src: .
+#     dest: "/home/{{ normal_user }}/.var/app/com.visualstudio.code/config/Code/User/"
+#     owner: "{{ normal_user }}"
+#     group: "{{ normal_user }}"
+
+
+- name: download the vscode tar
+  get_url:
+    url:  https://go.microsoft.com/fwlink/?LinkID=620884
+    dest: /tmp/vscode.tar.gz
+    mode: 0755
+
+
+- name: extract vscode tar into ~/apps/
+  unarchive:
+    src: /tmp/vscode.tar.gz
+    dest: "/home/{{ normal_user }}/apps/"
+    remote_src: yes
+
+
+- name: symlink code in ~./local/bin
+  file:
+    src: "/home/{{ normal_user }}/apps/VSCode-linux-x64/code"
+    dest: "/home/{{ normal_user }}/.local/bin/code"
+    state: link
+
+
+- name: install vscode dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - gvfs-bin # move to trash support
+    - libgconf-2-4
+
+
+- name: add code alias
+  lineinfile:
+    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
+    line: 'alias code="code --reuse-window"'
+
+
+- name: copy vscode files
+  copy:
+    src: .
+    dest: "/home/{{ normal_user }}/.config/Code/User/"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+
+
+- name: create font rendering work around for fontconfig 2.8.*
+  # TODO
+  template:
+    mode: 0644
+    src: 99-vscode.conf
+    dest: /etc/fonts/conf.d/99-vscode.conf
+  when: ansible_os_family == "Debian"

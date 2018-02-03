@@ -1,0 +1,22 @@
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "workbench.colorTheme": "Monokai",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.insertModeKeyBindings": [
+        {
+        "before": [
+            "j",
+            "k"
+        ],
+        "after": [
+            "<Esc>"
+        ]
+        }
+    ],
+    "workbench.colorCustomizations":{
+        "editor.background": "#1C1C1C"
+    },
+    "editor.minimap.enabled": false,
+    "window.menuBarVisibility": "toggle",
+}
