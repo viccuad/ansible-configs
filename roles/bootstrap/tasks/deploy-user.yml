@@ -1,20 +1,45 @@
 ---
 
-- name: Create deploy group
-  group:
+
+- name: Create deploy group (when production)
+  group):
+    name: "{{ deploy_user }}"
+    state: present
+    #gid: 1000 if vagrant
+    gid: 1001
+  when: '"vagrant" not in inventory_file'
+
+
+- name: Create deploy user (when production)
+  user):
+    name: "{{ deploy_user }}"
+    comment: "Deploy User"
+    #uid: 1000 if vagrant
+    uid: 1001
+    groups: "sudo,{{ deploy_user }}"
+    append: yes
+    system: yes
+  become: yes
+  when: '"vagrant" not in inventory_file'
+
+
+- name: Create deploy group (when vagrant)
+  group):
     name: "{{ deploy_user }}"
     state: present
     gid: 1000
+  when: '"vagrant" in inventory_file'
 
 
-- name: Create deploy user
-  user:
+- name: Create deploy user (when vagrant)
+  user):
     name: "{{ deploy_user }}"
     comment: "Deploy User"
     uid: 1000
     groups: "sudo,{{ deploy_user }}"
     append: yes
   become: yes
+  when: '"vagrant" in inventory_file'
 
 
 - name: Add ssh key of deploy user (production env)
