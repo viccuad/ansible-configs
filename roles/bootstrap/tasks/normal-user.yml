@@ -1,10 +1,9 @@
 ---
 
 - name: create user group {{ normal_user }} (when production)
-  group):
+  group:
     name: "{{ normal_user }}"
     state: present
-    #gid: 1001 if vagrant
     gid: 1000
   when: '"vagrant" not in inventory_file'
 
@@ -13,7 +12,6 @@
   user:
     name: "{{ normal_user }}"
     comment: "{{ normal_user }}"
-    #uid: 1001 if vagrant
     uid: 1000
     groups: "sudo,{{ normal_user }},tty,mail"
     append: yes
@@ -22,7 +20,7 @@
 
 
 - name: create user group {{ normal_user }} (when vagrant)
-  group):
+  group:
     name: "{{ normal_user }}"
     state: present
     gid: 1001

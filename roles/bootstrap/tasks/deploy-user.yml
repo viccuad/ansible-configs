@@ -2,7 +2,7 @@
 
 
 - name: Create deploy group (when production)
-  group):
+  group:
     name: "{{ deploy_user }}"
     state: present
     #gid: 1000 if vagrant
@@ -11,7 +11,7 @@
 
 
 - name: Create deploy user (when production)
-  user):
+  user:
     name: "{{ deploy_user }}"
     comment: "Deploy User"
     #uid: 1000 if vagrant
@@ -24,7 +24,7 @@
 
 
 - name: Create deploy group (when vagrant)
-  group):
+  group:
     name: "{{ deploy_user }}"
     state: present
     gid: 1000
@@ -32,7 +32,7 @@
 
 
 - name: Create deploy user (when vagrant)
-  user):
+  user:
     name: "{{ deploy_user }}"
     comment: "Deploy User"
     uid: 1000
