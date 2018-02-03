@@ -11,6 +11,8 @@
       - gtk2-engines-pixbuf
       - gtk2-engines-murrine
       - gtk2-engines-aurora
+      - bc # for materia theme install.sh
+      - libglib2.0-dev-bin # for materia theme install.sh
 
 
 - name: clone materia repo to /usr/src/themes
