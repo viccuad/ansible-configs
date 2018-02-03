@@ -13,6 +13,7 @@
     comment: "Deploy User"
     uid: 1000
     groups: "sudo,{{ deploy_user }}"
+    append: yes
   become: yes
 
 
