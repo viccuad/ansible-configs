@@ -3,9 +3,4 @@
 - hosts: laptop
   become: yes
   roles:
-    - bootstrap
-    - role: apt-sources
-      sources: buster
-    - dotfiles
-    - desktop
     - laptop
