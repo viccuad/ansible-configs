@@ -13,6 +13,7 @@
     comment: "{{ normal_user }}"
     uid: 1001
     groups: "sudo,{{ normal_user }},tty,mail"
+    append: yes
   become: yes
 
 
