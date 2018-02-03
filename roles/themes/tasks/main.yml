@@ -33,7 +33,7 @@
 - name: install materia GDM theme
   # this needs materia gtk theme previously installed:
   # https://github.com/nana-4/materia-theme/wiki/GDM-Theme
-  shell: cp --backup /usr/share{/themes/Materia-light-compact,}/gnome-shell/gnome-shell-theme.gresource
+  shell: cp --backup /usr/share/themes/Materia-light-compact/gnome-shell/gnome-shell-theme.gresource /usr/share/themes/gnome-shell/gnome-shell-theme.gresource
   args:
     creates: /usr/share/themes/gnome-shell/gnome-shell-theme.gresource.gresource~
   become: yes
