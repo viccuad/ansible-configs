@@ -12,6 +12,15 @@
     - anacron
 
 
+- name: install laptop-related packages from non-free
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - firmware-iwlwifi
+
+
 - name: add alias for charge-batteries-totally
   lineinfile:
     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
