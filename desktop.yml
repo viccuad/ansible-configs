@@ -4,3 +4,7 @@
   become: yes
   roles:
     - desktop
+    - role: apt-sources
+      sources:
+        - buster
+        - experimental
