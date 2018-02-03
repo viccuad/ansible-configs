@@ -6,6 +6,7 @@
     state: present
     install_recommends: yes
   with_items:
+    - python-psutil # for dconf
     - anacron
     - emacs25-lucid # gui
     - task-gnome-desktop
