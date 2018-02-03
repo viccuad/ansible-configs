@@ -15,7 +15,7 @@
     - gnome-software-plugin-flatpak
     - xdg-desktop-portal-gtk
     - firefox-esr
-    - xul-ext-ublock-origin
+      # - xul-ext-ublock-origin # TODO
     - xul-ext-https-everywhere
     - xul-ext-itsalltext
     - xul-ext-noscript
@@ -38,7 +38,7 @@
     - gnome-shell-extension-system-monitor
     - gnome-shell-extension-suspend-button
     - gnome-shell-extension-top-icons-plus
-    - torbrowser-launcher
+    # - torbrowser-launcher # TODO
     - gnome-mpv
     - vlc
     - virt-manager
