@@ -1,18 +1,25 @@
 passmenusettings:
   - {
-      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/binding"
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
       ,
       value: "'<Super>F2'"
     }
   - {
-      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/command"
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
       ,
-      value: "'/dotfiles/pass/nostow/bin/passmenu --type'"
+      value: "'/usr/share/doc/pass/examples/dmenu/passmenu --type'"
     }
   - {
-      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom20/name"
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
       ,
       value: "'Passmenu'"
+    }
+    # add it to the list of keybinds:
+    # see https://askubuntu.com/questions/597395/how-to-set-custom-keyboard-shortcuts-from-terminal
+  - {
+      key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+      ,
+      value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
     }
 
 dconfsettings:
