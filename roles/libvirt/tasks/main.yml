@@ -38,6 +38,7 @@
   shell: systemd-detect-virt
   changed_when: false
   register: nested_qemu
+  ignore_errors: yes
 
 
 - name: define default libvirt network
