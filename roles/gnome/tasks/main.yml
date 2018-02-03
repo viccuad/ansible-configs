@@ -14,7 +14,6 @@
     - fwupd
     - gnome-software-plugin-flatpak
     - xdg-desktop-portal-gtk
-    - firefox-esr
       # - xul-ext-ublock-origin # TODO
     - xul-ext-https-everywhere
     - xul-ext-itsalltext
@@ -39,7 +38,7 @@
     - gnome-shell-extension-system-monitor
     - gnome-shell-extension-suspend-button
     - gnome-shell-extension-top-icons-plus
-    # - torbrowser-launcher # TODO
+    - torbrowser-launcher
     - gnome-mpv
     - vlc
     - virt-manager
@@ -51,6 +50,16 @@
     - yubikey-personalization-gui
     - intel-gpu-tools
     - revolt
+    - firefox # from experimental
+
+
+- name: make sure some gui packages are not present
+  apt:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - firefox-esr
+    - icedove
 
 
 - name: install packages from contrib/nonfree
