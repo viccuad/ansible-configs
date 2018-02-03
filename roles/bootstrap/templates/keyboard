@@ -7,7 +7,8 @@
 
 XKBMODEL="pc105"
 XKBLAYOUT="us"
-XKBVARIANT=""
+# variant international altgr dead keys:
+XKBVARIANT="altgr-intl"
 # <Menu> will act as a compose key (compose:menu) and <CapsLock> will act as third control key
 XKBOPTIONS=compose:menu,ctrl:nocaps
 
