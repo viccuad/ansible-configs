@@ -19,6 +19,7 @@
     - xul-ext-itsalltext
     - xul-ext-noscript
     - dconf-gsettings-backend
+    - dconf-editor
     - network-manager-ssh-gnome
     - network-manager-openvpn-gnome
     - firewall-applet
