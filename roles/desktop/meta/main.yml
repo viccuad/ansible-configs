@@ -1,6 +1,10 @@
 ---
 
 dependencies:
+  - role: apt-sources
+    sources:
+      - buster
+      - experimental
   - fonts
   - icons
   - themes
