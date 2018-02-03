@@ -26,7 +26,7 @@
     - calibre
     - ardour
     - chromium
-    # - drumgizmo # TODO
+    - drumgizmo
     - dgedit
     - guitarix
     - gparted
