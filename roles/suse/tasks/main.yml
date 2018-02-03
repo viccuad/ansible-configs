@@ -1,0 +1,68 @@
+---
+
+- name: install suse packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - network-manager-ssh-gnome
+    - network-manager-openvpn-gnome
+
+
+- name: copy suse vpn secrets
+  copy:
+    src: vpn_secrets/
+    dest: /etc/openvpn/
+    decrypt: yes
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: decrypt templates
+  local_action: "shell {{ view_encrypted_file_cmd }} {{ role_path }}/templates/etc/SUSE-TCP-NUE.j2.enc > {{ role_path }}/templates/etc/SUSE-TCP-NUE.j2"
+  changed_when: false
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: set SUSE-TCP-NUE vpn config
+  template:
+    src: etc/SUSE-TCP-NUE.j2
+    dest: /etc/NetworkManager/system-connections/SUSE-TCP-NUE
+    owner: root
+    group: root
+    mode: '0600'
+
+
+- name: set SUSE-TCP-PRG vpn config
+  template:
+    src: etc/SUSE-TCP-PRG.j2
+    dest: /etc/NetworkManager/system-connections/SUSE-TCP-PRG
+    owner: root
+    group: root
+    mode: '0600'
+
+
+- name: set SUSE-UDP-NUE vpn config
+  template:
+    src: etc/SUSE-UDP-NUE.j2
+    dest: /etc/NetworkManager/system-connections/SUSE-UDP-NUE
+    owner: root
+    group: root
+    mode: '0600'
+
+
+- name: set SUSE-UDP-PRG vpn config
+  template:
+    src: etc/SUSE-UDP-PRG.j2
+    dest: /etc/NetworkManager/system-connections/SUSE-UDP-PRG
+    owner: root
+    group: root
+    mode: '0600'
+
+
+- name: remove decrypted templates
+  local_action: "file path={{ role_path }}/templates/etc/*.enc state=absent"
+  changed_when: false
