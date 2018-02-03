@@ -6,5 +6,7 @@
     - bootstrap
     - { role: unattended, when: '"vagrant" in inventory_file' }
     - role: apt-sources
-      sources: buster
+      sources:
+        - buster
+        - experimental
     - dotfiles
