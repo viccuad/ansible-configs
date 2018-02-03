@@ -87,3 +87,12 @@
   with_items: "{{ passmenusettings }}"
   become: yes
   become_user: "{{ normal_user }}"
+
+
+- name: create "Empty document" template in ~/Templates
+  copy:
+    content: ""
+    dest: "/home/{{ normal_user }}/Templates/Empty document"
+    force: no
+  become: yes
+  become_user: "{{ normal_user }}"
