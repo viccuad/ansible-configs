@@ -64,7 +64,7 @@
 - name: copy vscode files
   copy:
     src: .
-    dest: "/home/{{ normal_user }}/.config/Code/User/"
+    dest: "/home/{{ normal_user }}/"
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
 
