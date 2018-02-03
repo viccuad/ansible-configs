@@ -3,7 +3,4 @@
 - hosts: desktop
   become: yes
   roles:
-    - bootstrap
-    - role: apt-sources
-      sources: buster
     - desktop
