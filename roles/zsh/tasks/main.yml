@@ -36,3 +36,11 @@
     name: "{{ normal_user }}"
     shell: /bin/zsh
   become: yes
+
+
+- name: create ~/.apps directory
+  file:
+    path: "/home/{{ normal_user }}/.apps"
+    state: directory
+  become: yes
+  become_user: "{{ normal_user }}"
