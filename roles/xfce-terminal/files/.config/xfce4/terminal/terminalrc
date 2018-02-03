@@ -7,7 +7,7 @@ MiscCursorBlinks=TRUE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
 MiscDefaultGeometry=80x24
 MiscInheritGeometry=FALSE
-MiscMenubarDefault=TRUE
+MiscMenubarDefault=FALSE
 MiscMouseAutohide=TRUE
 MiscMouseWheelZoom=TRUE
 MiscToolbarDefault=FALSE
@@ -32,4 +32,3 @@ ColorCursor=#f8f8f8f8f2f2
 ColorBoldUseDefault=FALSE
 ColorBold=#f8f8f8f8f2f2
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-
