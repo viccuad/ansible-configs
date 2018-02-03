@@ -22,6 +22,7 @@
   # See https://blogs.gnome.org/thaller/2016/08/26/mac-address-spoofing-in-networkmanager-1-4-0
   blockinfile:
     dest: /etc/NetworkManager/conf.d/30-mac-randomization.conf
+    create: yes
     block: |
             [device-mac-randomization]
             # "yes" is already the default for scanning
