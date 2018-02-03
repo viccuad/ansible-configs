@@ -27,18 +27,22 @@
     mode: 0755
 
 
-- name: extract vscode tar into ~/apps/
+- name: extract vscode tar into ~/.apps/
   unarchive:
     src: /tmp/vscode.tar.gz
-    dest: "/home/{{ normal_user }}/apps/"
+    dest: "/home/{{ normal_user }}/.apps/"
     remote_src: yes
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: symlink code in ~./local/bin
   file:
-    src: "/home/{{ normal_user }}/apps/VSCode-linux-x64/code"
+    src: "/home/{{ normal_user }}/.apps/VSCode-linux-x64/code"
     dest: "/home/{{ normal_user }}/.local/bin/code"
     state: link
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: install vscode dependencies
