@@ -5,6 +5,6 @@ dependencies:
   - icons
   - themes
   - xfce-terminal
+  - flatpak
   - gnome
   - games
-  - flatpak
