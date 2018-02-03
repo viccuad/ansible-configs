@@ -87,3 +87,7 @@
     regexp: '^SEND_EMAIL=\d'
     line: "SEND_EMAIL=1"
   notify: restart uptimed
+
+
+# TODO send mails
+# TODO populate and archive logs
