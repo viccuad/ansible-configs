@@ -1,10 +1,10 @@
 ---
 
 dependencies:
-  - gnome
+  - fonts
   - icons
   - themes
-  - fonts
   - xfce-terminal
+  - gnome
   - games
   - flatpak
