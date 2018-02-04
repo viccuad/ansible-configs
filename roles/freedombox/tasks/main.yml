@@ -58,14 +58,5 @@
          ansible_distribution_major_version == '9'
 
 
-- name: enable plinth only on firewalld internal zone
-  shell: |
-          firewall-cmd --permanent --remove-service=http --zone=external
-          firewall-cmd --permanent --remove-service=https --zone=external
-          firewall-cmd --permanent --add-service=http --zone=internal
-          firewall-cmd --permanent --add-service=https --zone=internal
-  notify: reload firewalld
-
-
 # apply the handlers now instead of waiting for the end of the playbook
 - meta: flush_handlers
