@@ -1,4 +1,6 @@
 ---
 
 - name: reload firewalld
-  command: firewall-cmd --reload
+  service:
+    name: firewalld
+    state: restarted
