@@ -67,10 +67,12 @@ Yadda yadda:
 $ adduser deploy # empty password to disable login by password
 $ usermod -aG sudo deploy
 $ echo "deploy ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/deploy
+$ apt install sudo # if minimal installation
 ```
 
 ``` bash
 $ ssh-copy-id -f -i roles/bootstrap/files/vic.pub deploy@<target host>
+ # or do it by hand if no password set up
 ```
 
 # Deploying against *localhost* #
