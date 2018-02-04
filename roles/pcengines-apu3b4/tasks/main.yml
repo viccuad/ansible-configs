@@ -13,6 +13,17 @@
     - checkinstall
 
 
+- name: install firmware packages (from contrib/non-free)
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - firmware-atheros
+    - firmware-linux
+    - firmware-linux-nonfree
+
+
 - name: install current kernel headers
   # dkms package recommends the kernel headers package but if there has been a
   # dist-upgrade afterwards, those headers don't correspond to the kernel
