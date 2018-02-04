@@ -6,7 +6,6 @@ dependencies:
   - role: apt-sources
     sources:
       - buster
-      - experimental
   - zsh
   - emacs
   - tmux
