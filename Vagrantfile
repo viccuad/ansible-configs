@@ -67,6 +67,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dotfiles.vm.provider :libvirt do |domain|
       domain.memory = 6144
       domain.cpus = 2
+      domain.machine_virtual_size = 20
     end
   end
 
@@ -83,6 +84,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     desktop.vm.provider :libvirt do |domain|
       domain.memory = 6144
       domain.cpus = 2
+      domain.machine_virtual_size = 30
     end
   end
 
@@ -99,6 +101,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     laptop.vm.provider :libvirt do |domain|
       domain.memory = 6144
       domain.cpus = 2
+      domain.machine_virtual_size = 30
     end
   end
 
