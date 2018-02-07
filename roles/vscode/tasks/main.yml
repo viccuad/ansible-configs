@@ -32,6 +32,7 @@
     src: /tmp/vscode.tar.gz
     dest: "/home/{{ normal_user }}/.apps/"
     remote_src: yes
+    creates: "/home/{{ normal_user }}/.apps/VSCode-linux-x64"
   become: yes
   become_user: "{{ normal_user }}"
 
