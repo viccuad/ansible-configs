@@ -25,3 +25,4 @@ dependencies:
   - beets
   - golang
   - vscode
+  - { role: private, when: '"vagrant" not in inventory_file' }
