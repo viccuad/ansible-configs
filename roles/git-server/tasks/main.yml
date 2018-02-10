@@ -58,7 +58,6 @@
     dest: /etc/ssh/authorized_keys/git
     owner: root
     group: root
-    mode: 644
     state: link
   become: yes
   notify: restart ssh
