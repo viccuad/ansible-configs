@@ -121,4 +121,6 @@ export CCACHE_DIR="/var/cache/pbuilder/ccache"
 
 # always be verbose:
 DH_VERBOSE=1
+
+export GCC_COLORS=1
 # }}}
