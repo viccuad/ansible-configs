@@ -1,0 +1,76 @@
+---
+
+- name: install git packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - git
+
+
+- name: add git-shell to list of shells
+  lineinfile:
+    dest: /etc/shells
+    line: '/usr/bin/git-shell'
+
+
+- name: "create /srv/data"
+  file:
+    path: /srv/data
+    state: directory
+    owner: root
+    group: root
+
+
+- name: "create /tmp/empty folder for empty user skeleton"
+  file:
+    path: /tmp/empty
+    state: directory
+    owner: root
+    group: root
+
+
+- name: create git user
+  user:
+    name: git
+    comment: "Git server user"
+    shell: /usr/bin/git-shell
+    home: "{{ git_user_home }}"
+    skeleton: /tmp/empty
+    system: yes
+  become: yes
+
+
+- name: "create git home in {{ git_user_home }}"
+  file:
+    path: "{{ git_user_home }}"
+    state: directory
+    owner: git
+    group: git
+    mode: 0750
+    recurse: yes
+
+
+- name: "set up {{ normal_user }} as git's authorized key"
+  file:
+    src: "{{ normal_user }}"
+    dest: /etc/ssh/authorized_keys/git
+    owner: root
+    group: root
+    mode: 644
+    state: link
+  become: yes
+  notify: restart ssh
+
+
+- name: copy files for git user
+  synchronize:
+    src: .
+    dest: "{{ git_user_home }}/"
+    perms: yes
+    recursive: yes
+    links: yes
+    rsync_opts:
+      - "--exclude=.git*"
+      - "--chown=git:git"
