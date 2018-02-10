@@ -1,3 +1,4 @@
 .vagrant
 *.box
 debian-vm-templates
+roles/private
