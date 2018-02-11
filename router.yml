@@ -12,3 +12,4 @@
         - stretch
         - stretch-backports # for cockpit
     - cockpit
+    - git-server
