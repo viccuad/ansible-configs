@@ -58,6 +58,6 @@
     dest: "/etc/ssh/authorized_keys/{{ deploy_user }}"
     owner: root
     group: root
-    mode: 644
+    mode: 0644
   become: yes
   when: '"vagrant" in inventory_file'

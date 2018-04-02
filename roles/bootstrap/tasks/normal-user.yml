@@ -44,4 +44,4 @@
     dest: "/etc/ssh/authorized_keys/{{ normal_user }}"
     owner: root
     group: root
-    mode: 644
+    mode: 0644
