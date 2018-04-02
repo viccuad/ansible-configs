@@ -19,7 +19,6 @@ setopt LOCAL_TRAPS # allow functions to have local traps
 setopt PROMPT_SUBST
 setopt CORRECT # try to correct the spelling of commands
 setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF # do not exit on eof, require exit or logout
 
 setopt HIST_VERIFY # if the user enters a line with history expansion: 1st expand 2nd execute
 setopt EXTENDED_HISTORY # add timestamps to history
