@@ -1,0 +1,3 @@
+[submodule "roles/private"]
+	path = roles/private
+	url = git@iris:private/ansible-private.git
