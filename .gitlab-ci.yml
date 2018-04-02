@@ -9,7 +9,25 @@ test-syntax:
     # Basic role syntax check
     - ansible-playbook -i inventories/vagrant/hosts all.yml --syntax-check
 
-# test-style:
-# Commented out until https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=882066
+test-style:
+  # run ansible-lint against all
+  script:
+    - ansible-lint -v *.yml
+
+# test-idempotence-bootstrap:
 #   script:
-#     - ansible-lint tasks/* defaults/* vars/* all.yml .gitlab-ci.yml
+#     # Run the role/playbook with ansible-playbook
+#     - "ansible-playbook -i inventories/vagrant/host -vv test/bootstrap.yml"
+
+#     # Run the role/playbook again, checking to make sure it's idempotent
+#     - >
+#       ansible-playbook -i inventories/vagrant/host -vv test/bootstrap.yml
+#       | grep -q 'changed=0.*failed=0'
+#       && (echo 'Idempotence test: pass' && exit 0)
+#       || (echo 'Idempotence test: fail' && exit 1)
+
+# test-dotfiles-dryrun:
+#   script:
+#     # Run the role/playbook with ansible-playbook
+#     - "sed -i -- 's/- hosts: dotfiles/- hosts: localhost/g' dotfiles.yml"
+#     - "ansible-playbook -i inventories/vagrant/host -vv dotfiles.yml --check"
