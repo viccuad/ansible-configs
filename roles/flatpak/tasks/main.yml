@@ -10,7 +10,7 @@
 
 
 - name: add flathub repo
-  shell: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
   become: yes
 
 
