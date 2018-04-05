@@ -22,7 +22,7 @@
 
 - name: download the vscode tar
   get_url:
-    url:  https://go.microsoft.com/fwlink/?LinkID=620884
+    url:  https://vscode-update.azurewebsites.net/latest/linux-x64/stable
     dest: /tmp/vscode.tar.gz
     mode: 0755
 
