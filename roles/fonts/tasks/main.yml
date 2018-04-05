@@ -16,7 +16,7 @@
 
 
 - name: reload font cache
-  shell: fc-cache -f
+  command: fc-cache -f
   become: yes
 
 
