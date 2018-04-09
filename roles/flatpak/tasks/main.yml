@@ -14,6 +14,12 @@
   become: yes
 
 
+- name: install spotify
+  command: flatpak install flathub com.spotify.Client
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
 - name: add flatpak exports/bin to PATH
   # this poses no risk, see https://github.com/flatpak/flatpak/pull/1254
   lineinfile:
