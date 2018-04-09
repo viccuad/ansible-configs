@@ -47,3 +47,11 @@
     group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
+
+
+- name: fix udev configuration for steam controller
+  lineinfile:
+    path: /lib/udev/rules.d/99-steam-controller-perms.rules
+    regexp: '^KERNEL==uinput'
+    line: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput",TAG+="uaccess"'
+  notify: reload udev rules
