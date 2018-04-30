@@ -5,7 +5,7 @@
   group:
     name: "{{ deploy_user }}"
     state: present
-    gid: 1001
+    gid: 999
   when: '"vagrant" not in inventory_file'
 
 
@@ -13,7 +13,7 @@
   user:
     name: "{{ deploy_user }}"
     comment: "Deploy User"
-    uid: 1001
+    uid: 999
     groups: "sudo,{{ deploy_user }}"
     append: yes
     system: yes
