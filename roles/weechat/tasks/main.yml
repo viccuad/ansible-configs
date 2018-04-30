@@ -9,6 +9,9 @@
     - weechat
     - weechat-plugins
     - weechat-scripts
+    - weechat-perl
+    - weechat-lua
+    - weechat-python
     - logrotate
     # for matrix plugin:
     - lua-cjson
