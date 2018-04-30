@@ -49,11 +49,20 @@ this project or any other vagrant project normally.
 
 Ansible will use the `deploy` user to ssh (see roles/common/vars).
 
+Install the private roles with:
+
+```bash
+# ansible-galaxy install -r galaxy-roles.yml --roles-path ./roles --force
+```
+
+and then run the playbooks:
+
 ```bash
 $ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts all.yml --check
 ```
 
 To decrypt/encrypt the vault:
+
 ```bash
 $ ansible-vault encrypt vault.yml --vault-password-file=../../../../vault_pass.sh
 ```
@@ -91,6 +100,11 @@ need to do is just add *localhost* under the correct group in
 
 And then run the normal deployment, in this case:
 
+```bash
+$ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts -vv dotfiles.yml --check
+```
+
+or
 ```bash
 $ ansible-playbook -i inventories/vagrant/hosts -vv dotfiles.yml
 ```
