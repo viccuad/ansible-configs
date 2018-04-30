@@ -16,5 +16,3 @@ function xdg () {
 
 alias fullcharge="sudo tlp fullcharge BAT0; sudo tlp fullcharge BAT1"
 
-# suse:
-alias ssh-suse="ssh -X vic@viccuad.suse.de"
