@@ -106,7 +106,7 @@ Change the Vagrantfile so it is looking for an image called `buster.box`.
 Inside this repo, do:
 
 ```bash
-$ git clone https://anonscm.debian.org/git/cloud/debian-vm-templates.git
+$ git clone https://salsa.debian.org/cloud-team/vagrant-boxes.git
 $ sed -i 'Ns/.*/DISTRIBUTIONS = jessie stretch buster sid/' debian-vm-templates/vmdebootstrap-libvirt-vagrant/Makefile
 $ sudo make -C debian-vm-templates/vmdebootstrap-libvirt-vagrant buster
 $ vagrant box add buster.box --name buster.box
@@ -118,6 +118,6 @@ $ vagrant up
 # Running gitlab-ci tests in your local machine #
 
 ``` bash
-$ apt install docker gitlab-ci-multi-runner
+$ apt install docker.io gitlab-ci-multi-runner
 $ gitlab-ci-multi-runner exec docker <test-to-run>
 ```
