@@ -55,6 +55,15 @@
     group: "{{ normal_user }}"
 
 
+- name: clone .spacemacs.d
+  git:
+    repo: https://gitlab.com/viccuad/emacs.d.git
+    dest: "/home/{{ normal_user }}/.spacemacs.d/"
+    update: no
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
 - name: clone .emacs.d
   git:
     repo: https://github.com/syl20bnr/spacemacs.git
