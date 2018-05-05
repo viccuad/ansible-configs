@@ -74,10 +74,3 @@
     group: "{{ normal_user }}"
 
 
-- name: create font rendering work around for fontconfig 2.8.*
-  # TODO
-  template:
-    mode: 0644
-    src: 99-vscode.conf
-    dest: /etc/fonts/conf.d/99-vscode.conf
-  when: ansible_os_family == "Debian"
