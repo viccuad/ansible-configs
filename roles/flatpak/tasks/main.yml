@@ -24,5 +24,5 @@
   # this poses no risk, see https://github.com/flatpak/flatpak/pull/1254
   lineinfile:
     dest: /home/vic/.zshenv
-    line: 'PATH=$PATH:/var/lib/flatpak/exports/bin'
+    line: 'PATH="$PATH:/var/lib/flatpak/exports/bin"'
     insertafter: "# Construct path:"
