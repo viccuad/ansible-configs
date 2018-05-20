@@ -22,11 +22,6 @@
   become_user: "{{ normal_user }}"
 
 
-- name: set gopath fact
-  set_fact:
-    gopath: $HOME/code/go
-
-
 - name: set GOPATH
   blockinfile:
     dest: "/home/{{ normal_user }}/.zshenv"
