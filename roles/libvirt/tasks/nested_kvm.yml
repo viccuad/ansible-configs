@@ -16,14 +16,14 @@
   shell: cat /sys/module/kvm_intel/parameters/nested
   changed_when: false
   register: nested_kvm_intel
-  when: is_intel|succeeded
+  when: is_intel is succeeded
 
 
 - name: set nested_kvm_amd fact
   shell: cat /sys/module/kvm_amd/parameters/nested
   changed_when: false
   register: nested_kvm_amd
-  when: is_amd|succeeded
+  when: is_amd is succeeded
 
 
 - name: enable nested kvm on intel machines
@@ -34,7 +34,7 @@
             options kvm-intel nested=1
     marker: "# {mark} nested_kvm block"
   notify: reload kvm-intel kernel module
-  when: is_intel|succeeded and nested_kvm_intel.stdout == "N"
+  when: is_intel is succeeded and nested_kvm_intel.stdout == "N"
   become: yes
 
 
@@ -46,5 +46,5 @@
             options kvm-amd nested=y
     marker: "# {mark} nested_kvm block"
   notify: reload kvm-amd kernel module
-  when: is_amd|succeeded and nested_kvm_amd.stdout == "0"
+  when: is_amd is succeeded and nested_kvm_amd.stdout == "0"
   become: yes
