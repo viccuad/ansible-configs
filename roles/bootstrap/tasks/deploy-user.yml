@@ -5,7 +5,6 @@
   group:
     name: "{{ deploy_user }}"
     state: present
-    gid: 999
   when: '"vagrant" not in inventory_file'
 
 
@@ -13,7 +12,6 @@
   user:
     name: "{{ deploy_user }}"
     comment: "Deploy User"
-    uid: 999
     groups: "sudo,{{ deploy_user }}"
     append: yes
     system: yes
@@ -25,7 +23,6 @@
   group:
     name: "{{ deploy_user }}"
     state: present
-    gid: 1000
   when: '"vagrant" in inventory_file'
 
 
@@ -33,7 +30,6 @@
   user:
     name: "{{ deploy_user }}"
     comment: "Deploy User"
-    uid: 1000
     groups: "sudo,{{ deploy_user }}"
     append: yes
   become: yes
