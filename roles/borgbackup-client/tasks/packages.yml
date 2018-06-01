@@ -1,0 +1,7 @@
+---
+
+- name: Be sure this stuff is not installed
+  apt: name={{ item }} state=absent purge=yes
+  with_items:
+    - exim4-base
+    - exim4-config

@@ -1,0 +1,7 @@
+---
+
+pwfile: /etc/backup_password
+backup_user: backup
+backup_server_host: backup-server.local
+backup_server_ssh_fingerprint: |
+  put your fingerprint here

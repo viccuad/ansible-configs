@@ -1,0 +1,16 @@
+#
+# {{ ansible_managed }}
+#
+
+[Unit]
+Description=Run system backup (timer)
+Wants=network-online.target
+After=network-online.target
+OnFailure=systemd-send-email@%n.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target

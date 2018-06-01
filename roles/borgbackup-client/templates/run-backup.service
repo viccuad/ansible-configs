@@ -1,0 +1,15 @@
+#
+# {{ ansible_managed }}
+#
+
+[Unit]
+Description=Run system backup
+Wants=network-online.target
+After=network-online.target
+OnFailure=systemd-send-email@%n.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/run-backup
+Restart=no
+Slice=run-backup.slice

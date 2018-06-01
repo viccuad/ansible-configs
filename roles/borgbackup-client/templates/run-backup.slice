@@ -1,0 +1,8 @@
+[Unit]
+Description=Limited resources Slice for backup
+DefaultDependencies=no
+Before=slices.target
+
+[Slice]
+CPUQuota=20%
+MemoryLimit=1G

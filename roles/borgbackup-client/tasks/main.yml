@@ -1,0 +1,78 @@
+---
+
+- name: main ssh client conf
+  template:
+    src: ssh_config
+    dest: /etc/ssh/ssh_config
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: add backup server ssh fingerprint to known hosts
+  template:
+    src: known_hosts
+    dest: /etc/ssh/ssh_known_hosts
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: generate root's ssh key
+  command: ssh-keygen -b 4096 -t rsa -f /root/.ssh/id_rsa -N '' -C "root@{{ inventory_hostname }}" -q
+  args:
+    creates: /root/.ssh/id_rsa
+
+
+- name: install borgbackup
+  apt:
+    name: "{{ item }}"
+    install_recommends: no
+  with_items:
+    - borgbackup
+    - pwgen
+
+
+- name: generate the backup password
+  shell: touch {{ pwfile|quote }} && chmod 0600 {{ pwfile|quote }} && pwgen -s -y -1 150 1 > {{ pwfile|quote }} && chmod 0400 {{ pwfile|quote }} && chattr +i {{ pwfile|quote }}
+  args:
+    creates: "{{ pwfile }}"
+    warn: no
+
+
+- name: be sure about pwfile's permissions
+  file:
+    path: "{{ pwfile }}"
+    owner: root
+    group: root
+    mode: 0400
+    attr: i
+
+
+- name: install backup script
+  template:
+    src: run-backup.sh
+    dest: /usr/local/sbin/run-backup
+    owner: root
+    group: root
+    mode: 0755
+
+
+- name: install the run-backup.service systemd unit
+  template:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/{{ item }}
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - run-backup.service
+    - run-backup.timer
+
+
+- name: enable the timer
+  systemd:
+    unit: run-backup.timer
+    daemon_reload: yes
+    enabled: yes
+    state: started
