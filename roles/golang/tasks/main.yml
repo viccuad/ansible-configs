@@ -52,5 +52,8 @@
           GOPATH="{{ gopath }}" go get -u github.com/alecthomas/gometalinter
           GOPATH="{{ gopath }}" "{{ gopath }}"/bin/gometalinter --install --update
           GOPATH="{{ gopath }}" go get -u github.com/derekparker/delve/cmd/dlv
+          GOPATH="{{ gopath }}" go get -u github.com/godoctor/godoctor
+          GOPATH="{{ gopath }}" go get -u github.com/fatih/gomodifytags
+          GOPATH="{{ gopath }}" go get -u github.com/zmb3/gogetdoc
   become:  yes
   become_user: "{{ normal_user }}"
