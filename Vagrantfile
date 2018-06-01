@@ -30,9 +30,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "#{name}" do |system|
     system.vm.host_name = "#{name}"
     system.vm.provision "ansible" do |ansible|
-        ansible.playbook = "#{name}.yml"
+        ansible.playbook = "all.yml"
         ansible.inventory_path = "inventories/vagrant/hosts"
-        ansible.limit = "all" # run ansible in parallel for all machines
+        ansible.limit = "#{name}"
         ansible.verbose = "vv"
       end
     end
