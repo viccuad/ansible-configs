@@ -15,3 +15,11 @@ software_raid_devices:
     mount_options: "noatime,noexec,nodiratime"
     dump: 0
     passno: 0
+
+
+backup_user_home: "{{ software_raid_devices[0].mount_point }}/backup"
+backup_pool: "{{ backup_user_home }}/repos"
+backup_auth_users:
+  - host: dotfiles
+    key: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC6dpsfjb/eFwS9rFIE1mxC1L68FUtNAW3L60tyGnRrViEMuBjYjDvqLxehDM1LDSYpee+hm/EzYq5DMkfxks/2nLocxaqpzudnuiRbb3Xco+ff3uJ9l8OuD+h/q+2JSov+MRY5V3arFHyhpFbYeO/41AYAsvl6+gbHzE5aOvnLP0WBfQiEpIJYwaLhbjBmSjxdbd/4VqmPv13dJ5RnS+2owbU+Ar91W+YzGS5jT7n0eF/j1cZz7DD4nIAEi9lgZYQBHH3i79PLd5MUJofkr/8B3XGsEwZ3fhMCB+huPtw+V4S+apaJ1qI/1/M6pTXnmZonGkt/iPFaxf3suPqjIzEmd8apBNc7hQC71o6l/TqbX6k4yM7hTapimq7VI1bOi4jz2Kpx/Gk/DbXlCeGyzVHq61Go9mDoqnwZ6pAHqAqJGS0lkDJH5M5yS2mvdNfgSWRwS18sDGUElIo8qhO1l8MSxIXWwdA5W+RIt4g45KmhytQWj0miG5Y95g0Wf4Hd+mt6sbbtlLpz61QPWZP4t1w36UJk5AeoVPJm7KlACNpzaldodqXfJxOZN5s9gxjmvDeDt7QIcrkD7JX4QVdwC3jojKrKkr9VjXskP9PFO4PQBAAyhPdTnohM6Gcu7aLtyUklx7BguKATwdiuQb0Jtb+n7jF3xv8++CTph7PFUuuOCQ== root@adotfiles

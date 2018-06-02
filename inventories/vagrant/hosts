@@ -37,3 +37,7 @@ htpc
 [backup-client]
 [backup-client:children]
 dotfiles
+
+[backup-server]
+[backup-server:children]
+nas
