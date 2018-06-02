@@ -31,3 +31,6 @@ htpc
 
 [backup-client]
 [backup-client:children]
+
+[backup-server]
+[backup-server:children]

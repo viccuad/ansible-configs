@@ -1,0 +1,10 @@
+---
+
+backup_user: backup
+backup_group: "{{ backup_user }}"
+backup_user_home: /srv/backup
+backup_pool: "{{ backup_user_home }}/repos"
+backup_auth_users:
+  - host: foo
+    key: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDFCqQfmSoB7pWE/IWKD5n8Xv5ll2j3uCb+5SIfqZ2F0mOUUVd0xT0eVxFsQixt4581kHwJgPGnXhDE+MfSaO4MOslN5KLzw7uNrm/Zu46nVM/sspggB89TFwOj7mVXYB3lri3FkVTFS6uMCGIy07Hz+Wba6DXnVunRuIeEhKKJQo4FmcvwXBZKDJUs2Z15Q8INVF1cqiVp9Qs2HSqtuF+7PDEKVhChdqH081hg1mT/MXWXx9NomtapAxh0B8/5EZPAD66b5W4V5uq/n80sQt8TlA51riIyRJqLlfd3/jz5CXqK9rG221lhpH2VEUhWnyOadtGLNreaLJ4aRmhfuYDFD522b0xbRxGbmTbpJhLzapYZlORBJkUaB9RllZ38dslwjrIqdwNCqBI3DQqf8aOiD3BsNJyb71r4TUOXMttcxSMf5Ab0nb/ePcARNJJc2CAaQ+3BuvKhNRirOg0EbVrkCazE/nq+3OYy8h7R0KRw2/ktS4NRbxtnlPNm0wXZSfY0flNnC1vVHKs2P4dFfPeF7lw/D6Sw6dVsy1l8yYNZqVpeibaqjJWLQNW8AY6SB3YRwbGplFFgrDziygnJolkjaxnnWyXY8KxIkQ6RR+MpPXj7utACxYMOyixbo7JtD4U7HfhU0fwk2srElfRKqtyQtWnGGhGyrFh/JdsgMx6p+w== root@foo

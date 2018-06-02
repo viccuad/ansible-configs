@@ -1,0 +1,60 @@
+---
+
+- name: install borgbackup
+  apt:
+    name: "{{ item }}"
+    install_recommends: no
+  with_items:
+    - borgbackup
+
+
+- name: create backup user
+  user:
+    name: "{{ backup_user }}"
+    comment: "borgbackup User"
+    groups: "{{ backup_group }}"
+    shell: /bin/bash
+    home: "{{ backup_user_home }}"
+    createhome: yes
+    append: yes
+    system: yes
+  become: yes
+
+
+- name: ensure backup_user_home exists and is only accessible by backup_user
+  file:
+    path: "{{ backup_user_home }}"
+    owner: "{{ backup_user }}"
+    group: "{{ backup_group }}"
+    mode: 0700
+    state: directory
+
+
+- name: ensure backup_pool exists and is only accessible by backup_user
+  file:
+    path: "{{ backup_pool }}"
+    owner: "{{ backup_user }}"
+    group: "{{ backup_group }}"
+    mode: 0700
+    state: directory
+
+
+- name: ensure backup_pool/<host> exist and are only accessible by backup_user
+  file:
+    path: "{{ backup_pool }}/{{ item.host }}"
+    owner: "{{ backup_user }}"
+    group: "{{ backup_group }}"
+    mode: 0700
+    state: directory
+  with_items: "{{ backup_auth_users }}"
+
+
+- name: add authorized keys for calling borgbackup
+  authorized_key:
+    user: "{{ backup_user }}"
+    key: "{{ item.key }}"
+    key_options: 'command="cd {{ backup_pool }}/{{ item.host }};borg serve --restrict-to-path {{ backup_pool }}/{{ item.host }}",restrict'
+    path: "/etc/ssh/authorized_keys/{{ backup_user }}"
+    manage_dir: False
+  with_items: "{{ backup_auth_users }}"
+  become: yes
