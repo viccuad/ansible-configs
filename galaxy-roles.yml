@@ -3,4 +3,4 @@
 
 - src: https://github.com/jacoelho/ansible-softwareraid
   name: softwareraid
-  version: v1.1.0
+  version: v1.2.0
