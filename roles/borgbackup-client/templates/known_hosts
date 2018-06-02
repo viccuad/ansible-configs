@@ -1,4 +1,5 @@
 #
 # {{ ansible_managed }}
 #
+
 {{ backup_server_ssh_fingerprint }}

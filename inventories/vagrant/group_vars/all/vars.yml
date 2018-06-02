@@ -10,3 +10,8 @@ normal_user: vic
 normal_user_name: John Doe
 normal_user_email: john@doe.example
 normal_user_gpgkey: E3C5114C0C5B4C49BA030991A2591E231E251F36
+
+backup_user: backup
+backup_server_host: 192.168.111.5
+backup_server_ssh_fingerprint: |
+  MZq9HX+H7v8q59dR2I2pfoqsgYE=|unNhMuBWqdYIDfG/1e5R4bKFypw= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBODfTyfYIsNq3PRMLpwDr1Bzl1ljVaVJs5dIQiGGFQCT9+mc/Wdbkn80SL3za8VH1B+pbbGCYotuzKLH2HZPdnM=

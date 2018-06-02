@@ -33,3 +33,7 @@ anofflinepc ansible_host=192.168.111.7 ansible_private_key_file=.vagrant/machine
 router
 nas
 htpc
+
+[backup-client]
+[backup-client:children]
+dotfiles
