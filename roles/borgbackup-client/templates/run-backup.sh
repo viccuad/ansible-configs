@@ -14,7 +14,7 @@ if ! echo $HOSTNAME | grep -q . ; then
     exit 1
 fi
 
-export BORG_REPO="${BACKUPHOST}:backups/${HOSTNAME}"
+export BORG_REPO="{{ backup_user }}@${BACKUPHOST}:."
 if [ -n "${ARCHIVE:-}" ]; then
     echo "Warning: using ARCHIVE name coming from the environment: '$ARCHIVE'" >&2
 else
@@ -23,7 +23,7 @@ fi
 
 BORG=borg
 
-pwd_file='{{ pwfile }}'
+pwd_file='{{ backup_pwfile }}'
 if [ ! -f "$pwd_file" ]; then
     echo "$pwd_file does not exist" >&2
     exit 1
@@ -46,15 +46,13 @@ if ! wget -q --spider https://google.com ; then
 fi
 
 b_init(){
-    "$BORG" init -v --show-rc
+    "$BORG" init --encryption=keyfile -v --show-rc
 }
 b_list() {
     # XXX --list-format is not working as documented
     # https://github.com/borgbackup/borg/issues/1213
     set -x
-    "$BORG" list \
-        --list-format="{mode} {size:8d} {isomtime} {path}{extra}{NEWLINE}" \
-        $@
+    "$BORG" list $@
 }
 b_create() {
     # `borg help patterns` for help with exclusion patterns
@@ -73,17 +71,16 @@ b_create() {
         --exclude '/home/*/Downloads' \
         --exclude '/home/*/tmp' \
         --exclude '/home/*/.cache' \
+        --exclude '/home/*/.apps' \
         --exclude '/home/*/.local/share/Trash' \
         "::${ARCHIVE}" \
         /etc \
         /home \
         /root \
-        /srv \
-        /var \
         $@
 }
 b_prune() {
-    # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 6 monthly
+    # Use the `prune` subcommand to maintain 7 daily, 4 weekly and 12 monthly
     # archives of THIS machine.
     "$BORG" prune \
         -v \
@@ -93,7 +90,7 @@ b_prune() {
         --keep-within 30d \
         --keep-daily 7 \
         --keep-weekly 4 \
-        --keep-monthly 6 \
+        --keep-monthly 12 \
         --keep-yearly 20 \
         $@
 }

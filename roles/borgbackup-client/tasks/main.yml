@@ -1,12 +1,31 @@
 ---
 
-- name: main ssh client conf
-  template:
-    src: ssh_config
+- name: add backup server to main ssh_config (when production)
+  blockinfile:
     dest: /etc/ssh/ssh_config
-    owner: root
-    group: root
-    mode: 0644
+    block: |
+      Host {{ backup_server_host }}
+          User {{ backup_user }}
+    marker: "# {mark} backup-client block"
+  when: '"vagrant" not in inventory_file'
+
+
+- name: Create deploy group (when vagrant)
+  group:
+    name: "{{ deploy_user }}"
+    state: present
+  when: '"vagrant" in inventory_file'
+
+- name: add backup server to main ssh_config with no key checking (when vagrant)
+  blockinfile:
+    dest: /etc/ssh/ssh_config
+    block: |
+      Host {{ backup_server_host }}
+          User {{ backup_user }}
+          StrictHostKeyChecking no
+          UserKnownHostsFile=/dev/null
+    marker: "# {mark} backup-client block"
+  when: '"vagrant" in inventory_file'
 
 
 - name: add backup server ssh fingerprint to known hosts
@@ -34,15 +53,15 @@
 
 
 - name: generate the backup password
-  shell: touch {{ pwfile|quote }} && chmod 0600 {{ pwfile|quote }} && pwgen -s -y -1 150 1 > {{ pwfile|quote }} && chmod 0400 {{ pwfile|quote }} && chattr +i {{ pwfile|quote }}
+  shell: touch {{ backup_pwfile|quote }} && chmod 0600 {{ backup_pwfile|quote }} && pwgen -s -y -1 150 1 > {{ backup_pwfile|quote }} && chmod 0400 {{ backup_pwfile|quote }} && chattr +i {{ backup_pwfile|quote }}
   args:
-    creates: "{{ pwfile }}"
+    creates: "{{ backup_pwfile }}"
     warn: no
 
 
-- name: be sure about pwfile's permissions
+- name: be sure about backup_pwfile's permissions
   file:
-    path: "{{ pwfile }}"
+    path: "{{ backup_pwfile }}"
     owner: root
     group: root
     mode: 0400
@@ -68,6 +87,7 @@
   with_items:
     - run-backup.service
     - run-backup.timer
+    - run-backup.slice
 
 
 - name: enable the timer
@@ -76,3 +96,20 @@
     daemon_reload: yes
     enabled: yes
     state: started
+
+
+# TODO ssh keys
+
+
+# TODO run-backup init the first time
+- name: initialize the borgbackup repository for the first time
+  shell: run-backup init
+  args:
+    creates: /root/.config/borg/keys
+    warn: no
+  become: yes
+
+
+# to test:
+# date --set='+1 day'
+# journalctl -f -u run-backup # with raid it takes a while

@@ -1,0 +1,12 @@
+---
+
+- hosts: backup-client
+  become: yes
+  # pre_tasks:
+  #   - name: patch the backup-client ssh pub key into this ansible-configs repo (when vagrant)
+  #     command: |
+  #       cp -f /etc/ssh/ssh_host_rsa_key.pub \
+  #       /vagrant/inventories/vagrant/group_vars/all/backup-client-pubkey
+  #     when: '"vagrant" in inventory_file'
+  roles:
+    - borgbackup-client

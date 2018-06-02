@@ -28,3 +28,6 @@ clotho
 router
 nas
 htpc
+
+[backup-client]
+[backup-client:children]
