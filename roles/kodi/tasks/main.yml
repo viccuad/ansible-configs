@@ -1,0 +1,63 @@
+---
+
+- name: install htpc packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+    - kodi
+    # dependencies for kodi-standalone
+    - xserver-xorg
+    - xinit
+    - bluez
+    # addons
+    - kodi-pvr-mythtv
+
+
+- name: create kodi group
+  group:
+    name: kodi
+    state: present
+
+
+- name: create kodi user
+  user:
+    name: kodi
+    comment: "kodi user"
+    home: /var/lib/kodi
+    create_home: yes
+    groups: tty,audio,dip,video,plugdev,netdev,bluetooth,kodi
+    append: yes
+    system: yes
+  become: yes
+
+
+- name: enable xorg sessions by any user
+  debconf:
+    name: xserver-xorg-legacy
+    question: "xserver-xorg-legacy/xwrapper/actual_allowed_users"
+    value: anybody
+    vtype: select
+
+
+
+# needed until https://github.com/ansible/ansible/pull/39794
+- name: Reconfigure xserver-xorg-legacy with dpkg
+  command: '/usr/sbin/dpkg-reconfigure --frontend noninteractive xserver-xorg-legacy'
+
+
+- name: install tuned kodi.service
+  template:
+    src: kodi.service
+    dest: /etc/systemd/system/kodi.service
+    owner: root
+    group: root
+    mode: 0644
+
+
+- name: be sure kodi.service is running and enabled
+  service:
+    name: kodi
+    state: started
+    enabled: yes
