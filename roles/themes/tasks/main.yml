@@ -32,7 +32,6 @@
 - name: install materia theme
   shell: /usr/local/src/themes/materia-theme/install.sh -d /home/{{ normal_user }}/.themes
   become: yes
-  become_user: "{{ normal_user }}"
   args:
     creates: /home/{{ normal_user }}/.themes/Materia-light-compact
 
