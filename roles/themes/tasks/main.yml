@@ -1,45 +1,9 @@
 ---
 
-- name: install gtk themes' deps packages
+- name: install gtk/gdm themes
   apt:
     name: "{{ item }}"
     state: present
     install_recommends: yes
   with_items:
-      - gnome-themes-standard
-      - gtk2-engines
-      - gtk2-engines-pixbuf
-      - gtk2-engines-murrine
-      - gtk2-engines-aurora
-      - bc # for materia theme install.sh
-      - libglib2.0-dev-bin # for materia theme install.sh
-
-
-- name: clone materia repo to /usr/local/src/themes
-  git:
-    repo: https://github.com/nana-4/materia-theme.git
-    dest: /usr/local/src/themes/materia-theme
-    update: no
-  become: yes
-
-
-- name: create ~/.themes directory
-  file:
-    path: "/home/{{ normal_user }}/.themes"
-    state: directory
-
-
-- name: install materia theme
-  shell: /usr/local/src/themes/materia-theme/install.sh -d /home/{{ normal_user }}/.themes
-  become: yes
-  args:
-    creates: /home/{{ normal_user }}/.themes/Materia-light-compact
-
-
-- name: install materia GDM theme
-  # this needs materia gtk theme previously installed:
-  # https://github.com/nana-4/materia-theme/wiki/GDM-Theme
-  shell: cp --backup /home/{{ normal_user }}/.themes/Materia-light-compact/gnome-shell/gnome-shell-theme.gresource /usr/share/gnome-shell/gnome-shell-theme.gresource
-  args:
-    creates: /usr/share/gnome-shell/gnome-shell-theme.gresource.gresource~
-  become: yes
+      - materia-gtk-theme
