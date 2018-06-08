@@ -112,3 +112,24 @@
     force: no
   become: yes
   become_user: "{{ normal_user }}"
+
+
+- name: mask unwanted gnome services
+  systemd:
+    name: "{{item}}"
+    user: yes
+    masked: yes
+    state: stopped
+  loop:
+    - gvfs-goa-volume-monitor.service
+    - tracker-store.service
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: remove tracker databases
+  file:
+    name: ~/.cache/tracker
+    state: absent
+  become: yes
+  become_user: "{{ normal_user }}"
