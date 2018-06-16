@@ -57,5 +57,9 @@
           go get -u github.com/godoctor/godoctor
           go get -u github.com/fatih/gomodifytags
           go get -u github.com/zmb3/gogetdoc
+          go get -u github.com/cweill/gotests/...
+          go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
+          go get -u github.com/davidrjenni/reftools/cmd/fillstruct
+          go get -u github.com/josharian/impl
   become:  yes
   become_user: "{{ normal_user }}"
