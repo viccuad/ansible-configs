@@ -53,6 +53,7 @@
     - intel-gpu-tools
     - revolt
     - firefox # from experimental
+    - libratbag-tools
 
 
 - name: make sure some gui packages are not present
