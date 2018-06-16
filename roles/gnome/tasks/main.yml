@@ -133,3 +133,12 @@
     state: absent
   become: yes
   become_user: "{{ normal_user }}"
+
+
+- name: install gtk/gdm themes
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - materia-gtk-theme

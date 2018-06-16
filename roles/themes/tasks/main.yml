@@ -1,9 +1,0 @@
----
-
-- name: install gtk/gdm themes
-  apt:
-    name: "{{ item }}"
-    state: present
-    install_recommends: yes
-  with_items:
-      - materia-gtk-theme
