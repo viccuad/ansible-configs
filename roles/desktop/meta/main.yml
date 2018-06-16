@@ -7,7 +7,6 @@ dependencies:
       - experimental
   - fonts
   - icons
-  - themes
   - xfce-terminal
   - flatpak
   - gnome
