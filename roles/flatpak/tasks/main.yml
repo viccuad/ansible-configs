@@ -14,6 +14,11 @@
   become: yes
 
 
+- name: add winepak repo
+  command: flatpak remote-add --if-not-exists winepak https://dl.winepak.org/repo/winepak.flatpakrepo
+  become: yes
+
+
 - name: install spotify
   command: flatpak install flathub com.spotify.Client
   become: yes
