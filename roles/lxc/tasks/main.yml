@@ -55,6 +55,8 @@
               StrictHostKeyChecking no
               UserKnownHostsFile=/dev/null
     marker: "# {mark} lxc block"
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: be sure lxc-net is running and enabled
