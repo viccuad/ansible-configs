@@ -173,6 +173,8 @@
             Host svn.debian.org git.debian.org bzr.debian.org hg.debian.org darcs.debian.org arch.debian.org alioth.debian.org
                 User viccuad-guest
     marker: "# {mark} debian block"
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: add pbuilder to sudoers.d

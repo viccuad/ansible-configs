@@ -70,6 +70,8 @@
               StrictHostKeyChecking no
               UserKnownHostsFile=/dev/null
     marker: "# {mark} libvirt block"
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: be sure libvirtd is running and enabled
