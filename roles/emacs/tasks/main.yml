@@ -45,6 +45,8 @@
     # - autoflake missing in Debian TODO
     # latex layer:
     - pandoc
+    # protobuf layer:
+    - protobuf-compiler
 
 
 - name: copy emacs files
