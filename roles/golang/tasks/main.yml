@@ -61,5 +61,8 @@
           go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
           go get -u github.com/davidrjenni/reftools/cmd/fillstruct
           go get -u github.com/josharian/impl
+          # grpc deps:
+          go get -u google.golang.org/grpc
+          go get -u github.com/golang/protobuf/protoc-gen-go
   become:  yes
   become_user: "{{ normal_user }}"
