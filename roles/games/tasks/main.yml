@@ -49,11 +49,10 @@
   become_user: "{{ normal_user }}"
 
 
-- name: fix udev configuration for steam controller
-  lineinfile:
-    path: /lib/udev/rules.d/99-steam-controller-perms.rules
-    regexp: '^(KERNEL=="uinput")'
-    line: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput",TAG+="uaccess"'
-    state: present
-    backrefs: yes
+- name: remove shipped udev configuration for steam controller
+  file:
+    src: /lib/udev/rules.d/99-steam-controller-perms.rules
+    dest: /lib/udev/rules.d/60-steam-controller-perms.rules
+    state: link
+    force: yes
   notify: reload udev rules
