@@ -39,6 +39,9 @@
 - name: open firewalld for sshd
   command: firewall-cmd --permanent --add-service=ssh
   notify: reload firewalld
+  # TODO missing python firewalld bindings, can't use firewalld ansible module yet
+  tags:
+    - skip_ansible_lint
 
 
 - name: be sure there is no deprecated host keys around
