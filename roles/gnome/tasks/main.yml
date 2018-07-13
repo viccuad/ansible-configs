@@ -115,15 +115,16 @@
   become_user: "{{ normal_user }}"
 
 
+# TODO workaround https://github.com/ansible/ansible/issues/42384
 - name: mask unwanted gnome services
-  systemd:
-    name: "{{item}}"
-    user: yes
-    masked: yes
-    state: stopped
-  loop:
-    - gvfs-goa-volume-monitor.service
+  file:
+    src: /dev/null
+    dest: /home/{{ normal_user }}/.config/systemd/user/{{ item }}
+    state: link
+    force: yes
+  with_items:
     - tracker-store.service
+    - gvfs-goa-volume-monitor.service
   become: yes
   become_user: "{{ normal_user }}"
 
