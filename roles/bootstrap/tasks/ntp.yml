@@ -12,3 +12,6 @@
 - name: open firewalld for ntp
   command: firewall-cmd --permanent --add-service=ntp
   notify: reload firewalld
+  # TODO missing python firewalld bindings, can't use firewalld ansible module yet
+  tags:
+   - skip_ansible_lint
