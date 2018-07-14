@@ -45,3 +45,4 @@
     owner: root
     group: root
     mode: 0644
+    validate: ssh-keygen -l -f %s
