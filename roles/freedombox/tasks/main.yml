@@ -10,9 +10,9 @@
 
 
 - name: exec freedombox-setup (if freedombox not installed yet)
-  shell: '/usr/lib/freedombox/setup &> /var/log/freedombox-setup.log'
+  shell: '/usr/lib/freedombox/setup 2>&1 |tee /var/log/freedombox-setup-ansible.log'
   args:
-    creates: /var/log/freedombox-setup.log
+    creates: /var/log/freedombox-setup-ansible.log
   when: |
          ansible_distribution == 'Debian' and
          ansible_distribution_major_version == '9'
