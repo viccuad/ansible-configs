@@ -1,5 +1,5 @@
 ---
-image: "viccuad/debian-buster-ansible"
+image: "registry.gitlab.com/viccuad/docker-debian-buster-ansible"
 
 before_script:
   - ansible --version
