@@ -10,19 +10,31 @@
 
 
 - name: add flathub repo
-  command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  command: flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
   become: yes
+  register: out
+  ignore_errors: yes
+  failed_when: '"already exists" not in out.stderr'
+  changed_when: '"already exists" not in out.stderr'
 
 
 - name: add winepak repo
-  command: flatpak remote-add --if-not-exists winepak https://dl.winepak.org/repo/winepak.flatpakrepo
+  command: flatpak remote-add winepak https://dl.winepak.org/repo/winepak.flatpakrepo
   become: yes
+  register: out
+  ignore_errors: yes
+  failed_when: '"already exists" not in out.stderr'
+  changed_when: '"already exists" not in out.stderr'
 
 
 - name: install spotify
-  command: flatpak install flathub com.spotify.Client
+  command: flatpak install -y flathub com.spotify.Client
   become: yes
   become_user: "{{ normal_user }}"
+  register: out
+  ignore_errors: yes
+  failed_when: '"is already installed" not in out.stderr'
+  changed_when: '"is already installed" not in out.stderr'
 
 
 - name: add flatpak exports/bin to PATH
