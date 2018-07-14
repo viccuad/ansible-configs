@@ -42,17 +42,8 @@
     marker: "# {mark} gnupg block"
 
 
-- name: download and install hkps ca for gpg (create dir)
-  file:
-    path: /usr/local/share/gnupg
-    state: directory
 
 
-- name: download and install hkps ca for gpg
-  get_url:
-    url: https://sks-keyservers.net/sks-keyservers.netCA.pem
-    dest: /usr/local/share/gnupg/sks-keyservers.netCA.pem
-    checksum: sha256:0666ee848e03a48f3ea7bb008dbe9d63dfde280af82fb4412a04bf4e24cab36b
 
 
 - name: import gpg public key
