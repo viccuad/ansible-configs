@@ -49,10 +49,11 @@
   become_user: "{{ normal_user }}"
 
 
-- name: remove shipped udev configuration for steam controller
+- name: fix shipped udev configuration for steam controller
   file:
     src: /lib/udev/rules.d/99-steam-controller-perms.rules
     dest: /lib/udev/rules.d/60-steam-controller-perms.rules
     state: link
     force: yes
+    follow: false
   notify: reload udev rules
