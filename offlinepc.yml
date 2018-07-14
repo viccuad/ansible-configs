@@ -15,6 +15,7 @@
     - pass
     - signing-party
   tasks:
-    - apt:
+    - name: install needed offline packages
+      apt:
         name: apt-offline
         state: present
