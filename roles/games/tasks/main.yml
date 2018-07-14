@@ -20,12 +20,20 @@
 
 
 - name: save agreement to steam license
-  shell: /bin/echo /usr/bin/debconf steam/license note | /usr/bin/debconf-set-selections
+  debconf:
+    name: steam
+    question: steam/license
+    value: ''
+    vtype: select
   become: yes
 
 
 - name: save agreement to steam question
-  shell: /bin/echo /usr/bin/debconf steam/question select "I AGREE" | /usr/bin/debconf-set-selections
+  debconf:
+    name: steam
+    question: steam/question
+    value: 'I AGREE'
+    vtype: select
   become: yes
 
 
