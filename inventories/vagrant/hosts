@@ -36,7 +36,7 @@ htpc
 
 [backup-client]
 [backup-client:children]
-dotfiles
+laptop
 
 [backup-server]
 [backup-server:children]
