@@ -58,7 +58,7 @@ Install the private roles with:
 and then run the playbooks:
 
 ```bash
-$ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts all.yml --check
+$ ansible-playbook --vault-password-file=vault_pass.sh --ask-sudo-pass -i inventories/production/hosts all.yml --check
 ```
 
 To decrypt/encrypt the vault:
@@ -84,7 +84,7 @@ $ ssh-copy-id -f -i roles/bootstrap/files/vic.pub deploy@<target host>
  # or do it by hand if no password set up
 ```
 
-# Deploying against *localhost* #
+# Deploying against *localhost* when host is not on inventory #
 
 Whether you are aiming for the vagrant or the production deployment, what you
 need to do is just add *localhost* under the correct group in
@@ -101,7 +101,7 @@ need to do is just add *localhost* under the correct group in
 And then run the normal deployment, in this case:
 
 ```bash
-$ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts -vv dotfiles.yml --check
+$ ansible-playbook --vault-password-file=vault_pass.sh --ask-sudo-pass -i inventories/production/hosts -vv dotfiles.yml --check
 ```
 
 or
@@ -132,6 +132,6 @@ $ vagrant up
 # Running gitlab-ci tests in your local machine #
 
 ``` bash
-$ apt install docker.io gitlab-ci-multi-runner
-$ gitlab-ci-multi-runner exec docker <test-to-run>
+$ sudo apt install docker.io gitlab-ci-multi-runner
+$ sudo gitlab-ci-multi-runner exec docker <test-to-run>
 ```
