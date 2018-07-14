@@ -13,11 +13,7 @@
       - "--chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r"
   become: yes
   become_user: "{{ normal_user }}"
-
-
-- name: reload font cache
-  command: fc-cache -f
-  become: yes
+  notify: rebuild font cache
 
 
 - name: install font packages
@@ -31,3 +27,4 @@
     - fonts-hack-ttf
     - fonts-lmodern
     - fonts-noto-color-emoji
+  notify: rebuild font cache
