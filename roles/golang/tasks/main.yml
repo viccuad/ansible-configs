@@ -38,31 +38,42 @@
 
 
 - name: install go deps not packaged yet
-  # deps that aren't packaged yet:
-  shell: |
-          # editor deps:
-          export GOPATH="{{ gopath }}"
-          go get -u github.com/nsf/gocode
-          go get -u github.com/golang/lint/golint
-          go get -u github.com/rogpeppe/godef
-          go get -u golang.org/x/tools/cmd/guru
-          go get -u golang.org/x/tools/cmd/gorename
-          go get -u golang.org/x/tools/cmd/goimports
-          go get -u golang.org/x/tools/cmd/godoc
-          go get -u github.com/kisielk/errcheck
-          go get -u github.com/mdempsky/unconvert
-          go get -u github.com/alecthomas/gometalinter
-          "{{ gopath }}"/bin/gometalinter --install --update
-          go get -u github.com/derekparker/delve/cmd/dlv
-          go get -u github.com/godoctor/godoctor
-          go get -u github.com/fatih/gomodifytags
-          go get -u github.com/zmb3/gogetdoc
-          go get -u github.com/cweill/gotests/...
-          go get -u github.com/haya14busa/gopkgs/cmd/gopkgs
-          go get -u github.com/davidrjenni/reftools/cmd/fillstruct
-          go get -u github.com/josharian/impl
-          # grpc deps:
-          go get -u google.golang.org/grpc
-          go get -u github.com/golang/protobuf/protoc-gen-go
+  command: go get {{ item }}
+  environment:
+    GOPATH: "{{ gopath }}"
+  args:
+    creates: "{{ gopath }}/src/{{ item }}"
+  with_items:
+    - github.com/nsf/gocode
+    - github.com/golang/lint/golint
+    - github.com/rogpeppe/godef
+    - golang.org/x/tools/cmd/guru
+    - golang.org/x/tools/cmd/gorename
+    - golang.org/x/tools/cmd/goimports
+    - golang.org/x/tools/cmd/godoc
+    - github.com/kisielk/errcheck
+    - github.com/mdempsky/unconvert
+    - github.com/alecthomas/gometalinter
+    - github.com/derekparker/delve/cmd/dlv
+    - github.com/godoctor/godoctor
+    - github.com/fatih/gomodifytags
+    - github.com/zmb3/gogetdoc
+    - github.com/cweill/gotests/...
+    - github.com/haya14busa/gopkgs/cmd/gopkgs
+    - github.com/davidrjenni/reftools/cmd/fillstruct
+    - github.com/josharian/impl
+    # grpc deps:
+    - google.golang.org/grpc
+    - github.com/golang/protobuf/protoc-gen-go
   become:  yes
   become_user: "{{ normal_user }}"
+
+
+- name: install gometalinter dependencies
+  command: '"{{ gopath }}"/bin/gometalinter --install'
+  environment:
+    GOPATH: "{{ gopath }}"
+  become:  yes
+  become_user: "{{ normal_user }}"
+  tags:
+    - skip_ansible_lint
