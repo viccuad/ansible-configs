@@ -4,3 +4,7 @@
 - src: https://github.com/jacoelho/ansible-softwareraid
   name: softwareraid
   version: v1.2.0
+
+# - src: git@iris:private/ansible-private.git
+#   name: private
+#   version: master
