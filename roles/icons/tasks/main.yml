@@ -12,6 +12,7 @@
   git:
     repo: https://github.com/snwh/paper-icon-theme.git
     dest: "/home/{{ normal_user }}/.icons"
-    update: no
+    update: yes
+    version: master
   become: yes
   become_user: "{{ normal_user }}"

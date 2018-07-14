@@ -62,6 +62,7 @@
     repo: https://gitlab.com/viccuad/emacs.d.git
     dest: "/home/{{ normal_user }}/.spacemacs.d/"
     update: no
+    version: master
   become: yes
   become_user: "{{ normal_user }}"
 
@@ -71,6 +72,7 @@
     repo: https://github.com/syl20bnr/spacemacs.git
     dest: "/home/{{ normal_user }}/.emacs.d/"
     update: no
+    version: develop
   become: yes
   become_user: "{{ normal_user }}"
 
