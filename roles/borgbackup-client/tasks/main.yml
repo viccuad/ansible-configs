@@ -10,12 +10,6 @@
   when: '"vagrant" not in inventory_file'
 
 
-- name: Create deploy group (when vagrant)
-  group:
-    name: "{{ deploy_user }}"
-    state: present
-  when: '"vagrant" in inventory_file'
-
 - name: add backup server to main ssh_config with no key checking (when vagrant)
   blockinfile:
     dest: /etc/ssh/ssh_config
@@ -101,7 +95,6 @@
 # TODO ssh keys
 
 
-# TODO run-backup init the first time
 - name: initialize the borgbackup repository for the first time
   command: run-backup init
   args:
