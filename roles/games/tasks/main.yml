@@ -13,10 +13,16 @@
       # - pcsx2
 
 
-- name: enable multiarch for steam
-  shell: dpkg --add-architecture i386
-  become: yes
-  notify: update apt cache if needed and autoremove packages
+- name: check if i386 is enabled
+  command: dpkg --print-foreign-architectures | grep i386
+  register: result_i386_check
+  changed_when: result_i386_check.rc == 1
+  failed_when: result_i386_check.rc > 1
+
+
+- name: enable i386 architecture for steam
+  command: dpkg --add-architecture i386
+  when: result_i386_check.rc == 1
 
 
 - name: save agreement to steam license
