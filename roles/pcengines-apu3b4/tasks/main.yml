@@ -49,7 +49,7 @@
 
 
 - name: install leds-apu2 kernel module with DKMS
-  shell: dkms install leds-apu2/1.0.0
+  command: dkms install leds-apu2/1.0.0
   when: installed_module.rc > 0
 
 

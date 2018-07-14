@@ -2,25 +2,27 @@
 
 - name: check if Intel processor
   command: grep -q Intel /proc/cpuinfo
+  changed_when: false
   ignore_errors: true
   register: is_intel
 
 
 - name: check if AMD processor
   command: grep -q AMD /proc/cpuinfo
+  changed_when: false
   ignore_errors: true
   register: is_amd
 
 
 - name: set nested_kvm_intel fact
-  shell: cat /sys/module/kvm_intel/parameters/nested
+  command: cat /sys/module/kvm_intel/parameters/nested
   changed_when: false
   register: nested_kvm_intel
   when: is_intel is succeeded
 
 
 - name: set nested_kvm_amd fact
-  shell: cat /sys/module/kvm_amd/parameters/nested
+  command: cat /sys/module/kvm_amd/parameters/nested
   changed_when: false
   register: nested_kvm_amd
   when: is_amd is succeeded

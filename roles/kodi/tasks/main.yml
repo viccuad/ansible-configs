@@ -41,10 +41,11 @@
     vtype: select
 
 
-
-# needed until https://github.com/ansible/ansible/pull/39794
-- name: Reconfigure xserver-xorg-legacy with dpkg
+# FIXME needed until https://github.com/ansible/ansible/pull/39794
+- name: reconfigure xserver-xorg-legacy with dpkg
   command: '/usr/sbin/dpkg-reconfigure --frontend noninteractive xserver-xorg-legacy'
+  tags:
+   - skip_ansible_lint
 
 
 - name: install tuned kodi.service
