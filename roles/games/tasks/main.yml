@@ -63,11 +63,23 @@
   become_user: "{{ normal_user }}"
 
 
-- name: fix shipped udev configuration for steam controller
+- name: fix priority of udev configuration for steam controller
+  # FIXME see https://github.com/ValveSoftware/steam-for-linux/issues/5169
   file:
     src: /lib/udev/rules.d/99-steam-controller-perms.rules
     dest: /lib/udev/rules.d/60-steam-controller-perms.rules
     state: link
     force: yes
     follow: false
+  notify: reload udev rules
+
+
+- name: patch udev configuration for steam controller
+  # FIXME see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=818905
+  lineinfile:
+    path: /lib/udev/rules.d/99-steam-controller-perms.rules
+    regexp: '^(KERNEL=="uinput")'
+    line: 'KERNEL=="uinput", SUBSYSTEM=="misc", OPTIONS+="static_node=uinput", TAG+="uaccess"'
+    state: present
+    backrefs: yes
   notify: reload udev rules
