@@ -2,11 +2,7 @@
 deb http://deb.debian.org/debian/ stretch main contrib non-free
 deb-src http://deb.debian.org/debian/ stretch main contrib non-free
 
-deb http://deb.debian.org/debian-security stretch/updates main contrib non-free
-deb-src http://deb.debian.org/debian-security stretch/updates main contrib non-free
+deb http://security.debian.org/ stretch/updates main contrib non-free
+deb-src http://security.debian.org/ stretch/updates main contrib non-free
 
 deb http://debug.mirrors.debian.org/debian-debug/ stretch-debug main
-
-# tor variant (requires apt-transport-tor)
-# deb  tor+http://vwakviie2ienjx6t.onion/debian          stretch            main
-# deb  tor+http://sgvtcaew4bxjd7ln.onion/debian-security stretch/updates    main
