@@ -76,16 +76,6 @@
       - iucode-tool
 
 
-- name: install flathubs
-  shell: |
-         flatpak install -y --from https://flathub.org/repo/appstream/com.spotify.Client.flatpakref
-  register: out
-  ignore_errors: yes
-  failed_when: '"is already installed" not in out.stderr'
-  become: yes
-  become_user: "{{ normal_user }}"
-
-
 - name: set gnome settings with dconf
   # export settings with:
   # gsettings list-recursively | grep -i org.gnome.desktop | sort | uniq > gsettings_export
