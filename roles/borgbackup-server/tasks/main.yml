@@ -50,11 +50,21 @@
 
 
 - name: add authorized keys for calling borgbackup
-  authorized_key:
-    user: "{{ backup_user }}"
-    key: "{{ item.key }}"
-    key_options: 'command="cd {{ backup_pool }}/{{ item.host }};borg serve --restrict-to-path {{ backup_pool }}/{{ item.host }}",restrict'
+  blockinfile:
     path: "/etc/ssh/authorized_keys/{{ backup_user }}"
-    manage_dir: False
+    block: |
+            command="cd {{ backup_pool }}/{{ item.host }};borg serve --restrict-to-path {{ backup_pool }}/{{ item.host }}",restrict {{ item.key }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.host }}"
+    create: yes
+    validate: ssh-keygen -l -f %s
   with_items: "{{ backup_auth_users }}"
+  become: yes
+
+
+- name: ensure perms of authorized keys for calling borgbackup
+  file:
+    path: "/etc/ssh/authorized_keys/{{ backup_user }}"
+    owner: root
+    group: root
+    mode: 0600
   become: yes
