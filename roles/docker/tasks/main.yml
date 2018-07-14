@@ -1,0 +1,17 @@
+---
+
+- name: install docker packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - docker.io
+
+
+- name: add {{ normal_user }} to docker group
+  user:
+    name: "{{ normal_user }}"
+    groups: docker
+    append: yes
+  become: yes
