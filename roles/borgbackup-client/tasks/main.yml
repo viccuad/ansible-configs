@@ -103,10 +103,9 @@
 
 # TODO run-backup init the first time
 - name: initialize the borgbackup repository for the first time
-  shell: run-backup init
+  command: run-backup init
   args:
     creates: /root/.config/borg/keys
-    warn: no
   become: yes
 
 

@@ -22,7 +22,9 @@
       with_items:
         - aptitude
     - name: show apt-get upgrade
-      shell: "apt-'get' --just-print upgrade"
+      command: "apt-get --just-print upgrade"
+      args:
+        warn: no
       changed_when: false
       register: output
     - debug:
