@@ -16,18 +16,23 @@ test-style:
 
 # test-idempotence-bootstrap:
 #   script:
-#     # Run the role/playbook with ansible-playbook
-#     - "ansible-playbook -i inventories/vagrant/host -vv test/bootstrap.yml"
+#     # patch to run against localhost
+#     - "sed -i -- 's/- hosts: all/- hosts: localhost/g' bootstrap.yml"
 
-#     # Run the role/playbook again, checking to make sure it's idempotent
+#     # Run the playbook
+#     - ansible-playbook -i inventories/vagrant/hosts -vv bootstrap.yml
+
+#     # Run the playbook again, checking to make sure it's idempotent
 #     - >
-#       ansible-playbook -i inventories/vagrant/host -vv test/bootstrap.yml
+#       ansible-playbook -i inventories/vagrant/hosts -vv bootstrap.yml
 #       | grep -q 'changed=0.*failed=0'
 #       && (echo 'Idempotence test: pass' && exit 0)
 #       || (echo 'Idempotence test: fail' && exit 1)
 
 # test-dotfiles-dryrun:
 #   script:
-#     # Run the role/playbook with ansible-playbook
+#     # patch to run against localhost
 #     - "sed -i -- 's/- hosts: dotfiles/- hosts: localhost/g' dotfiles.yml"
+
+#     # Run the playbook
 #     - "ansible-playbook -i inventories/vagrant/host -vv dotfiles.yml --check"
