@@ -1,5 +1,12 @@
 ---
 
+# TODO
+# To enable docker memory limitation, the kernel needs to be loaded with
+# boot parameters: cgroup_enable=memory swapaccount=1.
+# This adds runtime overhead.
+# See: /usr/share/doc/docker.io/README.Debian
+
+
 - name: install docker packages
   apt:
     name: "{{ item }}"
