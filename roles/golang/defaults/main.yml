@@ -1,2 +1,2 @@
 ---
-gopath: $HOME/code/go
+gopath: /home/{{ normal_user }}/code/go
