@@ -14,7 +14,7 @@
 
 
 - name: check if i386 is enabled
-  command: dpkg --print-foreign-architectures | grep i386
+  shell: dpkg --print-foreign-architectures | grep i386
   register: result_i386_check
   changed_when: result_i386_check.rc == 1
   failed_when: result_i386_check.rc > 1
