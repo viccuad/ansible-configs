@@ -1,23 +1,19 @@
 ---
 
+- name: set default locale to en_DK.UTF-8
+  debconf:
+    name: locales
+    question: locales/default_environment_locale
+    value: en_DK.UTF-8
+    vtype: select
+
+
 - name: generate locales
-  locale_gen:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - en_US.UTF-8
-    - en_DK.UTF-8
-    - es_ES.UTF-8
-    - de_DE.UTF-8
-
-
-- name: set locale
-  copy:
-    content: |
-              # contents managed by ansible
-              LC_ALL=en_DK.UTF8
-              LANG=en_DK.UTF8
-    dest: /etc/default/locale
+  debconf:
+    name: locales
+    question: locales/locales_to_be_generated
+    value: en_US.UTF-8 UTF-8, en_DK.UTF-8 UTF-8, es_ES.UTF-8 UTF-8, de_DE.UTF-8 UTF-8
+    vtype: multiselect
 
 
 - name: set timezone
