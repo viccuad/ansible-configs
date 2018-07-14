@@ -1,0 +1,3 @@
+exclude_paths:
+  - ./roles/softwareraid/
+use_default_rules: true
