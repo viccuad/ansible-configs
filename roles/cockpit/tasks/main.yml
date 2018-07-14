@@ -28,4 +28,7 @@
 
 - name: enable cockpit on firewalld internal zone
   command: firewall-cmd --permanent --add-service=cockpit --zone=internal
+  register: out
+  changed_when: '"Warning: ALREADY_ENABLED: cockpit" not in out.stderr'
   notify: reload firewalld
+  # TODO missing python firewalld bindings, can't use firewalld ansible module yet
