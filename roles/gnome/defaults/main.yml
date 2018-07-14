@@ -209,11 +209,6 @@ dconfsettings:
       value: "['<Super>k', '<Control><Alt>Up']"
     }
   - {
-      key: '/org/gnome/desktop/input-sources/xkb-options'
-      ,
-      value: "['caps:ctrl_modifier']"
-    }
-  - {
       key: '/org/gnome/desktop/search-providers/disable-external'
       ,
       value: 'true'
