@@ -28,7 +28,12 @@
   # dkms package recommends the kernel headers package but if there has been a
   # dist-upgrade afterwards, those headers don't correspond to the kernel
   # currently running now
+  # TODO there's no other way to achieve this
   shell: apt-get install -y linux-headers-$(uname -r)
+  args:
+    warn: no
+  register: out
+  changed_when: '"is already the newest version" not in out.stdout'
 
 
 - name: copy leds-apu2 source files
