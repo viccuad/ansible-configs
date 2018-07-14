@@ -42,13 +42,25 @@
     marker: "# {mark} gnupg block"
 
 
-
-
-
-
 - name: import gpg public key
-  shell: |
-          gpg --recv-keys "{{ normal_user_gpgkey }}"
-          echo "{{ normal_user_gpgkey }}:6:" | gpg --import-ownertrust
+  command: gpg --recv-keys "{{ normal_user_gpgkey }}"
+  register: out
+  changed_when: '"unchanged: 1" not in out.stderr'
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: check trust of our own public gpg key, should be ultimate
+  command: gpg -K
+  register: gpg_public_keys
+  changed_when: false
+  failed_when: false
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: set trust of our own public gpg key to ultimate
+  command: echo "{{ normal_user_gpgkey }}:6:" | gpg --import-ownertrust
+  when: '"ultimate" not in gpg_public_keys.stdout'
   become: yes
   become_user: "{{ normal_user }}"
