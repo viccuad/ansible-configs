@@ -163,6 +163,10 @@
               insteadOf = git+ssh://git.debian.org
             [url "git+ssh://git.debian.org"]
               pushInsteadOf = git+ssh://git.debian.org
+            [url "git.debian.org:/git/"]
+              insteadOf = https://anonscm.debian.org/git/
+            [url "git@salsa.debian.org:"]
+              insteadOf = https://salsa.debian.org/
     marker: "# {mark} debian block"
 
 
