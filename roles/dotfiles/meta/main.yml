@@ -19,7 +19,7 @@ dependencies:
   - libvirt
   - vagrant
   - debian
-  # - nvim
+  - nvim
   - signing-party
   - virtualenvwrapper
   - beets
