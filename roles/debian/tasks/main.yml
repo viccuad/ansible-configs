@@ -136,8 +136,8 @@
   blockinfile:
     dest: '/home/{{ normal_user }}/.zshenv'
     block: |
-            export DEBFULLNAME="{{ normal_user_name|quote }}"
-            export DEBEMAIL="{{ normal_user_email|quote }}"
+            export DEBFULLNAME="{{ normal_user_name }}"
+            export DEBEMAIL="{{ normal_user_email }}"
             export DEB_BUILD_OPTIONS="parallel={{ ansible_processor_vcpus - 1 }}"
     marker: "# {mark} debian block"
 
