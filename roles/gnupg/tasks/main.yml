@@ -42,12 +42,22 @@
     marker: "# {mark} gnupg block"
 
 
+- name: register variable for importing public gpg key
+  command: gpg --list-keys --with-colons "{{ normal_user_gpgkey }}"
+  register: public_gpg_imported
+  changed_when: false
+  failed_when: false
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
 - name: import gpg public key
   command: gpg --recv-keys "{{ normal_user_gpgkey }}"
   register: out
   changed_when: '"unchanged: 1" not in out.stderr'
   become: yes
   become_user: "{{ normal_user }}"
+  when: public_gpg_imported.rc != 0
 
 
 - name: check trust of our own public gpg key, should be ultimate
