@@ -9,7 +9,7 @@
     file:
       path: "/etc/apt/sources.list.d/{{ item }}.list"
       state: absent
-    with_items: "{{ all_sources | difference(sources) }}"
+    with_items: "{{ all_apt_sources | difference(apt_sources) }}"
   - name: install .list files
     template:
       src: "sources/{{ item }}"
@@ -17,7 +17,7 @@
       owner: root
       group: root
       mode: 0644
-    with_items: "{{ sources }}"
+    with_items: "{{ apt_sources }}"
     notify: apt dist-upgrade
 
 
