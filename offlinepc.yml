@@ -3,19 +3,4 @@
 - hosts: offlinepc
   become: yes
   roles:
-    - bootstrap
-    - role: apt-sources
-      sources: stretch
-    - zsh
-    - emacs
-    - tmux
-    - vim
-    - gnupg
-    - git
-    - pass
-    - signing-party
-  tasks:
-    - name: install needed offline packages
-      apt:
-        name: apt-offline
-        state: present
+    - offlinepc
