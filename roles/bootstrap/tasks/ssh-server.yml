@@ -41,7 +41,7 @@
   register: out
   changed_when: '"Warning: ALREADY_ENABLED: ssh" not in out.stderr'
   notify: reload firewalld
-  # TODO missing python firewalld bindings, can't use firewalld ansible module yet
+  # FIXME missing python firewalld bindings, can't use firewalld ansible module yet
 
 
 - name: be sure there is no deprecated host keys around
