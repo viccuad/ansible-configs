@@ -83,3 +83,18 @@
     state: present
     backrefs: yes
   notify: reload udev rules
+
+
+# TODO add steam-streaming service to home zone when
+# firewalld-0.6.0 ships the service file: https://github.com/firewalld/firewalld/blob/master/config/services/steam-streaming.xml
+# firewall-cmd --zone=home --permanent --add-service=steam-streaming
+# meanwhile, do it by hand:
+- name: open firewalld for steam streaming
+  shell: |
+    firewall-cmd --zome=home --permanent --add-port=27036-27037/tcp
+    firewall-cmd --zome=home --permanent --add-port=27031/udp
+    firewall-cmd --zome=home --permanent --add-port=27036/udp
+  register: out
+  changed_when: '"Warning: ALREADY_ENABLED: ssh" not in out.stderr'
+  notify: reload firewalld
+  # FIXME missing python firewalld bindings, can't use firewalld ansible module yet
