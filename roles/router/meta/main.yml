@@ -1,0 +1,9 @@
+---
+
+dependencies:
+  - server
+  - pcengines-apu3b4
+  - freedombox
+  - apt-sources
+  - cockpit
+  - git-server
