@@ -51,6 +51,7 @@
     - python-notify
     - git-dpm
     - dgit
+    - git-debrebase
     # python packages:
     - python-all-dev
     - python3-all-dev
