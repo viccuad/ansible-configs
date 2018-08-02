@@ -1,9 +1,9 @@
 ---
 
-all_sources:
+all_apt_sources:
+  - buster
+  - experimental
   - stretch
   - stretch-backports
-  - buster
   - testing
   - unstable
-  - experimental

@@ -1,8 +1,9 @@
 ---
 
 dependencies:
+  - bootstrap
   - unattended
-  - { role: apt-sources, sources: stretch }
+  - apt-sources
   - zsh
   - vim
   - git
