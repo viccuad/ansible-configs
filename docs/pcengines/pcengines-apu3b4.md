@@ -41,3 +41,16 @@ FreedomBox to be an upstream Internet link and the remaining 2 ports are
 configured for local computers to connect to.
 See:
 http://freedomboxblog.nl/installing-lxc-dhcp-and-dns-on-my-freedombox
+
+
+## 1und1.de pppoe ##
+
+Internet Service Provider                 Benutzerdefiniert
+Login-Name                                Ihre Internetzugangskennung (z. B. 1und1/1234-567@online.de)
+Passwort                                  Ihr Internetzugangspasswort
+Passwort wiederholen                      Ihr Internetzugangspasswort
+Einstellung zur Automatischen Trennung    Aus (nur bei Flatrate-Tarifen)
+Protokoll                                 PPPoE
+Encapsulation                             LLC/SNAP
+VPI                                       1
+VCI                                       32
