@@ -1,0 +1,13 @@
+---
+
+dependencies:
+  - bootstrap
+  - apt-sources
+  - zsh
+  - emacs
+  - tmux
+  - vim
+  - gnupg
+  - git
+  - pass
+  - signing-party
