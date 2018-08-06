@@ -1,0 +1,25 @@
+---
+
+- name: install mail packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: no
+  with_items:
+    - postfix
+    - mailutils
+
+
+- name: configure postfix for local only mail
+  debconf:
+    name: postfix
+    question: postfix/main_mailer_type
+    value: 'Local only'
+    vtype: select
+
+
+- name: allow {{ normal_user }} to read root mail
+  lineinfile:
+    path: /etc/aliases
+    line: 'root: {{ normal_user }}'
+    state: present
