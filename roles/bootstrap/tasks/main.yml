@@ -17,3 +17,4 @@
 - import_tasks: ntp.yml
 - import_tasks: normal-user.yml
 - import_tasks: deploy-user.yml
+- import_tasks: mail.yml
