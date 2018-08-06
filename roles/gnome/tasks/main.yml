@@ -14,10 +14,8 @@
     - fwupd
     - gnome-software-plugin-flatpak
     - xdg-desktop-portal-gtk
-      # - xul-ext-ublock-origin # TODO
-    - xul-ext-https-everywhere
-    - xul-ext-itsalltext
-    - xul-ext-noscript
+    - webext-https-everywhere
+    - webext-ublock-origin
     - dconf-gsettings-backend
     - dconf-editor
     - libcanberra-gtk-module
