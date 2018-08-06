@@ -89,5 +89,10 @@
   notify: restart uptimed
 
 
-# TODO send mails
-# TODO populate and archive logs
+- name: configure postfix to relay mail
+  debconf:
+    name: postfix
+    question: postfix/relayhost
+    value: '{{ mail_smarthost }}'
+    vtype: select
+  when: mail_smarthost != None
