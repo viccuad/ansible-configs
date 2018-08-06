@@ -52,6 +52,7 @@
     - revolt
     - firefox # from experimental
     - libratbag-tools
+    - gnome-nettool
 
 
 - name: make sure some gui packages are not present
