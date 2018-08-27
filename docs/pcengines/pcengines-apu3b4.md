@@ -25,8 +25,8 @@ Connect the Ethernet cable to the port closer to the serial port (that's the
 first interface).
 
 For the partitioning scheme, don't use encryption (unless you want to connect by
-serial console on reboot). Since you can extend partitions in plinth, you can
-leave unused space too.
+serial console on reboot or use cryptsetup-initramfs). Since you can extend
+partitions in plinth, you can leave unused space too.
 
 [1]: http://pcengines.ch/howto.htm#serialconsole
 [2]: http://www.tldp.org/HOWTO/Remote-Serial-Console-HOWTO/index.html
