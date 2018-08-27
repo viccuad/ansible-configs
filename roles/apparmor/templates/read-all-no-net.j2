@@ -1,0 +1,13 @@
+#include <tunables/global>
+profile read-all-no-net {
+  #include <abstractions/base>
+  / r,
+  /** r,
+  /**/ r,
+}
+
+# can't write to disk
+# can't execute anything
+# can't use networking
+# has no capabilities
+# aa-exec -p read-all-no-net foo
