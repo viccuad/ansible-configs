@@ -17,6 +17,8 @@
     - nmap
     - winpdb
     - mitmproxy
+    - ss # netstat substitute
+    - mtr # traceroute substitute
 
 
 - name: copy debuggers files
