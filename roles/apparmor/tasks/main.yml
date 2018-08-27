@@ -1,0 +1,25 @@
+---
+
+- name: install apparmor packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    install_recommends: yes
+  with_items:
+      - apparmor
+      # suggests:
+      - apparmor-profiles
+      - apparmor-profiles-extra
+      - apparmor-utils
+      - apparmor-notify
+
+
+- name: copy read-all-no-net apparmor profile
+  template:
+    src: read-all-no-net.j2
+    dest: /etc/apparmor.d/abstractions/read-all-no-net
+    owner: root
+    group: root
+
+
+# TODO enable apparmor by default

@@ -25,3 +25,4 @@ dependencies:
   - vscode
   - { role: private, when: '"vagrant" not in inventory_file' }
   - docker
+  - apparmor
