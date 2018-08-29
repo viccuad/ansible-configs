@@ -5,11 +5,17 @@
     file:
       path: /etc/apt/sources.list
       state: absent
-  - name: remove .list files not in sources var
+  - name: remove .list files not in apt_sources var
     file:
       path: "/etc/apt/sources.list.d/{{ item }}.list"
       state: absent
-    with_items: "{{ all_apt_sources | difference(apt_sources) }}"
+    with_items: "{{ all_apt_sources | difference(apt_sources | union(apt_pinned)) }}"
+  - name: remove config files not in apt_pinned var
+    file:
+      path: "/etc/apt/preferences.d/{{ item }}"
+      state: absent
+    with_items: "{{ all_apt_pinned | difference(apt_pinned) }}"
+    when: not( (apt_pinned is undefined) or (apt_pinned is none) )
   - name: install .list files
     template:
       src: "sources/{{ item }}"
@@ -17,7 +23,24 @@
       owner: root
       group: root
       mode: 0644
-    with_items: "{{ apt_sources }}"
+    with_items: "{{ apt_sources | union(apt_pinned) }}"
+    notify: apt dist-upgrade
+  - name: create /etc/apt/preferences.d directory
+    file:
+      dest: /etc/apt/preferences.d/
+      state: directory
+      owner: root
+      group: root
+      mode: 0644
+  - name: install pin configs
+    template:
+      src: "pin/{{ item }}"
+      dest: "/etc/apt/preferences.d/pinned-{{ item }}"
+      owner: root
+      group: root
+      mode: 0644
+    with_items: "{{ apt_pinned }}"
+    when: not( (apt_pinned is undefined) or (apt_pinned is none) )
     notify: apt dist-upgrade
 
 

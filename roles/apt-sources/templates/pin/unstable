@@ -1,0 +1,6 @@
+Package: *
+Pin: release a=unstable
+# don't use unstable unless explictily selected
+# use <pkg>/unstable to only install <pkg> from unstable
+# use -t unstable <pkg> to pull dependencies from unstable
+Pin-Priority: -1
