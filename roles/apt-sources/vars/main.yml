@@ -7,3 +7,6 @@ all_apt_sources:
   - stretch-backports
   - testing
   - unstable
+
+all_apt_pinned:
+  - unstable
