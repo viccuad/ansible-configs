@@ -90,7 +90,10 @@
     line: 'export ALTERNATE_EDITOR=""'
 
 
-- name: add emacsclient alias
-  lineinfile:
-    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
-    line: 'alias e="emacsclient -t -c"'
+- name: add emacs aliases
+  blockinfile:
+    dest: '/home/{{ normal_user }}/.zsh/aliases.zsh'
+    block: |
+            alias e="emacsclient -t -c"
+            alias magit='emacsclient -t -c -e "(progn (magit-status) (delete-other-windows))"'
+    marker: "# {mark} emacs block"
