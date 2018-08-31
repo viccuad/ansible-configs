@@ -43,6 +43,7 @@
     owner: root
     group: root
     state: link
+    validate: ssh-keygen -l -f %s
   become: yes
   when: '"vagrant" not in inventory_file'
 
@@ -55,5 +56,6 @@
     owner: root
     group: root
     mode: 0644
+    validate: ssh-keygen -l -f %s
   become: yes
   when: '"vagrant" in inventory_file'

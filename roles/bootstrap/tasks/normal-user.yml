@@ -40,7 +40,7 @@
 
 - name: add ssh key of user {{ normal_user }}
   copy:
-    src: "{{ normal_user }}"
+    content: "{{ normal_user_sshkey }}"
     dest: "/etc/ssh/authorized_keys/{{ normal_user }}"
     owner: root
     group: root
