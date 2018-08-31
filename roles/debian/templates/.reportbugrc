@@ -56,11 +56,11 @@ sign gpg
 # sign none #to disable signing
 
 # Specify the GPG/PGP keyid to use instead of the default one on your system.
-keyid 0xA2591E231E251F36
+keyid {{ normal_user_gpgkey }}
 
 # Default "from" email address and real name (override with env. vars.)
-email "me@viccuad.me"
-realname "Víctor Cuadrado Juan"
+email {{ normal_user_email }}
+realname {{ normal_user_name }}
 
 # Default REPLYTO (override with env. variables)
 # replyto "Humberto Flores <humflores@example.org>"
