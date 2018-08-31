@@ -93,6 +93,17 @@
     group: "{{ normal_user }}"
 
 
+- name: copy debian templates
+  template:
+    src: "{{ item }}"
+    dest: /home/{{ normal_user }}/{{ item | basename | regex_replace('\.j2','') }}
+    mode: '0644'
+  with_fileglob:
+    - ../templates/.*.j2
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
 - name: copy debian personal docs
   copy:
     src: ./docs/

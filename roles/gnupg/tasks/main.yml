@@ -10,7 +10,18 @@
     rsync_opts:
       - "--exclude=.git*"
       - "--perms"
-      - "--chmod=u+rwx,g-rwx,o-rwx"
+      - "--chmod=u+rw,g-rwx,o-rwx"
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: copy gnupg templates
+  template:
+    src: "{{ item }}"
+    dest: /home/{{ normal_user }}/.gnupg/{{ item | basename | regex_replace('\.j2','') }}
+    mode: '0600'
+  with_fileglob:
+    - ../templates/*.j2
   become: yes
   become_user: "{{ normal_user }}"
 
