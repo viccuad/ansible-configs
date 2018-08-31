@@ -2,6 +2,7 @@
 
 host_key_checking: False
 ansible_connection: ssh
+
 ansible_user: vagrant
 become_user: vagrant
 deploy_user: vagrant
@@ -10,6 +11,7 @@ normal_user: vic
 normal_user_name: John Doe
 normal_user_email: john@doe.example
 normal_user_gpgkey: E3C5114C0C5B4C49BA030991A2591E231E251F36
+normal_user_sshkey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyCQcn9Mdeo3v9Q2rBYJSyyHzkqBPPFVcxKVTlnVmR4ITf6NQA7NDvoe+v2Pdp3umEignQjWG/R+Jv6ggleL0Cpsy7jEPGxRxYdcQA3DQXhXp5yruEXfoxerg7XFxqMe0OuC66Zh21ubP7o4d9unDb67iasYqb2EHq7y/tOlW5Klr9zVe6an2jGNJVsBLRP3NaYJcw6zQoLF90bUaAgSzPy/rnfATtjRgIFWC95VphUzTKWFsr1BVZlQqCXox32M+8ZNLR6wuyAuT4BMTmxTri0gawPCP8VH+6gB477AqstSpG/2+TR98Ea0pFTN4KOs7rGjZbxkDoH0FsvubRjZTD cardno:000603507832
 
 backup_user: backup
 backup_server_host: 192.168.111.5
