@@ -2,3 +2,6 @@
 
 apt_sources:
   - testing
+
+apt_pinned:
+  - unstable
