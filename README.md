@@ -1,3 +1,6 @@
+[![pipeline status](https://gitlab.com/viccuad/ansible-configs/badges/master/pipeline.svg)](https://gitlab.com/viccuad/ansible-configs/commits/master)
+
+
 New incarnation of my dotfiles, plus many more.
 
 # Where are your dotfiles? #
@@ -133,5 +136,6 @@ $ vagrant up
 
 ``` bash
 $ sudo apt install docker.io gitlab-ci-multi-runner
-$ sudo gitlab-ci-multi-runner exec docker <test-to-run>
+$ docker login registry.gitlab.com # with a valid token
+$ gitlab-ci-multi-runner exec docker <test-to-run>
 ```

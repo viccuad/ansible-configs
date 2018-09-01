@@ -14,10 +14,16 @@ test-style:
   script:
     - ansible-lint -v *.yml
 
+# disabled, needs privileged container for systemd
 # test-idempotence-bootstrap:
 #   script:
 #     # patch to run against localhost
 #     - "sed -i -- 's/- hosts: all/- hosts: localhost/g' bootstrap.yml"
+#     # localhost must be explicitly on the inventory so inventory_file var is
+#     # defined
+#     - "sed -i -- '/[dotfiles]/a localhost' inventories/vagrant/hosts"
+#     # needed for /etc/init.d/ssh
+#     - mkdir -p /var/run/sshd
 
 #     # Run the playbook
 #     - ansible-playbook -i inventories/vagrant/hosts -vv bootstrap.yml
@@ -29,6 +35,7 @@ test-style:
 #       && (echo 'Idempotence test: pass' && exit 0)
 #       || (echo 'Idempotence test: fail' && exit 1)
 
+# disabled, needs privileged container for systemd
 # test-dotfiles-dryrun:
 #   script:
 #     # patch to run against localhost
