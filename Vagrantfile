@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         ansible.playbook = "all.yml"
         ansible.inventory_path = "inventories/vagrant/hosts"
         ansible.limit = "#{name}"
-        ansible.verbose = "vv"
+        ansible.verbose = "v"
       end
     end
   end
