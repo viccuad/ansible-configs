@@ -88,6 +88,7 @@
   lineinfile:
     dest: "/home/{{ normal_user }}/.zshenv"
     line: 'export ALTERNATE_EDITOR=""'
+    insertafter: 'EDITOR=(.*|$)'
 
 
 - name: add emacs aliases
