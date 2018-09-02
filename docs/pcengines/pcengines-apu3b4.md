@@ -31,6 +31,15 @@ partitions in plinth, you can leave unused space too.
 [1]: http://pcengines.ch/howto.htm#serialconsole
 [2]: http://www.tldp.org/HOWTO/Remote-Serial-Console-HOWTO/index.html
 
+# BIOS updating #
+
+  ```
+  $ sudo apt install flashrom
+  $ sudo flashrom --read apu3_old.rom --programmer internal
+  $ diff <(md5sum apu3_<version>.rom) apu3_<version>.rom.md5
+  $ sudo flashrom --write apu3_<version>.rom --programmer internal
+  ```
+
 
 # Freedombox #
 
