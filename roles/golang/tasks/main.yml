@@ -44,7 +44,7 @@
   args:
     creates: "{{ gopath }}/src/{{ item }}"
   with_items:
-    - github.com/nsf/gocode
+    - github.com/mdempsky/gocode
     - github.com/golang/lint/golint
     - github.com/rogpeppe/godef
     - golang.org/x/tools/cmd/guru
