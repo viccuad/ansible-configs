@@ -5,10 +5,6 @@
     autoremove: yes
 
 
-- name: reload udev rules
-  shell: 'udevadm control --reload-rules && udevadm trigger'
-
-
 - name: reload firewalld
   service:
     name: firewalld
