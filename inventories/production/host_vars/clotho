@@ -1,7 +1,3 @@
 ---
 
 ansible_connection: local
-
-apt_sources:
-  - buster
-  - experimental
