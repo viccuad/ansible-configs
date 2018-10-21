@@ -1,7 +1,8 @@
 ---
 
 apt_sources:
-  - testing
+  - buster
+  - experimental
 
 apt_pinned:
   - unstable
