@@ -179,6 +179,10 @@
               insteadOf = https://anonscm.debian.org/git/
             [url "git@salsa.debian.org:"]
               insteadOf = https://salsa.debian.org/
+            [merge "dpkg-mergechangelogs"]
+            # to use, enable per repo as said in dpkg-mergechangelogs(1)
+              name = debian/changelog merge driver
+              driver = dpkg-mergechangelogs -m %O %A %B %A
     marker: "# {mark} debian block"
 
 
