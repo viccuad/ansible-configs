@@ -23,6 +23,10 @@
 - name: enable i386 architecture for steam
   command: dpkg --add-architecture i386
   when: result_i386_check.rc == 1
+  notify: update apt cache
+
+
+- meta: flush_handlers
 
 
 - name: save agreement to steam license
