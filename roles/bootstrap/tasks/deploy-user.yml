@@ -43,7 +43,6 @@
     owner: root
     group: root
     state: link
-    validate: ssh-keygen -l -f %s
   become: yes
   when: '"vagrant" not in inventory_file'
 
