@@ -73,9 +73,7 @@
 # meanwhile, do it by hand:
 - name: open firewalld for steam streaming
   shell: |
-    firewall-cmd --zome=home --permanent --add-port=27036-27037/tcp
-    firewall-cmd --zome=home --permanent --add-port=27031/udp
-    firewall-cmd --zome=home --permanent --add-port=27036/udp
+    firewall-cmd --zone=home --permanent --add-service=steam-streaming
   register: out
   changed_when: '"Warning: ALREADY_ENABLED: ssh" not in out.stderr'
   notify: reload firewalld
