@@ -16,7 +16,7 @@ dependencies:
   - lxc
   - libvirt
   - vagrant
-  - debian
+  - debian-devel
   - nvim
   - signing-party
   - virtualenvwrapper
