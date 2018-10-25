@@ -1,5 +1,11 @@
 ---
 
+- name: rebuild locales database
+  command: "{{ item }}"
+  with_items:
+    - dpkg-reconfigure locales -f noninteractive
+
+
 - name: restart ssh
   service:
     name: ssh
