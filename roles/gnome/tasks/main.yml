@@ -50,9 +50,28 @@
     - yubikey-personalization-gui
     - intel-gpu-tools
     - revolt
-    - firefox # from experimental
     - libratbag-tools
     - gnome-nettool
+
+
+# TODO install firefox from unstable until RC bugs are fixed
+- block:
+  - name: pin firefox from unstable
+    blockinfile:
+      create: yes
+      path: "/etc/apt/preferences.d/pinned-packages"
+      owner: root
+      group: root
+      mode: 0644
+      content: |
+        Package: firefox
+        Pin: release o=Debian,a=unstable
+        Pin-Priority: 450
+  - name: install gui packages from unstable
+    apt:
+      name: firefox
+      state: latest
+      # default_release: unstable
 
 
 - name: make sure some gui packages are not present
