@@ -16,6 +16,8 @@
     - xdg-desktop-portal-gtk
     - webext-https-everywhere
     - webext-ublock-origin
+    - thunderbird
+    - enigmail
     - dconf-gsettings-backend
     - dconf-editor
     - libcanberra-gtk-module
