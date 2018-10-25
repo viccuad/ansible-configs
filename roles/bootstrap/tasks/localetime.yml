@@ -1,19 +1,32 @@
 ---
 
-- name: set default locale to en_DK.UTF-8
-  debconf:
-    name: locales
-    question: locales/default_environment_locale
-    value: en_DK.UTF-8
-    vtype: select
-
-
 - name: generate locales
-  debconf:
-    name: locales
-    question: locales/locales_to_be_generated
-    value: en_US.UTF-8 UTF-8, en_DK.UTF-8 UTF-8, es_ES.UTF-8 UTF-8, de_DE.UTF-8 UTF-8
-    vtype: multiselect
+  lineinfile:
+    dest: /etc/locale.gen
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { regexp: '^#? ?es_ES.UTF-8 UTF-8', line: 'es_ES.UTF-8 UTF-8', state: present }
+    - { regexp: '^#? ?en_US.UTF-8 UTF-8', line: 'en_US.UTF-8 UTF-8', state: present }
+    - { regexp: '^#? ?en_DK.UTF-8 UTF-8', line: 'en_DK.UTF-8 UTF-8', state: present }
+  notify:
+    - rebuild locales database
+
+
+- name: set locale variables
+  copy:
+    content: |
+      LANG=en_US.UTF-8
+      LC_NUMERIC=en_DK.UTF-8
+      LC_TIME=en_DK.UTF-8
+      LC_MONETARY=en_DK.UTF-8
+      LC_PAPER=en_DK.UTF-8
+      LC_MEASUREMENT=en_DK.UTF-8
+      LC_TELEPHONE=en_DK.UTF-8
+    dest: /etc/default/locale
+  notify:
+    - rebuild locales database
 
 
 - name: set timezone
