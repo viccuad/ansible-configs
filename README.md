@@ -61,13 +61,13 @@ Install the private roles with:
 and then run the playbooks:
 
 ```bash
-$ ansible-playbook --vault-password-file=vault_pass.sh --ask-sudo-pass -i inventories/production/hosts all.yml --check
+$ ansible-playbook --vault-password-file=vault_pass.sh --ask-sudo-pass -i inventories/production/hosts all.yml --limit=<host> --check
 ```
 
 To decrypt/encrypt the vault:
 
 ```bash
-$ ansible-vault encrypt vault.yml --vault-password-file=../../../../vault_pass.sh
+$ ansible-vault encrypt inventories/production/group_vars/all/vault.yml --vault-password-file=vault_pass.sh
 ```
 
 
@@ -117,18 +117,17 @@ applied to localhost, and at the same time minimize errors when applying
 playbooks locally.
 
 
-# Creating your own Buster image #
+# Creating your own Debian image #
 
-Change the Vagrantfile so it is looking for an image called `buster.box`.
+Change the Vagrantfile so it is looking for an image called `viccuad/stretch`.
 Inside this repo, do:
 
 ```bash
 $ git clone https://salsa.debian.org/cloud-team/vagrant-boxes.git
-$ sed -i 'Ns/.*/DISTRIBUTIONS = jessie stretch buster sid/' debian-vm-templates/vmdebootstrap-libvirt-vagrant/Makefile
-$ sudo make -C debian-vm-templates/vmdebootstrap-libvirt-vagrant buster
-$ vagrant box add buster.box --name buster.box
-$ rm buster.box
-$ vagrant up
+$ cd vagrant-boxes && git apply ../20GB-libvirt-images.patch
+$ sudo make -C vagrant-boxes/vmdebootstrap-libvirt-vagrant stretch
+$ vagrant box add vagrant-boxes/vmdebootstrap-libvirt-vagrant/stretch.box --name viccuad/stretch
+$ sudo rm -rf vagrant-boxes/vmdebootstrap-libvirt-vagrant/stretch*
 ```
 
 
