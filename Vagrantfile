@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :router do |router|
     router.vm.network :private_network,
-                      :libvirt__network_name => 'ansible_mgmt',
+                      :libvirt__network_name => 'ansible-configs_mgmt',
                       :libvirt__dhcp_enabled => false,
                       :ip => "192.168.111.10"
     router.vm.network :private_network,
@@ -61,7 +61,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :dotfiles do |dotfiles|
     dotfiles.vm.network :private_network,
-                       :libvirt__network_name => 'ansible_mgmt',
+                       :libvirt__network_name => 'ansible-configs_mgmt',
                        :libvirt__dhcp_enabled => false,
                        :ip => "192.168.111.2"
     dotfiles.vm.provider :libvirt do |domain|
@@ -73,7 +73,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :desktop do |desktop|
     desktop.vm.network :private_network,
-                       :libvirt__network_name => 'ansible_mgmt',
+                       :libvirt__network_name => 'ansible-configs_mgmt',
                        :libvirt__dhcp_enabled => false,
                        :ip => "192.168.111.3"
     desktop.vm.network :private_network,
@@ -90,7 +90,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :laptop do |laptop|
     laptop.vm.network :private_network,
-                      :libvirt__network_name => 'ansible_mgmt',
+                      :libvirt__network_name => 'ansible-configs_mgmt',
                       :libvirt__dhcp_enabled => false,
                       :ip => "192.168.111.4"
     laptop.vm.network :private_network,
@@ -107,7 +107,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :nas do |nas|
     nas.vm.network :private_network,
-                   :libvirt__network_name => 'ansible_mgmt',
+                   :libvirt__network_name => 'ansible-configs_mgmt',
                    :libvirt__dhcp_enabled => false,
                    :ip => "192.168.111.5"
     nas.vm.network :private_network,
@@ -127,7 +127,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :htpc do |htpc|
     htpc.vm.network :private_network,
-                    :libvirt__network_name => 'ansible_mgmt',
+                    :libvirt__network_name => 'ansible-configs_mgmt',
                     :libvirt__dhcp_enabled => false,
                     :ip => "192.168.111.6"
     htpc.vm.network :private_network,
@@ -139,7 +139,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :offlinepc do |offlinepc|
     offlinepc.vm.network :private_network,
-                    :libvirt__network_name => 'ansible_mgmt',
+                    :libvirt__network_name => 'ansible-configs_mgmt',
                     :libvirt__dhcp_enabled => false,
                     :ip => "192.168.111.7"
   end
