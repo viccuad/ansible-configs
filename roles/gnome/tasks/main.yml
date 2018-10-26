@@ -116,6 +116,15 @@
   become_user: "{{ normal_user }}"
 
 
+- name: create ~/Templates folder
+  file:
+    path: "/home/{{ normal_user }}/Templates"
+    state: directory
+    mode: 0755
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
 - name: create "Empty document" template in ~/Templates
   copy:
     content: ""
