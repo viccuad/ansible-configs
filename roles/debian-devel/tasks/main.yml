@@ -191,7 +191,9 @@
     dest: '/home/{{ normal_user }}/.ssh/config'
     create: yes
     block: |
-            Host svn.debian.org git.debian.org bzr.debian.org hg.debian.org darcs.debian.org arch.debian.org alioth.debian.org
+            Host *.debian.org !*.ssh.debian.org !ssh.debian.org
+                # see https://dsa.debian.org/doc/firewall/
+                ProxyJump ssh.debian.org # (or {na,eu}.ssh.debian.org)
                 User viccuad-guest
     marker: "# {mark} debian block"
   become: yes
