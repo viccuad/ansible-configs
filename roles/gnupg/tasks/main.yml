@@ -63,7 +63,7 @@
 
 
 - name: import gpg public key
-  command: gpg --recv-keys "{{ normal_user_gpgkey }}"
+  command: gpg --no-tty --recv-keys "{{ normal_user_gpgkey }}"
   register: out
   changed_when: '"unchanged: 1" not in out.stderr'
   become: yes
