@@ -63,7 +63,7 @@
 - name: add code alias
   lineinfile:
     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
-    line: 'alias code="code --reuse-window"'
+    line: 'alias code="code --reuse-window --disable-gpu"'
 
 
 - name: copy vscode files
