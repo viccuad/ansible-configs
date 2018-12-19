@@ -2,22 +2,23 @@
 
 - name: install debuggers packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - gdb
-    - gdb-multiarch
-    - rr
-    - ltrace
-    - strace
-    - valgrind
-    - tcpdump
-    - net-tools
-    - nmap
-    - winpdb
-    - mitmproxy
-    - mtr # traceroute substitute
+  vars:
+    items:
+      - gdb
+      - gdb-multiarch
+      - rr
+      # - ltrace # not in testing
+      - strace
+      - valgrind
+      - tcpdump
+      - net-tools
+      - nmap
+      - winpdb
+      - mitmproxy
+      - mtr # traceroute substitute
 
 
 - name: copy debuggers files

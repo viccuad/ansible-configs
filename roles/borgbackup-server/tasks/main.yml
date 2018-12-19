@@ -2,10 +2,11 @@
 
 - name: install borgbackup
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     install_recommends: no
-  with_items:
-    - borgbackup
+  vars:
+    items:
+      - borgbackup
 
 
 - name: create backup user

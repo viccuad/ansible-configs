@@ -4,14 +4,15 @@
 
 - name: install server packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: no
-  with_items:
-    - apt-listchanges
-    - uptimed
-    - unattended-upgrades
-    - needrestart
+  vars:
+    items:
+      - apt-listchanges
+      - uptimed
+      - unattended-upgrades
+      - needrestart
 
 
 - name: configure dpkg to retain old configs

@@ -2,10 +2,11 @@
 
 - name: install apparmor packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
+  vars:
+    items:
       - apparmor
       # suggests:
       - apparmor-profiles

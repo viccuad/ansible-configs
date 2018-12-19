@@ -2,17 +2,18 @@
 
 - name: install htpc packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - kodi
-    # dependencies for kodi-standalone
-    - xserver-xorg
-    - xinit
-    - bluez
-    # addons
-    - kodi-pvr-mythtv
+  vars:
+    items:
+      - kodi
+      # dependencies for kodi-standalone
+      - xserver-xorg
+      - xinit
+      - bluez
+      # addons
+      - kodi-pvr-mythtv
 
 
 - name: create kodi group

@@ -28,14 +28,15 @@
 
 - name: install gnupg packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: no
-  with_items:
-    - scdaemon
-    - dirmngr
-    - tor
-    - hopenpgp-tools # check for problems in your key
+  vars:
+    items:
+      - scdaemon
+      - dirmngr
+      - tor
+      - hopenpgp-tools # check for problems in your key
 
 
 - name: set env for gpg

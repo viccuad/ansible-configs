@@ -2,51 +2,52 @@
 
 - name: install emacs packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - emacs25-nox # non-gui
-    - emacs25-common-non-dfsg # not in main
-    - emacs-goodies-el
-    - xclip
-    - aspell
-    - aspell-en
-    - aspell-de
-    - aspell-es
-    - python3-proselint
-    # markdown layer:
-    - markdown
-    # c/c++ layer:
-    - gcc
-    - cppcheck
-    - cscope
-    - clang
-    - clang-format
-    - clang-tidy
-    - global # for ggtags (helm-ggtags):
-    - exuberant-ctags
-    - pkg-config
-    # shell layer:
-    - shellcheck
-    - python3-bashate
-    # python layer:
-      # - flake8 using pylint instead, because it is broken for now TODO
-    - pylint
-    - pylint3
-    - python3-pylint-*
-    - python-jedi
-    - python3-jedi
-    - python-hacking
-    - python3-hacking
-    - hy
-    - yapf
-    - yapf3
-    # - autoflake missing in Debian TODO
-    # latex layer:
-    - pandoc
-    # protobuf layer:
-    - protobuf-compiler
+  vars:
+    items:
+      - emacs25-nox # non-gui
+      - emacs25-common-non-dfsg # not in main
+      - emacs-goodies-el
+      - xclip
+      - aspell
+      - aspell-en
+      - aspell-de
+      - aspell-es
+      - python3-proselint
+      # markdown layer:
+      - markdown
+      # c/c++ layer:
+      - gcc
+      - cppcheck
+      - cscope
+      - clang
+      - clang-format
+      - clang-tidy
+      - global # for ggtags (helm-ggtags):
+      - exuberant-ctags
+      - pkg-config
+      # shell layer:
+      - shellcheck
+      - python3-bashate
+      # python layer:
+        # - flake8 using pylint instead, because it is broken for now TODO
+      - pylint
+      - pylint3
+      # - python3-pylint-*
+      - python-jedi
+      - python3-jedi
+      - python-hacking
+      - python3-hacking
+      - hy
+      - yapf
+      - yapf3
+      # - autoflake missing in Debian TODO
+      # latex layer:
+      - pandoc
+      # protobuf layer:
+      - protobuf-compiler
 
 
 - name: copy emacs files

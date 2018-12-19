@@ -2,12 +2,13 @@
 
 - name: install nvim packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - neovim
-    - python-neovim
+  vars:
+    items:
+      - neovim
+      - python-neovim
 
 
 - name: copy nvim files

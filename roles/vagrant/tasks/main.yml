@@ -2,10 +2,11 @@
 
 - name: install vagrant packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
+  vars:
+    items:
       - vagrant
       - bridge-utils
       - vagrant-lxc

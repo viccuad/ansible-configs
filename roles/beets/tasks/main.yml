@@ -2,11 +2,12 @@
 
 - name: install beets packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - beets
+  vars:
+    items:
+      - beets
 
 
 - name: copy beets files

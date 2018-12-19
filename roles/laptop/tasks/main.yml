@@ -2,23 +2,25 @@
 
 - name: install laptop-related packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - tlp
-    - tp-smapi-dkms
-    - acpi-call-dkms
-    - anacron
+  vars:
+    items:
+      - tlp
+      - tp-smapi-dkms
+      - acpi-call-dkms
+      - anacron
 
 
 - name: install laptop-related packages from non-free
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - firmware-iwlwifi
+  vars:
+    items:
+      - firmware-iwlwifi
 
 
 - name: add alias for charge-batteries-totally

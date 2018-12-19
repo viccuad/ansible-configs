@@ -2,64 +2,65 @@
 
 - name: install debian packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    # normal usage:
-    - reportbug
-    - python3-gtkspellcheck
-    - debsums
-    - apt-listbugs
-    - apt-listchanges
-    - how-can-i-help
-    - gdebi
-    # build tools:
-    - autoconf
-    - automake
-    - cmake
-    - autotools-dev
-    - dpkg-dev-el
-    - devscripts-el
-    - debian-el
-    # debian tools:
-    - debian-policy
-    - debhelper
-    - dh-make
-    - dh-autoreconf
-    - debian-goodies
-    - debian-archive-keyring
-    - debian-keyring
-    - debianutils
-    - debootstrap
-    - deborphan
-    - devscripts
-    - fakeroot
-    - patch
-    - patchutils
-    - pbuilder
-    - cowbuilder
-    - ccache
-    - eatmydata
-    - quilt
-    - xutils-dev
-    - diffoscope
-    - lintian
-    - dupload
-    - dput-ng
-    - git-buildpackage
-    - python-notify
-    - git-dpm
-    - dgit
-    - git-debrebase
-    # python packages:
-    - python-all-dev
-    - python3-all-dev
-    - python-stdeb
-    - python3-stdeb
-    # autopkgtest:
-    - apt-cacher-ng
-    - autopkgtest
+  vars:
+    items:
+      # normal usage:
+      - reportbug
+      - python3-gtkspellcheck
+      - debsums
+      - apt-listbugs
+      - apt-listchanges
+      - how-can-i-help
+      - gdebi
+      # build tools:
+      - autoconf
+      - automake
+      - cmake
+      - autotools-dev
+      - dpkg-dev-el
+      - devscripts-el
+      - debian-el
+      # debian tools:
+      - debian-policy
+      - debhelper
+      - dh-make
+      - dh-autoreconf
+      - debian-goodies
+      - debian-archive-keyring
+      - debian-keyring
+      - debianutils
+      - debootstrap
+      - deborphan
+      - devscripts
+      - fakeroot
+      - patch
+      - patchutils
+      - pbuilder
+      - cowbuilder
+      - ccache
+      - eatmydata
+      - quilt
+      - xutils-dev
+      - diffoscope
+      - lintian
+      - dupload
+      - dput-ng
+      - git-buildpackage
+      - python-notify
+      - git-dpm
+      - dgit
+      - git-debrebase
+      # python packages:
+      - python-all-dev
+      - python3-all-dev
+      - python-stdeb
+      - python3-stdeb
+      # autopkgtest:
+      - apt-cacher-ng
+      - autopkgtest
 
 
 - name: create sbuild group

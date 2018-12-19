@@ -9,12 +9,13 @@
 
 - name: install docker packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: no
-  with_items:
-    - docker.io
-    - docker-compose
+  vars:
+    items:
+      - docker.io
+      - docker-compose
 
 
 - name: add {{ normal_user }} to docker group

@@ -2,10 +2,11 @@
 
 - name: install game packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
+  vars:
+    items:
       - minetest
       - retroarch
       # - zsnes
@@ -49,10 +50,11 @@
 
 - name: install steam packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
+  vars:
+    items:
       - steam
       - steam-devices
 

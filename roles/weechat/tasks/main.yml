@@ -2,21 +2,22 @@
 
 - name: install weechat packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - weechat
-    - weechat-plugins
-    - weechat-scripts
-    - weechat-perl
-    - weechat-lua
-    - weechat-python
-    - logrotate
-    # for matrix plugin:
-    - lua-cjson
-    # for notifications:
-    - libnotify-bin
+  vars:
+    items:
+      - weechat
+      - weechat-plugins
+      - weechat-scripts
+      - weechat-perl
+      - weechat-lua
+      - weechat-python
+      - logrotate
+      # for matrix plugin:
+      - lua-cjson
+      # for notifications:
+      - libnotify-bin
 
 
 - name: copy weechat files
