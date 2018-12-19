@@ -18,7 +18,7 @@ On the debian installer, put the cursor on "Install", press tab
 and add the following options:
 
   ```
-  console=ttyS0,115200u8 vga=off
+  console=ttyS0,115200n8 vga=off
   ```
 
 Connect the Ethernet cable to the port closer to the serial port (that's the
@@ -33,12 +33,36 @@ partitions in plinth, you can leave unused space too.
 
 # BIOS updating #
 
+All BIOS at https://pcengines.github.io/
+
+## From installation ##
+
   ```
   $ sudo apt install flashrom
   $ sudo flashrom --read apu3_old.rom --programmer internal
   $ diff <(md5sum apu3_<version>.rom) apu3_<version>.rom.md5
   $ sudo flashrom --write apu3_<version>.rom --programmer internal
   ```
+
+## From USB/SD card ##
+
+```
+  $ sudo apt install syslinux syslinux-utils
+
+  Remove any GPT formatting:
+  $ sudo dd if=/dev/zero of=/dev/sdX bs=1M
+
+  Format /dev/sdX with a dos mbr and a fat32 partition
+
+  Ensure the drive is bootable:
+  $ sudo dd bs=440 count=1 conv=notrunc if=/usr/lib/syslinux/mbr/mbr.bin of=/dev/sdX 
+
+  Add partition boot record and boot loaders
+  $ sudo syslinux --install /dev/sdX1
+
+  Copy TinyCore Linux to the partition. It contains a bootable kernel and flashrom
+  Copy the rom to be flashed into the partition
+```
 
 
 # Freedombox #
