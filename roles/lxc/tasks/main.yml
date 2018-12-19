@@ -76,15 +76,3 @@
     validate: 'visudo -cf %s'
 
 
-- name: install resolvconf
-  apt:
-    name: resolvconf
-    state: present
-  # another option is using /etc/NetworkManager/dnsmasq.d/lxc.conf
-
-
-- name: enable .lxc DNS resolution for the host
-  blockinfile:
-    block: '{{ lookup("template", "tail.j2") }}'
-    dest: /etc/resolvconf/resolv.conf.d/tail
-  notify: rerun resolvconf
