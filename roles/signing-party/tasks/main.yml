@@ -2,11 +2,12 @@
 
 - name: install pass packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - signing-party
+  vars:
+    items:
+      - signing-party
 
 
 - name: copy .caffrc config

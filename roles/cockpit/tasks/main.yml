@@ -2,18 +2,19 @@
 
 - name: install cockpit packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - cockpit
-    # suggested packages:
-    - cockpit-doc
-    - cockpit-docker
-    - cockpit-packagekit
-    # - cockpit-pcp # does not exist
-    # not listed as deps:
-    - cockpit-machines
+  vars:
+    items:
+      - cockpit
+      # suggested packages:
+      - cockpit-doc
+      - cockpit-docker
+      - cockpit-packagekit
+      # - cockpit-pcp # not in backports yet?
+      # not listed as deps:
+      - cockpit-machines
 
 
 # - name: enable cockpit on firewalld internal zone

@@ -48,16 +48,17 @@
 
 - name: install vscode dependencies
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - gvfs-bin # move to trash support
-    - libgconf-2-4
-    - libnotify4
-    - libnss3
-    - libxkbfile1
-    - libsecret-1-0
+  vars:
+    items:
+      - gvfs-bin # move to trash support
+      - libgconf-2-4
+      - libnotify4
+      - libnss3
+      - libxkbfile1
+      - libsecret-1-0
 
 
 - name: add code alias

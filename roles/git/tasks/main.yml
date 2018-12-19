@@ -2,12 +2,13 @@
 
 - name: install git packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - git
-    - tig
+  vars:
+    items:
+      - git
+      - tig
 
 
 - name: copy git files

@@ -2,17 +2,18 @@
 
 - name: install zsh packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: no
-  with_items:
-    - zsh
-    - trash-cli
-    - zsh-syntax-highlighting
-    - autojump
-    - git # for prompt
-    - silversearcher-ag
-    - dict
+  vars:
+    items:
+      - zsh
+      - trash-cli
+      - zsh-syntax-highlighting
+      - autojump
+      - git # for prompt
+      - silversearcher-ag
+      - dict
 
 
 - name: copy zsh files

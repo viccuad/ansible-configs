@@ -2,11 +2,12 @@
 
 - name: install freedombox packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - freedombox-setup
+  vars:
+    items:
+      - freedombox-setup
 
 
 - name: exec freedombox-setup (if freedombox not installed yet)

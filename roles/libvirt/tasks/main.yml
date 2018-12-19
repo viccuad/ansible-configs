@@ -5,15 +5,18 @@
 
 - name: install libvirt packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
+  vars:
+    items:
       - qemu-kvm
       - libvirt-clients
       - libvirt-daemon
       - libvirt-daemon-system
       - bridge-utils
+      - dnsmasq-base
+      - iptables
       - virt-top
       - virt-manager
 

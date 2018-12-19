@@ -2,13 +2,14 @@
 
 - name: install tmux packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - tmux
-    - ncurses-term # for the tmux-256color terminfo
-    - xsel
+  vars:
+    items:
+      - tmux
+      - ncurses-term # for the tmux-256color terminfo
+      - xsel
 
 
 - name: copy tmux files

@@ -2,87 +2,70 @@
 
 - name: install gui packages from main
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - python-psutil # for dconf
-    - anacron
-    - emacs25-lucid # gui
-    - task-gnome-desktop
-    - dconf-gsettings-backend
-    - fwupd
-    - gnome-software-plugin-flatpak
-    - xdg-desktop-portal-gtk
-    - firefox-esr
-    - webext-https-everywhere
-    - webext-ublock-origin
-    - thunderbird
-    - enigmail
-    - dconf-gsettings-backend
-    - dconf-editor
-    - libcanberra-gtk-module
-    - network-manager-ssh-gnome
-    - network-manager-openvpn-gnome
-    - firewall-applet
-    - bluez-obexd
-    - calibre
-    - ardour
-    - chromium
-    - drumgizmo
-    - dgedit
-    - guitarix
-    - gparted
-    - meld
-    - git-gui
-    - gnome-shell-pomodoro
-    - gnome-shell-extension-caffeine
-    - gnome-shell-extension-impatience
-    - gnome-shell-extension-system-monitor
-    - gnome-shell-extension-suspend-button
-    - gnome-shell-extension-top-icons-plus
-    - torbrowser-launcher
-    - gnome-mpv
-    - vlc
-    - virt-manager
-    - gnome-shell-extensions
-    - vrms
-    - pinentry-gnome3
-    # - yubioath-desktop # TODO
-    - yubikey-personalization
-    - yubikey-personalization-gui
-    - intel-gpu-tools
-    - revolt
-    - libratbag-tools
-    - gnome-nettool
-
-
-# TODO install firefox from unstable until RC bugs are fixed
-- block:
-  - name: pin firefox from unstable
-    blockinfile:
-      create: yes
-      path: "/etc/apt/preferences.d/pinned-packages"
-      owner: root
-      group: root
-      mode: 0644
-      content: |
-        Package: firefox
-        Pin: release o=Debian,a=unstable
-        Pin-Priority: 450
-  - name: install gui packages from unstable
-    apt:
-      name: firefox
-      state: present
+  vars:
+    items:
+      - python-psutil # for dconf
+      - anacron
+      # - emacs25-lucid # gui
+      - task-gnome-desktop
+      - dconf-gsettings-backend
+      - fwupd
+      - gnome-software-plugin-flatpak
+      - xdg-desktop-portal-gtk
+      - firefox-esr
+      - webext-https-everywhere
+      - webext-ublock-origin
+      - thunderbird
+      - enigmail
+      - dconf-gsettings-backend
+      - dconf-editor
+      - libcanberra-gtk-module
+      - network-manager-ssh-gnome
+      - network-manager-openvpn-gnome
+      - firewall-applet
+      - bluez-obexd
+      - calibre
+      - ardour
+      - chromium
+      - drumgizmo
+      - dgedit
+      - guitarix
+      - gparted
+      - meld
+      - git-gui
+      - gnome-shell-pomodoro
+      - gnome-shell-extension-caffeine
+      - gnome-shell-extension-impatience
+      - gnome-shell-extension-system-monitor
+      - gnome-shell-extension-suspend-button
+      - gnome-shell-extension-top-icons-plus
+      - torbrowser-launcher
+      - gnome-mpv
+      - vlc
+      - virt-manager
+      - gnome-shell-extensions
+      - vrms
+      - pinentry-gnome3
+      # - yubioath-desktop # TODO
+      - yubikey-personalization
+      - yubikey-personalization-gui
+      - intel-gpu-tools
+      - revolt
+      - libratbag-tools
+      - gnome-nettool
 
 
 - name: make sure some gui packages are not present
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: absent
-  with_items:
-    - firefox-esr
-    - icedove
+  vars:
+    items:
+      - iceweasel
+      - icedove
 
 
 - name: install packages from contrib/nonfree
@@ -158,8 +141,9 @@
 
 - name: install gtk/gdm themes
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
+  vars:
+    items:
       - materia-gtk-theme

@@ -2,11 +2,12 @@
 
 - name: install virtualenvwrapper packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - virtualenvwrapper
+  vars:
+    items:
+      - virtualenvwrapper
 
 
 - name: copy virtualenvwrapper files

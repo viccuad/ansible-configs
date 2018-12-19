@@ -2,11 +2,12 @@
 
 - name: install golang packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - golang
+  vars:
+    items:
+      - golang
 
 
 - name: copy golang files

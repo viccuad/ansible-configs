@@ -2,11 +2,12 @@
 
 - name: install git packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: no
-  with_items:
-    - git
+  vars:
+    items:
+      - git
 
 
 - name: add git-shell to list of shells

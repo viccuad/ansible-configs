@@ -2,26 +2,28 @@
 
 - name: install pcengines packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - lm-sensors
-    - flashrom
-    - build-essential
-    - dkms
-    - checkinstall
+  vars:
+    items:
+      - lm-sensors
+      - flashrom
+      - build-essential
+      - dkms
+      - checkinstall
 
 
 - name: install firmware packages (from contrib/non-free)
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: yes
-  with_items:
-    - firmware-atheros
-    - firmware-linux
-    - firmware-linux-nonfree
+  vars:
+    items:
+      - firmware-atheros
+      - firmware-linux
+      - firmware-linux-nonfree
 
 
 - name: install current kernel headers
