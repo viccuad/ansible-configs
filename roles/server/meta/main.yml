@@ -2,8 +2,9 @@
 
 dependencies:
   - bootstrap
-  - unattended
   - apt-sources
+  - ssh-initramfs
+  - unattended
   - zsh
   - vim
   - git
