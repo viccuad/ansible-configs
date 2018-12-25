@@ -55,15 +55,6 @@
     - restart libvirt-guests
 
 
-- name: workaround, create ~/.ssh
-  # TODO https://github.com/ansible/ansible/issues/20986
-  file:
-    path: ~/.ssh
-    state: directory
-  become: yes
-  become_user: "{{ normal_user }}"
-
-
 - name: do not check libvirt ssh host keys
   blockinfile:
     dest: '/home/{{ normal_user }}/.ssh/config'
