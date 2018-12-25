@@ -1,0 +1,34 @@
+---
+
+- name: install dropbear-initramfs packages
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - dropbear-initramfs
+
+
+- name: add ssh key of user {{ normal_user }} to dropbear-initramfs
+  copy:
+    content: "{{ normal_user_sshkey }}"
+    dest: "/etc/dropbear/authorized_keys"
+    owner: root
+    group: root
+    mode: 0644
+    validate: ssh-keygen -l -f %s
+  notify: update initramfs
+
+
+# TODO: to avoid ssh conflict with normal IP of the machine,
+# one can add an alias for the server in ~/.ssh/config as follows:
+#
+# Host <myserver>_luks_unlock
+#      User root
+#      Hostname <myserver>
+#      # The next line is useful to avoid ssh conflict with IP
+#      HostKeyAlias <myserver>_luks_unlock
+#      Port 22
+#      PreferredAuthentications publickey
+#      IdentityFile ~/.ssh/id_rsa
