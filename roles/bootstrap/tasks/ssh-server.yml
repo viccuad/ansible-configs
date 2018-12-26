@@ -2,10 +2,11 @@
 
 - name: install openssh server
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
-  with_items:
-   - openssh-server
+  vars:
+    items:
+      - task-ssh-server
   notify: restart ssh
 
 

@@ -2,10 +2,11 @@
 
 - name: install ntpd
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
-  with_items:
-   - ntp
+  vars:
+    items:
+      - ntp
   notify: restart ntp
 
 

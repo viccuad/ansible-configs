@@ -2,12 +2,13 @@
 
 - name: install mail packages
   apt:
-    name: "{{ item }}"
+    name: "{{ items }}"
     state: present
     install_recommends: no
-  with_items:
-    - postfix
-    - mailutils
+  vars:
+    items:
+      - postfix
+      - mailutils
 
 
 - name: configure postfix for local only mail
