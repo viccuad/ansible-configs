@@ -10,3 +10,7 @@
   shell: |
           resolvconf --enable-updates
           resolvconf -u
+
+
+- name: reload sysctl rules
+  command: sysctl --system

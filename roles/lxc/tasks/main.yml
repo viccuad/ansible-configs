@@ -76,3 +76,53 @@
     validate: 'visudo -cf %s'
 
 
+- name: give {{normal_user }} subuids & subgids for unprivileged containers
+  shell: |
+          usermod --add-subuids 100000-165536 {{ normal_user }}
+          usermod --add-subgids 100000-165536 {{ normal_user }}
+  become: yes
+
+
+- name: workaround, create ~/.config/lxc
+  # TODO https://github.com/ansible/ansible/issues/20986
+  file:
+    path: ~/.config/lxc
+    state: directory
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: create ~/.config/lxc/default.conf for unprivileged containers
+  copy:
+    content: |
+              lxc.include = /etc/lxc/default.conf
+              lxc.idmap = u 0 100000 65536
+              lxc.idmap = g 0 100000 65536
+    dest: "/home/{{ normal_user }}/.config/lxc/default.conf"
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: create /etc/lxc/lxc-usernet for unprivileged containers
+  copy:
+    content: |
+              # allow {{ normal_user }} to create up to 20 veth0
+              # connected the lxcbr0:
+              {{ normal_user }} veth lxcbr0 10
+    dest: "/etc/lxc/lxc-usernet"
+  become: yes
+
+
+- name: check kernel supports LXC (ns & cgroups)
+  command: lxc-checkconfig
+  become: yes
+
+
+- name: enable "unprivileged_userns_clone" sysctl know between restarts
+  copy:
+    content: |
+              # thins the security https://lwn.net/Articles/673597/
+              kernel.unprivileged_userns_clone=1
+    dest: /etc/sysctl.d/80-lxc-userns.conf
+  become: yes
+  notify: reload sysctl rules
