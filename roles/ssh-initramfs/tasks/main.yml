@@ -13,7 +13,7 @@
 - name: add ssh key of user {{ normal_user }} to dropbear-initramfs
   copy:
     content: "{{ normal_user_sshkey }}"
-    dest: "/etc/dropbear/authorized_keys"
+    dest: "/etc/dropbear-initramfs/authorized_keys"
     owner: root
     group: root
     mode: 0644
