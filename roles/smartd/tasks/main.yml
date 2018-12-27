@@ -1,0 +1,72 @@
+---
+
+- name: install smartmontools
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - smartmontools
+
+
+# TODO: list disks with ansible facts
+- name: list disks present in the system
+  shell: smartctl --scan | awk '{print $1}'
+  register: disks
+
+
+- name: check if disks support SMART
+  shell: "smartctl -s on {{ item }} ; smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'"
+  with_items: disks.stdout_lines
+  register: smart
+  ignore_errors: True
+
+
+- name: remove smartmontools
+  apt:
+    name: "{{ items }}"
+    state: absent
+    install_recommends: yes
+  vars:
+    items:
+      - smartmontools
+  when: smart is failed
+
+
+- name: create smartd configuration file
+  template:
+    src: smartd.conf.j2
+    dest: /etc/smartd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart smartd
+  when: smart is success
+
+
+- name: enable smartd on system startup (default file)
+  lineinfile: >
+    dest=/etc/default/smartmontools
+    regexp="^start_smartd="
+    line="start_smartd=yes"
+  notify: restart smartd
+  when: smart is success
+
+
+- name: pass additional options to smartd on startup (default file)
+  lineinfile: >
+    dest=/etc/default/smartmontools
+    regexp="^smartd_opts="
+    line='smartd_opts="--interval=1800"'
+  notify: restart smartd
+  when: smart is success
+
+
+- name: enable smartd service
+  service:
+    name: smartd
+    enabled: yes
+  when: smart is success
+
+# TODO send mails on failure
