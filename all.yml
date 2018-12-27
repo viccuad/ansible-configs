@@ -7,5 +7,4 @@
 - import_playbook: nas.yml
 - import_playbook: htpc.yml
 - import_playbook: offlinepc.yml
-- import_playbook: backup-server.yml
 - import_playbook: backup-client.yml
