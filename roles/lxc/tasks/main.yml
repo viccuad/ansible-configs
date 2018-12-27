@@ -76,10 +76,23 @@
     validate: 'visudo -cf %s'
 
 
-- name: give {{normal_user }} subuids & subgids for unprivileged containers
-  shell: |
-          usermod --add-subuids 100000-165536 {{ normal_user }}
-          usermod --add-subgids 100000-165536 {{ normal_user }}
+- name: give {{normal_user }} subuids for unprivileged containers
+  lineinfile:
+    path: /etc/subuid
+    state: present
+    regexp: "^{{ normal_user }}(.*?)$"
+    line: '{{ normal_user }}:100000:65536'
+    create: yes
+  become: yes
+
+
+- name: give {{normal_user }} subgids for unprivileged containers
+  lineinfile:
+    path: /etc/subgid
+    state: present
+    regexp: "^{{ normal_user }}(.*?)$"
+    line: '{{ normal_user }}:100000:65536'
+    create: yes
   become: yes
 
 
@@ -116,6 +129,7 @@
 - name: check kernel supports LXC (ns & cgroups)
   command: lxc-checkconfig
   become: yes
+  changed_when: false
 
 
 - name: enable "unprivileged_userns_clone" sysctl know between restarts
