@@ -37,7 +37,3 @@ htpc
 [backup-client]
 [backup-client:children]
 laptop
-
-[backup-server]
-[backup-server:children]
-nas

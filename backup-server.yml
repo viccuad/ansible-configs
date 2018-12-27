@@ -1,6 +1,0 @@
----
-
-- hosts: backup-server
-  become: yes
-  roles:
-    - borgbackup-server
