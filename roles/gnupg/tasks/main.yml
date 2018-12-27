@@ -39,6 +39,35 @@
       - hopenpgp-tools # check for problems in your key
 
 
+- name: add firewalld hkp.xml service definition
+  copy:
+    content: |
+              <?xml version="1.0" encoding="utf-8"?>
+              <service>
+                <short>HKP</short>
+                <description>HKP service for gnupg. Added by vic.</description>
+                <port protocol="tcp" port="11371"/>
+                <port protocol="udp" port="11371"/>
+              </service>
+    dest: /etc/firewalld/services/hkp.xml
+  become: yes
+  notify: reload firewalld
+
+
+- meta: flush_handlers # for firewalld to get the new hkp service
+
+
+- name: open firewalld for hkp
+  command: firewall-cmd --permanent --add-service=hkp
+  register: out
+  changed_when: '"Warning: ALREADY_ENABLED: hkp" not in out.stderr'
+  notify: reload firewalld
+  # FIXME missing python firewalld bindings, can't use firewalld ansible module yet
+
+
+- meta: flush_handlers # for firewalld to open hkp service before importing gpg keys
+
+
 - name: set env for gpg
   blockinfile:
     dest: "/home/{{ normal_user }}/.zshenv"
