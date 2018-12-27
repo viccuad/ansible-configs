@@ -1,0 +1,13 @@
+---
+
+dependencies:
+  - role: server
+    vars:
+      apt_sources:
+        - stretch
+        - stretch-backports # for cockpit
+  - { role: softwareraid, when: '"vagrant" in inventory_file' }
+  - smartd
+  - cockpit
+  - nfs-server
+  - borgbackup-server
