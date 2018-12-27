@@ -3,7 +3,4 @@
 - hosts: nas
   become: yes
   roles:
-    - bootstrap
-    - server
-    - role: softwareraid
-      when: '"vagrant" in inventory_file'
+    - nas
