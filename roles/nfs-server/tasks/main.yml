@@ -1,0 +1,10 @@
+---
+
+- name: install nfs-server packages
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - nfs-kernel-server
