@@ -14,7 +14,7 @@
       - cockpit-packagekit
       # - cockpit-pcp # not in backports yet?
       # not listed as deps:
-      - cockpit-machines
+      # - cockpit-machines # TODO pulls gui packages because of https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912725
 
 
 # - name: enable cockpit on firewalld internal zone
