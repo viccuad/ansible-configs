@@ -111,7 +111,9 @@
 
 
 - name: set trust of our own public gpg key to ultimate
-  command: echo "{{ normal_user_gpgkey }}:6:" | gpg --import-ownertrust
+  command: gpg --import-ownertrust
+  args:
+    stdin: "{{ normal_user_gpgkey }}:6:"
   when: '"ultimate" not in gpg_public_keys.stdout'
   become: yes
   become_user: "{{ normal_user }}"
