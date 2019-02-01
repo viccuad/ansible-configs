@@ -41,8 +41,8 @@
       - python-hacking
       - python3-hacking
       - hy
-      - yapf
-      - yapf3
+        #- python-yapf # removed out of testing bug#919974 TODO
+      - python3-yapf
       # - autoflake missing in Debian TODO
       # latex layer:
       - pandoc
