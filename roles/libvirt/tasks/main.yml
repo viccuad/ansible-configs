@@ -19,6 +19,8 @@
       - iptables
       - virt-top
       - virt-manager
+      # ansible dependencies:
+      - python-libvirt
 
 
 - name: add {{ normal_user }} user to libvirt group
