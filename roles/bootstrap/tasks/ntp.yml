@@ -11,7 +11,7 @@
 
 
 - name: open firewalld for ntp
-  command: firewall-cmd --permanent --add-service=ntp
+  command: firewall-cmd --permanent --zone=public --add-service=ntp
   register: out
   changed_when: '"Warning: ALREADY_ENABLED: ntp" not in out.stderr'
   notify: reload firewalld

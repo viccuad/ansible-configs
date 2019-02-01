@@ -58,7 +58,7 @@
 
 
 - name: open firewalld for hkp
-  command: firewall-cmd --permanent --add-service=hkp
+  command: firewall-cmd --permanent --zone=public --add-service=hkp
   register: out
   changed_when: '"Warning: ALREADY_ENABLED: hkp" not in out.stderr'
   notify: reload firewalld
