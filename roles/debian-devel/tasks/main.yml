@@ -20,10 +20,9 @@
       - automake
       - cmake
       - autotools-dev
-      - dpkg-dev-el
-      - devscripts-el
-      - debian-el
       # debian tools:
+      - elpa-devscripts
+      - elpa-dpkg-dev-el
       - debian-policy
       - debhelper
       - dh-make
