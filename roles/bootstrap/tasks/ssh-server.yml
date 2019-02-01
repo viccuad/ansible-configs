@@ -38,7 +38,7 @@
 
 
 - name: open firewalld for sshd
-  command: firewall-cmd --permanent --add-service=ssh
+  command: firewall-cmd --permanent --zone=public --add-service=ssh
   register: out
   changed_when: '"Warning: ALREADY_ENABLED: ssh" not in out.stderr'
   notify: reload firewalld
