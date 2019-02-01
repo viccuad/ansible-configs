@@ -75,6 +75,13 @@ configured for local computers to connect to.
 See:
 http://freedomboxblog.nl/installing-lxc-dhcp-and-dns-on-my-freedombox
 
+## Plinth ##
+
+Fredoombox's webui is accesible at https://<host>/plinth
+
+## Cockpit ##
+
+Cockpit is available as always at https://<host>:9090
 
 ## 1und1.de pppoe ##
 
