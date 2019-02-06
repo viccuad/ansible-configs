@@ -6,7 +6,7 @@ set-option -g default-shell /bin/zsh
 set-option -g default-terminal "tmux-256color"
 
 # enable mouse modes:
-{% if tmux_version.stdout >= 2.1 %}
+{% if tmux_version.stdout|int >= 2.1 %}
 set -g mouse on
 {% else %}
 setw -g mode-mouse on
@@ -91,7 +91,7 @@ set-option -g mode-keys vi
 set-option -g status-keys vi
 
 # copy mode as in vim
-{% if tmux_version.stdout >= 2.1 %}
+{% if tmux_version.stdout|int >= 2.1 %}
 bind-key -Tcopy-mode-vi 'v' send -X begin-selection
 bind-key -Tcopy-mode-vi 'q' send -X clear-selection
 bind-key -Tcopy-mode-vi Escape send -X cancel
@@ -112,7 +112,7 @@ bind -t vi-copy 'C-v' rectangle-toggle # Begin selection in copy mode
 # Vim style:
 unbind y
 bind y copy-mode
-{% if tmux_version.stdout >= 2.1 %}
+{% if tmux_version.stdout|int >= 2.1 %}
 bind -T copy-mode-vi y send -X copy-pipe-and-cancel 'xsel -ipb'
 {% else %}
 bind-key -t vi-copy y copy-pipe "xsel -i -p -b"
