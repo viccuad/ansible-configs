@@ -5,6 +5,12 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
+  if Vagrant.has_plugin?("vagrant-cachier")
+    # Configure cached packages to be shared between instances of the same base box.
+    # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
+    config.cache.scope = :box
+  end
+
   config.vm.provider :libvirt do |libvirt|
     libvirt.memory = 1024
     libvirt.random :model => 'random' # Passthrough /dev/random
