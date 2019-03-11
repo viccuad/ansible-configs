@@ -38,7 +38,7 @@
 
 - name: Add ssh key of deploy user (production env)
   file:
-    src: "{{ normal_user }}"
+    src: "/etc/ssh/authorized_keys/{{ normal_user }}"
     dest: "/etc/ssh/authorized_keys/{{ deploy_user }}"
     owner: root
     group: root
