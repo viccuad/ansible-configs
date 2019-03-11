@@ -96,6 +96,20 @@
   when: ansible_distribution == 'Debian' and ansible_distribution_version < '10'
 
 
+- name: pin github.com ssh public key
+  known_hosts:
+    path: /etc/ssh/ssh_known_hosts
+    name: github.com
+    key: "{{ lookup('file', 'pubkeys/github.com') }}"
+
+
+- name: pin gitlab.com ssh public key
+  known_hosts:
+    path: /etc/ssh/ssh_known_hosts
+    name: gitlab.com
+    key: "{{ lookup('file', 'pubkeys/gitlab.com') }}"
+
+
 - name: configure fail2ban
   template:
     src: jail.local
