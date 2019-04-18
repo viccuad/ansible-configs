@@ -222,3 +222,12 @@
             keyring /usr/share/keyrings/debian-keyring.gpg
     marker: "# {mark} debian block"
     insertafter: EOF
+
+
+- name: configure apt-cacher-ng proxy on http://localhost:3142
+  blockinfile:
+    dest: /etc/apt/apt.conf.d/proxy
+    block: |
+            Acquire::http { Proxy "http://localhost:3142"; }
+    marker: "# {mark} debian apt-cacher-ng block"
+    create: yes
