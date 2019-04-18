@@ -37,6 +37,9 @@
       - fakeroot
       - patch
       - patchutils
+      - sbuild
+      - sbuild-debian-developer-setup
+      - piuparts
       - pbuilder
       - cowbuilder
       - ccache
