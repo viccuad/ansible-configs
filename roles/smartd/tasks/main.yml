@@ -13,13 +13,15 @@
 # TODO: list disks with ansible facts
 - name: list disks present in the system
   shell: smartctl --scan | awk '{print $1}'
+  changed_when: false
   register: disks
 
 
 - name: check if disks support SMART
   shell: "smartctl -s on {{ item }} ; smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'"
-  with_items: disks.stdout_lines
+  with_items: "{{disks.stdout_lines}}"
   register: smart
+  changed_when: false
   ignore_errors: True
 
 
