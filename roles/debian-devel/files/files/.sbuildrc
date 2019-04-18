@@ -262,7 +262,12 @@ $autopkgtest_require_success = 1;
 # See also related command line options in sbuild(1):
 #   --lintian-opt
 #   --lintian-opts
-#$lintian_opts = [];
+$lintian_opts = ['--info',
+                 '--display-info',
+                 '--display-experimental',
+                 '--pedantic',
+                 '--show-overrides'
+    ];
 
 # LINTIAN_REQUIRE_SUCCESS
 # Type: BOOL
