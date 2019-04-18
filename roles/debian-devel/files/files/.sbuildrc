@@ -207,6 +207,49 @@ $build_source = 1;
 ## Build validation
 ##
 
+# AUTOPKGTEST
+# Type: STRING
+# Path to autopkgtest binary
+# See also related command line options in sbuild(1):
+#   --autopkgtest-opt
+#   --autopkgtest-opts
+#$autopkgtest = 'autopkgtest';
+
+# AUTOPKGTEST_OPTIONS
+# Type: ARRAY:STRING
+# Options to pass to autopkgtest.  Each option is a separate arrayref
+# element.  For example, ['-b', '<chroot_tarball>'] to add -b and
+# <chroot_tarball>.
+#$autopkgtest_opts = [];
+$autopkgtest_opts = [ '--', 'schroot', '%r-%a-sbuild' ];
+
+# AUTOPKGTEST_REQUIRE_SUCCESS
+# Type: BOOL
+# Let sbuild fail if autopkgtest fails.
+$autopkgtest_require_success = 1;
+
+# AUTOPKGTEST_ROOT_ARGS
+# Type: ARRAY:STRING
+# Preceding arguments to launch autopkgtest as root. With the default value
+# (the empty array) "sudo --" will be used as a prefix. If the first
+# element in the array is the empty string, no prefixing will be done. If
+# the value is a scalar, it will be prefixed by that string. If the scalar
+# is an empty string, no prefixing will be done.
+# See also related command line options in sbuild(1):
+#   --autopkgtest-root-arg
+#   --autopkgtest-root-args
+#    # prefix with "sudo --":
+#    $autopkgtest_root_args = [];
+#    $autopkgtest_root_args = ['sudo', '--'];
+#    # prefix with "env":
+#    $autopkgtest_root_args = ['env'];
+#    $autopkgtest_root_args = 'env';
+#    # prefix with nothing:
+#    $autopkgtest_root_args = '';
+#    $autopkgtest_root_args = [''];
+#    $autopkgtest_root_args = ['', 'whatever'];
+#$autopkgtest_root_args = [];
+
 # LINTIAN
 # Type: STRING
 # Path to lintian binary
@@ -214,13 +257,24 @@ $build_source = 1;
 
 # LINTIAN_OPTIONS
 # Type: ARRAY:STRING
-# Options to pass to lintian.  Each option is a separate arrayref element.
+# Options to pass to lintian.  Each option is a separate arrayref element. 
 # For example, ['-i', '-v'] to add -i and -v.
+# See also related command line options in sbuild(1):
+#   --lintian-opt
+#   --lintian-opts
 #$lintian_opts = [];
+
+# LINTIAN_REQUIRE_SUCCESS
+# Type: BOOL
+# Let sbuild fail if lintian fails.
+$lintian_require_success = 1;
 
 # PIUPARTS
 # Type: STRING
 # Path to piuparts binary
+# See also related command line options in sbuild(1):
+#   --piuparts-opt
+#   --piuparts-opts
 #$piuparts = 'piuparts';
 
 # PIUPARTS_OPTIONS
@@ -228,23 +282,63 @@ $build_source = 1;
 # Options to pass to piuparts.	Each option is a separate arrayref element.
 #  For example, ['-b', '<chroot_tarball>'] to add -b and <chroot_tarball>.
 #$piuparts_opts = [];
+$piuparts_opts = [
+    '--no-eatmydata',
+    '--schroot',
+    '%r-%a-sbuild',
+    '--fail-if-inadequate',
+    ];
+
+# PIUPARTS_REQUIRE_SUCCESS
+# Type: BOOL
+# Let sbuild fail if piuparts fails.
+$piuparts_require_success = 1;
 
 # PIUPARTS_ROOT_ARGS
 # Type: ARRAY:STRING
-# Preceding arguments to launch piuparts as root. If no arguments are
-# specified, piuparts will be launched via sudo.
+# Preceding arguments to launch piuparts as root. With the default value
+# (the empty array) "sudo --" will be used as a prefix. If the first
+# element in the array is the empty string, no prefixing will be done. If
+# the value is a scalar, it will be prefixed by that string. If the scalar
+# is an empty string, no prefixing will be done.
+# See also related command line options in sbuild(1):
+#   --piuparts-root-arg
+#   --piuparts-root-args
+#    # prefix with "sudo --":
+#    $piuparts_root_args = [];
+#    $piuparts_root_args = ['sudo', '--'];
+#    # prefix with "env":
+#    $piuparts_root_args = ['env'];
+#    $piuparts_root_args = 'env';
+#    # prefix with nothing:
+#    $piuparts_root_args = '';
+#    $piuparts_root_args = [''];
+#    $piuparts_root_args = ['', 'whatever'];
 #$piuparts_root_args = [];
+
+# RUN_AUTOPKGTEST
+# Type: BOOL
+# Run autopkgtest
+# See also related command line options in sbuild(1):
+#   --run-autopkgtest
+#   --no-run-autopkgtest
+$run_autopkgtest = 1;
 
 # RUN_LINTIAN
 # Type: BOOL
 # Run lintian?
-#$run_lintian = 0;
+# See also related command line options in sbuild(1):
+#   --run-lintian
+#   --no-run-lintian
+$run_lintian = 1;
 
 # RUN_PIUPARTS
 # Type: BOOL
 # Run piuparts
-#$run_piuparts = 0;
-
+# See also related command line options in sbuild(1):
+#   --run-piuparts
+#   --no-run-piuparts
+$run_piuparts = 1;
 
 
 ##
