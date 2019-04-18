@@ -191,7 +191,7 @@
     dest: '/home/{{ normal_user }}/.ssh/config'
     create: yes
     block: |
-            Host *.debian.org !*.ssh.debian.org !ssh.debian.org
+            Host *.debian.org !*.ssh.debian.org !ssh.debian.org !salsa.debian.org
                 # see https://dsa.debian.org/doc/firewall/
                 ProxyJump ssh.debian.org # (or {na,eu}.ssh.debian.org)
                 User viccuad-guest
