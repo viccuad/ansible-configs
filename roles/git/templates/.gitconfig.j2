@@ -2,6 +2,13 @@
 	name = {{ normal_user_name }}
 	email = {{ normal_user_email }}
 	signingkey = {{ normal_user_gpgkey }}
+{% if normal_user_smtpserver is defined and normal_user_smtpuser is defined %}
+[sendemail]
+	smtpserver = {{ normal_user_smtpserver }}
+	smtpuser = {{ normal_user_smtpuser }}
+	smtpencryption = tls
+	smtpserverport = 587
+{% endif %}
 [credential]
 	helper = cache --timeout=3600
 [commit]
