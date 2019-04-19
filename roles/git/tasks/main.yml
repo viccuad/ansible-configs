@@ -8,6 +8,7 @@
   vars:
     items:
       - git
+      - git-email
       - tig
 
 
