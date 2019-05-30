@@ -7,8 +7,8 @@
     install_recommends: yes
   vars:
     items:
-      - emacs25-nox # non-gui
-      - emacs25-common-non-dfsg # not in main
+      - emacs-nox # non-gui
+      - emacs-common-non-dfsg # not in main
       - emacs-goodies-el
       - xclip
       - aspell
