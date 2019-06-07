@@ -17,7 +17,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     libvirt.memory = 1024
     libvirt.random :model => 'random' # Passthrough /dev/random
     # Set up for nested kvm:
-    libvirt.machine_virtual_size = 15
+    libvirt.machine_virtual_size = 20
     libvirt.nested = true # there's no danger in enabling nested libvirt already
     libvirt.cpu_mode = "host-passthrough" # recommended for nested kvm
     if ENV['VAGRANTNESTED']
@@ -28,6 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.box = "debian/buster64"
+  # config.vm.box = "local/buster"
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
   # config.vm.synced_folder ".", "/vagrant", disabled: true
 

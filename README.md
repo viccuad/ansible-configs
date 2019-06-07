@@ -119,15 +119,15 @@ playbooks locally.
 
 # Creating your own Debian image #
 
-Change the Vagrantfile so it is looking for an image called `viccuad/stretch`.
+Change the Vagrantfile so it is looking for an image called `local/buster`.
 Inside this repo, do:
 
 ```bash
 $ git clone https://salsa.debian.org/cloud-team/vagrant-boxes.git
 $ cd vagrant-boxes && git apply ../20GB-libvirt-images.patch
-$ sudo make -C vagrant-boxes/vmdebootstrap-libvirt-vagrant stretch
-$ vagrant box add vagrant-boxes/vmdebootstrap-libvirt-vagrant/stretch.box --name viccuad/stretch
-$ sudo rm -rf vagrant-boxes/vmdebootstrap-libvirt-vagrant/stretch*
+$ sudo make -C vagrant-boxes/vmdebootstrap-libvirt-vagrant buster
+$ vagrant box add vagrant-boxes/vmdebootstrap-libvirt-vagrant/buster.box --name local/buster
+$ sudo rm -rf vagrant-boxes/vmdebootstrap-libvirt-vagrant/*.box
 ```
 
 
