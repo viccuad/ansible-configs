@@ -18,17 +18,3 @@
     dest: "/home/{{ normal_user }}/"
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
-
-
-- name: set tmux_version fact
-  shell: tmux -V | cut -d' ' -f2
-  changed_when: false
-  register: tmux_version
-
-
-- name: copy tmux config
-  template:
-    src: .tmux.conf.j2
-    dest: "/home/{{ normal_user }}/.tmux.conf"
-    owner: "{{ normal_user }}"
-    group: "{{ normal_user }}"
