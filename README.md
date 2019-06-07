@@ -61,7 +61,7 @@ Install the private roles with:
 and then run the playbooks:
 
 ```bash
-$ ansible-playbook --vault-password-file=vault_pass.sh --ask-sudo-pass -i inventories/production/hosts all.yml --limit=<host> --check
+$ ansible-playbook --vault-password-file=vault_pass.sh --ask-become-pass -i inventories/production/hosts all.yml --limit=<host> --check
 ```
 
 To decrypt/encrypt the vault:
@@ -104,7 +104,7 @@ need to do is just add *localhost* under the correct group in
 And then run the normal deployment, in this case:
 
 ```bash
-$ ansible-playbook --vault-password-file=vault_pass.sh --ask-sudo-pass -i inventories/production/hosts -vv dotfiles.yml --check
+$ ansible-playbook --vault-password-file=vault_pass.sh --ask-become-pass -i inventories/production/hosts -vv dotfiles.yml --check
 ```
 
 or
