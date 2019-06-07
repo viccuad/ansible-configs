@@ -42,7 +42,6 @@
       - gnome-shell-extension-system-monitor
       - gnome-shell-extension-suspend-button
       - gnome-shell-extension-top-icons-plus
-      - torbrowser-launcher
       - gnome-mpv
       - vlc
       - virt-manager
