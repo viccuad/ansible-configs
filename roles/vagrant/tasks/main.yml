@@ -12,6 +12,7 @@
       - vagrant-lxc
       - vagrant-libvirt
       - vagrant-sshfs
+      - vagrant-mutate
 
 
 - name: set vagrant env vars
