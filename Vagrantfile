@@ -30,6 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "debian/buster64"
   # config.vm.box = "local/buster"
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
+  config.cache.synced_folder_opts = {type: :nfs}
   # config.vm.synced_folder ".", "/vagrant", disabled: true
 
   hostnames = ['router','dotfiles','offlinepc','desktop','laptop','nas','htpc']
