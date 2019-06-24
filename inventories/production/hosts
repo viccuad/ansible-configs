@@ -1,33 +1,29 @@
-[router]
-iris
-
-[nas]
-
-[server]
-[server:children]
-router
-nas
-
-[dotfiles]
-[dotfiles:children]
-desktop
-
-[desktop]
-[desktop:children]
-laptop
-
-[laptop]
-clotho
-
-[htpc]
-
-[offlinepc]
-
-[upgradeable]
-[upgradeable:children]
-router
-nas
-htpc
-
-[backup-client]
-[backup-client:children]
+all:
+  children:
+    desktop:
+      children:
+        laptop:
+        viccuad:
+          private_content:["personal","suse"]
+    dotfiles:
+      vars:
+        private_content:["personal"]
+      children:
+        desktop:
+    laptop:
+      hosts:
+        clotho:
+        viccuad2:
+          private_content:["personal","suse"]
+    router:
+      hosts:
+        iris:
+    server:
+      children:
+        nas:
+        router:
+    upgradeable:
+      children:
+        htpc:
+        nas:
+        router:

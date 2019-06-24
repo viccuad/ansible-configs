@@ -1,39 +1,54 @@
-[router]
-arouter ansible_host=192.168.111.10 ansible_private_key_file=.vagrant/machines/router/libvirt/private_key
+all:
+  children:
+    backup-client:
+      children:
+        laptop:
+    desktop:
+      children:
+        laptop:
+      hosts:
+        adesktop:
+          ansible_host: 192.168.111.3
+          ansible_private_key_file: .vagrant/machines/desktop/libvirt/private_key
+    dotfiles:
+      children:
+        desktop:
+      hosts:
+        adotfiles:
+          ansible_host: 192.168.111.2
+          ansible_private_key_file: .vagrant/machines/dotfiles/libvirt/private_key
+    htpc:
+      hosts:
+        anhtpc:
+          ansible_host: 192.168.111.6
+          ansible_private_key_file: .vagrant/machines/htpc/libvirt/private_key
+    laptop:
+      hosts:
+        alaptop:
+          ansible_host: 192.168.111.4
+          ansible_private_key_file: .vagrant/machines/laptop/libvirt/private_key
+    nas:
+      hosts:
+        anas:
+          ansible_host: 192.168.111.5
+          ansible_private_key_file: .vagrant/machines/nas/libvirt/private_key
+    offlinepc:
+      hosts:
+        anofflinepc:
+          ansible_host: 192.168.111.7
+          ansible_private_key_file: .vagrant/machines/offlinepc/libvirt/private_key
+    router:
+      hosts:
+        arouter:
+          ansible_host: 192.168.111.10
+          ansible_private_key_file: .vagrant/machines/router/libvirt/private_key
+    server:
+      children:
+        nas:
+        router:
+    upgradeable:
+      children:
+        htpc:
+        nas:
+        router:
 
-[nas]
-anas ansible_host=192.168.111.5 ansible_private_key_file=.vagrant/machines/nas/libvirt/private_key
-
-[server]
-[server:children]
-router
-nas
-
-[dotfiles]
-adotfiles ansible_host=192.168.111.2 ansible_private_key_file=.vagrant/machines/dotfiles/libvirt/private_key
-[dotfiles:children]
-desktop
-
-[desktop]
-adesktop ansible_host=192.168.111.3 ansible_private_key_file=.vagrant/machines/desktop/libvirt/private_key
-[desktop:children]
-laptop
-
-[laptop]
-alaptop ansible_host=192.168.111.4 ansible_private_key_file=.vagrant/machines/laptop/libvirt/private_key
-
-[htpc]
-anhtpc ansible_host=192.168.111.6 ansible_private_key_file=.vagrant/machines/htpc/libvirt/private_key
-
-[offlinepc]
-anofflinepc ansible_host=192.168.111.7 ansible_private_key_file=.vagrant/machines/offlinepc/libvirt/private_key
-
-[upgradeable]
-[upgradeable:children]
-router
-nas
-htpc
-
-[backup-client]
-[backup-client:children]
-laptop
