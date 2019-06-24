@@ -1,5 +1,4 @@
 ---
 
 apt_sources:
-  - stretch
-  - backports # for cockpit
+  - buster

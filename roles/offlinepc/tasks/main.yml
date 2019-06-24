@@ -1,6 +1,0 @@
----
-
-- name: install needed offline packages
-  apt:
-    name: apt-offline
-    state: present
