@@ -70,6 +70,10 @@ To decrypt/encrypt the vault:
 $ ansible-vault encrypt inventories/production/group_vars/all/vault.yml --vault-password-file=vault_pass.sh
 ```
 
+Or run just one role:
+```bash
+$ ansible localhost -m include_role -args var=foo --become --ask-become-pass
+```
 
 ## Setting up a new host ##
 
