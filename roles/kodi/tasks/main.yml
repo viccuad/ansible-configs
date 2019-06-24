@@ -12,8 +12,6 @@
       - xserver-xorg
       - xinit
       - bluez
-      # addons
-      - kodi-pvr-mythtv
 
 
 - name: create kodi group

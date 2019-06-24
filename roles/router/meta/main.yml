@@ -4,9 +4,8 @@ dependencies:
   - role: server
     vars:
       apt_sources:
-        - stretch
-        - stretch-backports # for cockpit
   - pcengines-apu3b4
   - freedombox
+        - buster
   - cockpit
   - git-server
