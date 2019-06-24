@@ -4,8 +4,6 @@ dependencies:
   - role: server
     vars:
       apt_sources:
-  - pcengines-apu3b4
-  - freedombox
         - buster
   - cockpit
   - git-server
