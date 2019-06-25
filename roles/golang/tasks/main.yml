@@ -51,32 +51,9 @@
     # debugserver deps:
     - github.com/derekparker/delve/cmd/dlv
     # langserver deps:
-    - github.com/mdempsky/gocode
-    - github.com/rogpeppe/godef
-    - golang.org/x/tools/cmd/guru
-    - golang.org/x/tools/cmd/gorename
-    - golang.org/x/tools/cmd/goimports
-    - github.com/zmb3/gogetdoc
-    - github.com/cweill/gotests/...
-    - github.com/haya14busa/gopkgs/cmd/gopkgs
-    - github.com/davidrjenni/reftools/cmd/fillstruct
-    - github.com/josharian/impl
-    # optional linter aggregator
-    - github.com/golangci/golangci-lint/cmd/golangci-lint
-    - github.com/alecthomas/gometalinter
-    # optional emacs:
-    - github.com/godoctor/godoctor #refactoring
-    - github.com/fatih/gomodifytags #edit field tags
+    - golang.org/x/tools/cmd/gopls
 
   become:  yes
   become_user: "{{ normal_user }}"
 
 
-- name: install gometalinter dependencies
-  command: '"{{ gopath }}"/bin/gometalinter --install'
-  environment:
-    GOPATH: "{{ gopath }}"
-  become:  yes
-  become_user: "{{ normal_user }}"
-  tags:
-    - skip_ansible_lint
