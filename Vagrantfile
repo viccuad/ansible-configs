@@ -11,6 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Configure cached packages to be shared between instances of the same base box.
     # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
     config.cache.scope = :box
+    config.cache.synced_folder_opts = {type: :nfs}
   end
 
   config.vm.provider :libvirt do |libvirt|
@@ -30,7 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "debian/buster64"
   # config.vm.box = "local/buster"
   config.vm.synced_folder ".", "/vagrant", type: "sshfs"
-  config.cache.synced_folder_opts = {type: :nfs}
   # config.vm.synced_folder ".", "/vagrant", disabled: true
 
   hostnames = ['router','dotfiles','offlinepc','desktop','laptop','nas','htpc']
