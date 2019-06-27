@@ -1,20 +1,28 @@
 all:
   children:
     desktop:
+      hosts:
+        viccuad:
+          private_content:
+            - personal
+            - suse
       children:
         laptop:
-        viccuad:
-          private_content:["personal","suse"]
     dotfiles:
       vars:
-        private_content:["personal"]
-      children:
-        desktop:
-    laptop:
-      hosts:
-        clotho:
-        viccuad2:
-          private_content:["personal","suse"]
+       private_content:
+         - personal
+       children:
+         desktop:
+     laptop:
+       hosts:
+         clotho:
+           private_content:
+             - personal
+         viccuad2:
+           private_content:
+             - personal
+             - suse
     router:
       hosts:
         iris:
