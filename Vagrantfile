@@ -14,6 +14,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.cache.synced_folder_opts = {type: :nfs}
   end
 
+  if Vagrant.has_plugin?("vagrant-sshfs")
+    config.vm.synced_folder ".", "/vagrant", type: "sshfs"
+  else
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+  end
+
   config.vm.provider :libvirt do |libvirt|
     libvirt.memory = 1024
     libvirt.random :model => 'random' # Passthrough /dev/random
@@ -30,8 +36,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "debian/buster64"
   # config.vm.box = "local/buster"
-  config.vm.synced_folder ".", "/vagrant", type: "sshfs"
-  # config.vm.synced_folder ".", "/vagrant", disabled: true
 
   hostnames = ['router','dotfiles','offlinepc','desktop','laptop','nas','htpc']
   hostnames.each do |name|
