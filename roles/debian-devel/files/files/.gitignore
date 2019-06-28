@@ -1,8 +1,0 @@
-#Ignore everything on pbuilder
-pbuilder/*
-
-# Don't ignore hooks:
-!pbuilder/hooks
-
-# Don't ignore empty 'Packages' file:
-!pbuilder/deps
