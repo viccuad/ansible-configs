@@ -1,3 +1,6 @@
 [submodule "roles/private"]
 	path = roles/private
 	url = git@iris:private/ansible-private.git
+[submodule "roles/debian-devel"]
+	path = roles/debian-devel
+	url = git@salsa.debian.org:viccuad-guest/ansible-debian-devel.git
