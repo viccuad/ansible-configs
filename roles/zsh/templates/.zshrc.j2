@@ -30,6 +30,9 @@ compinit
 
 # unset config_files
 
+# load direnv:
+eval "$(direnv hook zsh)"
+
 {% if ansible_os_family == "Debian" %}
 # load git-prompt
 source /usr/lib/git-core/git-sh-prompt
