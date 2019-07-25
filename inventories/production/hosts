@@ -10,19 +10,19 @@ all:
         laptop:
     dotfiles:
       vars:
-       private_content:
-         - personal
-       children:
-         desktop:
-     laptop:
-       hosts:
-         clotho:
-           private_content:
-             - personal
-         viccuad2:
-           private_content:
-             - personal
-             - suse
+          private_content:
+            - personal
+      children:
+        desktop:
+    laptop:
+      hosts:
+        clotho:
+          private_content:
+            - personal
+        viccuad2:
+          private_content:
+            - personal
+            - suse
     router:
       hosts:
         iris:
