@@ -10,7 +10,6 @@
       - cockpit
       # suggested packages:
       - cockpit-doc
-      - cockpit-docker
       - cockpit-packagekit
       - cockpit-machines # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912725
       - cockpit-pcp
