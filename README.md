@@ -128,7 +128,6 @@ Inside this repo, do:
 
 ```bash
 $ git clone https://salsa.debian.org/cloud-team/vagrant-boxes.git
-$ cd vagrant-boxes && git apply ../20GB-libvirt-images.patch
 $ sudo make -C vagrant-boxes/vmdebootstrap-libvirt-vagrant buster
 $ vagrant box add vagrant-boxes/vmdebootstrap-libvirt-vagrant/buster.box --name local/buster
 $ sudo rm -rf vagrant-boxes/vmdebootstrap-libvirt-vagrant/*.box
