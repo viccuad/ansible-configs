@@ -9,12 +9,12 @@
     items:
       - emacs-nox # non-gui
       - emacs-common-non-dfsg # not in main
-      - emacs-goodies-el
       - xclip
       - aspell
       - aspell-en
       - aspell-de
       - aspell-es
+      - gnutls-bin # for emacs 26.1 workaround, see https://github.com/syl20bnr/spacemacs/commit/427c01c27a20e065ff1e58ab9173103cec377e0c
       - python3-proselint
       # markdown layer:
       - markdown
