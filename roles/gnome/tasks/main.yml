@@ -16,7 +16,7 @@
       - fwupd
       - gnome-software-plugin-flatpak
       - xdg-desktop-portal-gtk
-      - firefox-esr
+      - firefox
       - webext-https-everywhere
       - webext-ublock-origin
       - thunderbird
