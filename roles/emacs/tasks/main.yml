@@ -18,13 +18,13 @@
       - python3-proselint
       # markdown layer:
       - markdown
+      # git layer:
+      - git-flow
       # c/c++ layer:
       - gcc
       - cppcheck
-      - cscope
       - clang
-      - clang-format
-      - clang-tidy
+      - ccls
       - global # for ggtags (helm-ggtags):
       - exuberant-ctags
       - pkg-config
