@@ -17,3 +17,13 @@ backup_user: backup
 backup_server_host: 192.168.111.5
 backup_server_ssh_fingerprint: |
   MZq9HX+H7v8q59dR2I2pfoqsgYE=|unNhMuBWqdYIDfG/1e5R4bKFypw= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBODfTyfYIsNq3PRMLpwDr1Bzl1ljVaVJs5dIQiGGFQCT9+mc/Wdbkn80SL3za8VH1B+pbbGCYotuzKLH2HZPdnM=
+
+debian_user: "{{ normal_user }}"
+debian_become_user: "{{ become_user }}"
+debian_user_name: "{{ normal_user_name }}"
+debian_user_email: "{{ normal_user_email }}"
+debian_user_gpgkey: "{{ normal_user_gpgkey }}"
+debian_user_sshkey: "{{ normal_user_sshkey }}"
+debian_ssh_user: "{{ normal_user }}"
+debian_zshenv: .zshenv
+debian_zshaliases: .zsh/aliases.zsh
