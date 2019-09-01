@@ -11,3 +11,13 @@ normal_user_smtpserver: "{{ vault_normal_user_smtpserver }}"
 normal_user_smtpuser: "{{ vault_normal_user_stmpuser }}"
 normal_user_gpgkey: "{{ vault_normal_user_gpgkey }}"
 normal_user_sshkey: "{{ vault_normal_user_sshkey }}"
+
+debian_user: "{{ normal_user }}"
+debian_become_user: "{{ become_user }}"
+debian_user_name: "{{ normal_user_name }}"
+debian_user_email: "{{ normal_user_email }}"
+debian_user_gpgkey: "{{ normal_user_gpgkey }}"
+debian_user_sshkey: "{{ normal_user_sshkey }}"
+debian_ssh_user: "{{ vault_debian_ssh_user }}"
+debian_zshenv: .zshenv
+debian_zshaliases: .zsh/aliases.zsh
