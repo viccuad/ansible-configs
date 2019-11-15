@@ -1,0 +1,9 @@
+[Unit]
+Description=Logrotate msmtpq's logs
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/logrotate -s %t/logrotate.state  %h/.local/share/logrotate.d/msmtpq -v
+
+[Install]
+WantedBy=default.target

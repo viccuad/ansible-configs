@@ -1,0 +1,10 @@
+[Unit]
+Description=Run `afew --update` to update category files periodically for classification
+RefuseManualStart=no
+# make systemctl unable to stop the service as it will terminate by itself:
+RefuseManualStop=yes
+
+[Service]
+# run and exit:
+Type=oneshot
+ExecStart=/usr/bin/afew --update

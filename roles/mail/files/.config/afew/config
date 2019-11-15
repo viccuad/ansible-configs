@@ -1,0 +1,37 @@
+[SpamFilter] # tag all emails containing X-Spam-Flag header as spam
+#[ClassifyingFilter] # TODO tag mail on what it has learnt from tagged mails in the past
+[KillThreadsFilter] # kill new messages to previously killed threads
+[ListMailsFilter] # tag those containing List-Id header as lists/<list-id>
+[SentMailsFilter] # tag all emails that I have sent, where I appear at From
+sent_tag = sent
+[ArchiveSentMailsFilter] # remove the `new` tag from sent email
+
+[Filter.1]
+message = "Filter Facebook"
+query = 'from:facebookmail.com'
+tags = +facebook;+unread;-new
+
+[Filter.2]
+message = "Filter out spam manually"
+query = 'from:"Global Who\'sWho" OR from:Touchfire OR from:Walk-inTub OR from:"Replacement Window"'
+tags = +spam;-new
+
+# [Filter.3]
+# message = "Filter mailing lists"
+# query = 'tag:lists'
+# tags =  +unread;-new;
+
+# [MailMover] # move messages
+# # move messages from this folder according to rules:
+# folders = INBOX
+# # days, older don't get moved:
+# # max_age = 30
+# # # rules: <src> = ['<qry>':<dst>]+
+# # INBOX = 'tag:spam':Junk 'tag:sent':Sent 'tag:lists*':Lists 'NOT tag:inbox':Archive
+# # INBOX = 'tag:spam':Junk 'tag:lists/debian* OR tag:lists/debconf*':Debian
+# INBOX = 'tag:unread':Debconf
+# Junk = 'NOT tag:spam AND tag:inbox':INBOX 'NOT tag:spam':Archive
+
+[FolderNameFilter] # tag mails with the name of the folder they are on. Useful for sieve, etc
+
+[InboxFilter] # removes `new` and adds `inbox` to any message that isn’t killed or spam

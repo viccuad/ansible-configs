@@ -1,0 +1,13 @@
+[Unit]
+Description=Run afew --update-reference monthly
+
+[Timer]
+OnCalendar=monthly
+Persistent=true
+# won't run until five minutes after the computer boots
+OnBootSec= 5min
+OnUnitActiveSec= 15min
+Unit=afew_monthly.service
+
+[Install]
+WantedBy=default.target

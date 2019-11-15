@@ -1,0 +1,7 @@
+/home/{{ user }}/.local/share/logs/msmtp.queue.log {
+  rotate 9999
+  weekly
+  compress
+  notifempty
+  missingok
+}

@@ -1,0 +1,41 @@
+# Global configuration section
+#   Values here are used as defaults for any following Channel section that
+#   doesn't specify them.
+# Don't delete messages:
+Expunge None
+# Really delete messages!
+# Expunge Both TODO
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+
+
+IMAPAccount meviccuadme
+Host mail.gandi.net
+SSLType IMAPS
+SSLVersions TLSv1.2
+User me@viccuad.me
+PassCmd "gpg -q --for-your-eyes-only -d ~/.password-store/gandi/me@viccuad.me.gpg"
+SystemCertificates no
+# CertificateFile /etc/ssl/certs/ca-certificates.crt
+CertificateFile ~/.cert/webmail.gandi.net.pem
+
+IMAPStore meviccuadme-remote
+Account meviccuadme
+
+MaildirStore meviccuadme-local
+# Important if you *ever* move emails from one folder to another without
+# renaming them. (For example using webmail!)
+AltMap yes
+# The trailing "/" is important
+Path ~/.mail/meviccuadme/
+Inbox ~/.mail/meviccuadme/INBOX
+Flatten .
+
+Channel meviccuadme
+Master :meviccuadme-remote:
+Slave :meviccuadme-local:
+Patterns * # sync all
+# Patterns * !Drafts # Don't sync drafts since they are stored unencrypted
+# Save the synchronization state files in the relevant directory
+SyncState *
+Sync All

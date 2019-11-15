@@ -1,0 +1,13 @@
+[Unit]
+Description=Run afew --update weekly
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+# won't run until five minutes after the computer boots
+OnBootSec= 5min
+OnUnitActiveSec= 15min
+Unit=afew_weekly.service
+
+[Install]
+WantedBy=default.target

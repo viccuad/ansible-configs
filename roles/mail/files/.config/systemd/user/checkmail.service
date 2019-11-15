@@ -1,0 +1,10 @@
+[Unit]
+Description=check mail
+RefuseManualStart=no
+# make systemctl unable to stop the service as it will terminate by itself:
+RefuseManualStop=yes
+
+[Service]
+# run and exit:
+Type=oneshot
+ExecStart=/home/{{ user }}/bin/checkmail.sh
