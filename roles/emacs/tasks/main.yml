@@ -38,7 +38,6 @@
       # - python3-pylint-*
       - python-jedi
       - python3-jedi
-      - python-hacking
       - python3-hacking
       - hy
         #- python-yapf # removed out of testing bug#919974 TODO
