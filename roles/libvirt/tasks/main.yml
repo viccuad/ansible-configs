@@ -75,16 +75,3 @@
     name: libvirtd
     state: started
     enabled: yes
-
-
-- name: install resolvconf
-  apt:
-    name: resolvconf
-    state: present
-
-
-- name: enable .libvirt DNS resolution for the host
-  blockinfile:
-    block: '{{ lookup("template", "tail.j2") }}'
-    dest: /etc/resolvconf/resolv.conf.d/tail
-  notify: rerun resolvconf
