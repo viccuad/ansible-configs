@@ -76,12 +76,15 @@
 
 
 - name: install vscode extensions
-  shell: |
-         ~/.apps/VSCode-linux-x64/bin/code --install-extension ms-vscode.go
-         ~/.apps/VSCode-linux-x64/bin/code --install-extension vscodevim.vim
-         ~/.apps/VSCode-linux-x64/bin/code --install-extension bazelbuild.vscode-bazel
-         ~/.apps/VSCode-linux-x64/bin/code --install-extension redhat.vscode-yaml
-         ~/.apps/VSCode-linux-x64/bin/code --install-extension ms-azuretools.vscode-docker
+  shell: ~/.apps/VSCode-linux-x64/bin/code --install-extension "{{ item }}"
+  args:
+    creates: "/home/{{ normal_user }}/.vscode/extensions/{{ item }}*"
+  with_items:
+    - ms-vscode.go
+    - vscodevim.vim
+    - bazelbuild.vscode-bazel
+    - redhat.vscode-yaml
+    - ms-azuretools.vscode-docker
   become: yes
   become_user: "{{ normal_user }}"
     
