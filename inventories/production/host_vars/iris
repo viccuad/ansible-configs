@@ -1,0 +1,40 @@
+---
+
+wifinets:
+  wlaninternal:
+    SSID: "{{ vault_wifi_internal_ssid }}"
+    PSK: "{{ vault_wifi_internal_psk }}"
+    interfacename: wlp5s0
+    band: a
+    mode: ap
+    zone: internal
+    ipv4method: shared
+    ipv6method: auto
+  wlanexternal:
+    SSID: "{{ vault_wifi_external_ssid }}"
+    PSK: "{{ vault_wifi_external_psk }}"
+    interfacename: wlp1s0
+    band: a
+    mode: ap
+    zone: external
+    ipv4method: shared
+    ipv6method: auto
+
+wirednets:
+  ethinternal:
+    interfacename: enp3s0
+    zone: internal
+    ipv4method: shared
+    ipv6method: ignore
+  ethinternal2:
+    interfacename: enp4s0
+    zone: internal
+    ipv4method: shared
+    ipv6method: ignore
+
+wannets:
+  wan:
+    interfacename: enp2s0
+    zone: external
+    ipv4method: shared
+    ipv6method: ignore
