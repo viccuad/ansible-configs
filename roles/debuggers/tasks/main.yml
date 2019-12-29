@@ -16,7 +16,6 @@
       - tcpdump
       - net-tools
       - nmap
-      - winpdb
       - mitmproxy
       - mtr # traceroute substitute
 
