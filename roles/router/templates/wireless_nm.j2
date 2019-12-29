@@ -1,0 +1,22 @@
+[connection]
+id={{ item.value.SSID }}
+{# this a random value #}
+uuid={{ 9999999999999999999999 | random | to_uuid }}
+type=wifi
+interface-name={{ item.value.interfacename }}
+
+[wifi]
+ssid={{ item.value.SSID }}
+band={{ item.value.band }}
+mode={{ item.value.mode }}
+
+[wifi-security]
+key-mgmt=wpa-psk
+auth-alg=open
+psk={{ item.value.PSK }}
+
+[ipv4]
+method={{ item.value.ipv4method }}
+
+[ipv6]
+method={{ item.value.ipv6method }}

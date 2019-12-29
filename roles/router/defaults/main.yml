@@ -2,3 +2,10 @@
 
 apt_sources:
   - buster
+
+wirednets:
+  ethinternal:
+    interfacename: "{{ ansible_default_ipv4.interface }}"
+    zone: internal
+    ipv4method: automatic
+    ipv6method: ignore

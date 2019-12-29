@@ -1,0 +1,19 @@
+[connection]
+id={{ item.key }}
+uuid={{ 9999999999999999999999 | random | to_uuid }}
+type=ethernet
+interface-name={{ item.value.interfacename }}
+permissions=
+zone={{ item.value.zone }}
+
+[ethernet]
+mac-address-blacklist=
+
+[ipv4]
+dns-search=
+method={{ item.value.ipv4method }}
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method={{ item.value.ipv6method }}

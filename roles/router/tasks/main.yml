@@ -1,0 +1,49 @@
+---
+
+- name: ensure network-manager packages are installed
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+  - network-manager
+
+
+- name: set up wireless configs
+  template:
+    src: wireless_nm.j2
+    dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+    owner: root
+    group: root
+    mode: 0600
+  with_dict: "{{ wifinets | default([]) }}"
+  notify:
+  - restart network-manager
+
+
+- name: set up ethernet configs
+  template:
+    src: wired_nm.j2
+    dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+    owner: root
+    group: root
+    mode: 0600
+  with_dict: "{{ wirednets | default([]) }}"
+  notify:
+  - restart network-manager
+
+
+- name: set up wan configs
+  template:
+    src: wan_nm.j2
+    dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+    owner: root
+    group: root
+    mode: 0600
+  with_dict: "{{ wannets | default([]) }}"
+  notify:
+  - restart network-manager
+
+
+# https://developer.gnome.org/NetworkManager/1.18/
+# https://developer.gnome.org/NetworkManager/1.18/nm-settings.html
