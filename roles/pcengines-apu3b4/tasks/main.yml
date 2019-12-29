@@ -3,7 +3,7 @@
 - name: install checkinstall from backports
   apt:
     name: "{{ items }}"
-    state: latest
+    state: present
     default_release: buster-backports
     install_recommends: yes
   vars:
