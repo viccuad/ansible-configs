@@ -1,0 +1,13 @@
+---
+
+wirednets:
+  ethinternal:
+    interfacename: ens8
+    zone: internal
+    ipv4method: shared
+    ipv6method: ignore
+  ethpublic:
+    interfacename: ens9
+    zone: public
+    ipv4method: shared
+    ipv6method: ignore
