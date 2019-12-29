@@ -55,16 +55,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       :libvirt__network_name => 'ansible-configs_mgmt',
                       :libvirt__dhcp_enabled => false,
                       :ip => "192.168.111.10"
+                      # ens7
     router.vm.network :private_network,
                       :auto_config => false,
                       :libvirt__forward_mode => 'veryisolated',
                       :libvirt__dhcp_enabled => false,
                       :libvirt__network_name => 'switch_lan'
+                      # ens8
     router.vm.network :private_network,
                       :auto_config => false,
                       :libvirt__forward_mode => 'veryisolated',
                       :libvirt__dhcp_enabled => false,
                       :libvirt__network_name => 'switch_wifi'
+                      # ens9
     router.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 1
