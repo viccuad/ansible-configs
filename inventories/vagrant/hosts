@@ -17,6 +17,9 @@ all:
         adotfiles:
           ansible_host: 192.168.111.2
           ansible_private_key_file: .vagrant/machines/dotfiles/libvirt/private_key
+          private_content:
+            - personal
+            - suse
     htpc:
       hosts:
         anhtpc:
