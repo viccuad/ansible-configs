@@ -1,5 +1,16 @@
 ---
 
+- name: install checkinstall from backports
+  apt:
+    name: "{{ items }}"
+    state: latest
+    default_release: buster-backports
+    install_recommends: yes
+  vars:
+    items:
+      - checkinstall
+
+
 - name: install pcengines packages
   apt:
     name: "{{ items }}"
@@ -11,7 +22,6 @@
       - flashrom
       - build-essential
       - dkms
-      - checkinstall
 
 
 - name: install firmware packages (from contrib/non-free)
