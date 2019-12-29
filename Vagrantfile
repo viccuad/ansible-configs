@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # Configure cached packages to be shared between instances of the same base box.
     # More info on http://fgrehm.viewdocs.io/vagrant-cachier/usage
     config.cache.scope = :box
-    config.cache.synced_folder_opts = {type: :nfs}
+    # config.cache.synced_folder_opts = {type: :nfs}
   end
 
   if Vagrant.has_plugin?("vagrant-sshfs")
