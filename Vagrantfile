@@ -130,10 +130,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     nas.vm.provider :libvirt do |domain|
       domain.memory = 512
       # 4 disks for raid 10 setup:
+      domain.storage :file, :device => 'sda', :size => '1G', :type => 'raw', :bus => 'sata'
       domain.storage :file, :device => 'sdb', :size => '1G', :type => 'raw', :bus => 'sata'
       domain.storage :file, :device => 'sdc', :size => '1G', :type => 'raw', :bus => 'sata'
       domain.storage :file, :device => 'sdd', :size => '1G', :type => 'raw', :bus => 'sata'
-      domain.storage :file, :device => 'sde', :size => '1G', :type => 'raw', :bus => 'sata'
     end
   end
 

@@ -6,10 +6,10 @@ software_raid_devices:
   - device: /dev/md0
     level: 10
     components:
+      - /dev/sda
       - /dev/sdb
       - /dev/sdc
       - /dev/sdd
-      - /dev/sde
     filesystem_type: "ext4"
     mount_point: "/srv"
     mount_options: "noatime,noexec,nodiratime"
