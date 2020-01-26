@@ -15,6 +15,7 @@ setopt NO_HUP # don't kill bg processes when exiting
 setopt NO_LIST_BEEP # no Beep on an ambiguous completion
 setopt LOCAL_OPTIONS # allow functions to have local options
 setopt LOCAL_TRAPS # allow functions to have local traps
+setopt INTERACTIVE_COMMENTS # Allow # for comments on interactive shells
 
 setopt PROMPT_SUBST
 setopt CORRECT # try to correct the spelling of commands
