@@ -32,17 +32,7 @@
       - shellcheck
       - python3-bashate
       # python layer:
-        # - flake8 using pylint instead, because it is broken for now TODO
-      - pylint
-      - pylint3
-      # - python3-pylint-*
-      - python-jedi
-      - python3-jedi
-      - python3-hacking
-      - hy
-        #- python-yapf # removed out of testing bug#919974 TODO
-      - python3-yapf
-      # - autoflake missing in Debian TODO
+      # python-language-server # Missing in Debian
       # latex layer:
       - pandoc
       # protobuf layer:
