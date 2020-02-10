@@ -1,0 +1,33 @@
+---
+
+- name: install rust packages
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - rustc
+      - rust-doc
+      - rust-gdb
+      - rust-src
+      - cargo
+      - libssl-dev # for cargo-rls-install
+
+
+- name: add cargo/bin to PATH
+  lineinfile:
+    dest: /home/vic/.zshenv
+    line: 'PATH="$PATH:$HOME/.cargo/bin"'
+    insertafter: "# Construct path:"
+
+
+- name: install rust langserver and deps
+  command: cargo install {{ item }}
+  args:
+    creates: "{{ cargopath }}/{{ item }}"
+  with_items:
+    - cargo-rls-install
+    # - rls-analysis # TODO
+  become:  yes
+  become_user: "{{ normal_user }}"
