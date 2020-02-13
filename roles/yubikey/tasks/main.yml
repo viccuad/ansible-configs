@@ -1,0 +1,18 @@
+---
+
+- name: install yubikey packages
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - yubikey-manager # for ykman oath code
+
+
+- name: add yubikey aliases
+  lineinfile:
+    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
+    line: "alias yubikey-codes='ykman oath code'"
+  become:  yes
+  become_user: "{{ normal_user }}"
