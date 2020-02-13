@@ -37,7 +37,6 @@
       - dirmngr
       - tor
       - hopenpgp-tools # check for problems in your key
-      - yubikey-manager
 
 
 - name: add firewalld hkp.xml service definition
