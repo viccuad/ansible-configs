@@ -15,7 +15,9 @@
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: system
+    method: user
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: add the winepak flatpak repository
@@ -23,7 +25,9 @@
     name: winepak
     state: present
     flatpakrepo_url: https://dl.winepak.org/repo/winepak.flatpakrepo
-    method: system
+    method: user
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: install spotify
@@ -31,7 +35,29 @@
     name: com.spotify.Client
     state: present
     remote: flathub
-    method: system
+    method: user
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: install riot
+  flatpak:
+    name: im.riot.Riot
+    state: present
+    remote: flathub
+    method: user
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: install slack
+  flatpak:
+    name: com.slack.Slack
+    state: present
+    remote: flathub
+    method: user
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: add flatpak exports/bin to PATH
