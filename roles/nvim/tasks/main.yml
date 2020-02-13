@@ -8,7 +8,7 @@
   vars:
     items:
       - neovim
-      - python-neovim
+      - python3-pynvim
 
 
 - name: copy nvim files
