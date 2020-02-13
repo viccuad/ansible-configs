@@ -55,7 +55,7 @@ Ansible will use the `deploy` user to ssh (see roles/common/vars).
 Install the private roles with:
 
 ```bash
-# ansible-galaxy install -r galaxy-roles.yml --roles-path ./roles --force
+$ ansible-galaxy install -r galaxy-roles.yml --roles-path ./roles --force
 ```
 
 and then run the playbooks:
@@ -81,6 +81,7 @@ Yadda yadda:
 
 ```bash
 $ adduser deploy # empty password to disable login by password
+                 # or set temp password, to be removed with passwd -d deploy
 $ usermod -aG sudo deploy
 $ echo "deploy ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/deploy
 $ apt install sudo # if minimal installation
