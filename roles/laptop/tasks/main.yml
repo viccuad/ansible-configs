@@ -48,5 +48,5 @@
 - name: copy tlp config
   copy:
     src: tlp
-    dest: /etc/default/tlp
+    dest: /etc/tlp.conf
   notify: restart tlp
