@@ -1,2 +1,2 @@
 ---
-cargopath: /home/{{ normal_user }}/.cargo/bin
+cargopath: .cargo/bin

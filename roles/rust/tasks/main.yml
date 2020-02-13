@@ -18,14 +18,16 @@
 - name: add cargo/bin to PATH
   lineinfile:
     dest: /home/vic/.zshenv
-    line: 'PATH="$PATH:$HOME/.cargo/bin"'
+    line: 'PATH="$PATH:$HOME/{{ cargopath }}"'
     insertafter: "# Construct path:"
+  become:  yes
+  become_user: "{{ normal_user }}"
 
 
 - name: install rust langserver and deps
   command: cargo install {{ item }}
   args:
-    creates: "{{ cargopath }}/{{ item }}"
+    creates: "/home/{{ normal_user }}/{{ cargopath }}/{{ item }}"
   with_items:
     - cargo-rls-install
     # - rls-analysis # TODO
