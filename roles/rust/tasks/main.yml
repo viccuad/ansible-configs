@@ -1,35 +1,72 @@
 ---
 
-- name: install rust packages
-  apt:
-    name: "{{ items }}"
-    state: present
-    install_recommends: yes
-  vars:
-    items:
-      - rustc
-      - rust-doc
-      - rust-gdb
-      - rust-src
-      - cargo
-      - libssl-dev # for cargo-rls-install
+- name: download rustup
+  shell: wget https://sh.rustup.rs -O /tmp/rustup.sh; chmod 755 /tmp/rustup.sh
+  args:
+    creates: /home/"{{ normal_user }}"/.cargo/bin/rustup
+
+
+- name: install rustup toolchain
+  command: /tmp/rustup.sh -y
+  args:
+    creates: /home/"{{ normal_user }}"/.cargo/bin/rustup
+  become:  yes
+  become_user: "{{ normal_user }}"
 
 
 - name: add cargo/bin to PATH
   lineinfile:
-    dest: /home/vic/.zshenv
+    dest: ~/.zshenv
     line: 'PATH="$PATH:$HOME/{{ cargopath }}"'
     insertafter: "# Construct path:"
   become:  yes
   become_user: "{{ normal_user }}"
 
 
-- name: install rust langserver and deps
-  command: cargo install {{ item }}
+- name: install stable toolchain
+  command: ~/.cargo/bin/rustup install stable
   args:
-    creates: "/home/{{ normal_user }}/{{ cargopath }}/{{ item }}"
-  with_items:
-    - cargo-rls-install
-    # - rls-analysis # TODO
+    creates: "/home/{{ normal_user }}/.rustup"
   become:  yes
   become_user: "{{ normal_user }}"
+
+
+- name: set default toolchain
+  command: "~/.cargo/bin/rustup default stable-x86_64-unknown-linux-gnu"
+  args:
+    creates: "/home/{{ normal_user }}/.rustup/toolchains"
+  become:  yes
+  become_user: "{{ normal_user }}"
+
+
+- name: install dev components
+  shell: ~/.cargo/bin/rustup component add "{{ item }}"
+  args:
+    creates: "/home/{{ normal_user }}/.cargo/bin/{{ item }}"
+  with_items:
+    - rls
+    - rust-analysis
+    - rust-src
+    - rustfmt
+  become:  yes
+  become_user: "{{ normal_user }}"
+
+
+# - name: install rust-analyzer
+#   shell: |
+#     url=$(curl -s \
+#     https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest \
+#     grep "browser_download_url*" | cut -d : -f 2,3 | tr -d \" | tr -d " ")
+#     wget "$url" -O /tmp/rust-analyzer
+#     mv /tmp/rust-analyzer "/home/{{ normal_user }}/.cargo/bin/rust-analyzer"
+#   creates: "/home/{{ normal_user }}/.cargo/bin/rust-analyzer"
+#   become:  yes
+#   become_user: "{{ normal_user }}"
+
+
+# - name: install rust completions
+#   shell: ~/.cargo/bin/rustup completions zsh > ~/.zcompdump
+#   args:
+#     creates: "/home/{{ normal_user }}/.rustup"
+#   become:  yes
+#   become_user: "{{ normal_user }}"
