@@ -55,7 +55,8 @@ set tabstop=4						" number of visual spaces per TAB
 set autoindent smartindent			" copy indent from current line when starting a new line, and smart indent automatically inserts one level of indentation in some cases.
 " set listchars=tab:\|·,trail:·,eol:¬	" show tabs, eol and trailing whitespace when showing separators
 " set listchars=tab:\├\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
-set listchars=tab:\╶\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+" set listchars=tab:\╶\─,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
+set listchars=tab:\╶\─,trail:·,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
 " set listchars=tab:▸\ ,trail:·,eol:↵,extends:→,precedes:←	" show tabs, eol and trailing whitespace when showing separators
 set list							" show listchars
 " }}}
