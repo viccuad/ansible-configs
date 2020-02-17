@@ -24,6 +24,8 @@
   command: wget https://vscode-update.azurewebsites.net/latest/linux-x64/stable -O /tmp/vscode.tar.gz
   args:
     creates: "/home/{{ normal_user }}/.apps/VSCode-linux-x64"
+  tags:
+   - skip_ansible_lint # get_url doesn't have creates
 
 
 - name: extract vscode tar into ~/.apps/

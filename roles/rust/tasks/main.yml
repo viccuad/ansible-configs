@@ -4,6 +4,8 @@
   shell: wget https://sh.rustup.rs -O /tmp/rustup.sh; chmod 755 /tmp/rustup.sh
   args:
     creates: /home/"{{ normal_user }}"/.cargo/bin/rustup
+  tags:
+   - skip_ansible_lint # get_url doesn't have creates
 
 
 - name: install rustup toolchain
