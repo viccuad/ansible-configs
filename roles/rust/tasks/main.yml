@@ -40,7 +40,7 @@
 
 
 - name: install dev components
-  shell: ~/.cargo/bin/rustup component add "{{ item }}"
+  command: ~/.cargo/bin/rustup component add "{{ item }}"
   args:
     creates: "/home/{{ normal_user }}/.cargo/bin/{{ item }}"
   with_items:
