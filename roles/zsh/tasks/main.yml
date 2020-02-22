@@ -46,3 +46,11 @@
     state: directory
   become: yes
   become_user: "{{ normal_user }}"
+
+
+- name: add ~/.local/bin to PATH
+  lineinfile:
+    dest: /home/vic/.zprofile
+    line: 'export PATH="$PATH:$HOME/.local/bin"'
+  become:  yes
+  become_user: "{{ normal_user }}"

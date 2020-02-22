@@ -31,11 +31,12 @@
     marker: "# {mark} go block"
 
 
-- name: add GO bins to PATH
+- name: add ~/code/go/bin to PATH
   lineinfile:
-    dest: /home/vic/.zshenv
-    line: 'PATH="$PATH:$HOME/code/go/bin"'
-    insertafter: "# Construct path:"
+    dest: "/home/{{ normal_user }}/.zprofile"
+    line: 'export PATH="$PATH:{{ gopath }}/bin"'
+  become:  yes
+  become_user: "{{ normal_user }}"
 
 
 - name: install go deps not packaged yet

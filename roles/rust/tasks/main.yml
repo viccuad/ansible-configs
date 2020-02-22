@@ -9,18 +9,17 @@
 
 
 - name: install rustup toolchain
-  command: /tmp/rustup.sh -y
+  command: /tmp/rustup.sh -y --no-modify-path
   args:
     creates: /home/"{{ normal_user }}"/.cargo/bin/rustup
   become:  yes
   become_user: "{{ normal_user }}"
 
 
-- name: add cargo/bin to PATH
+- name: add ~/.cargo/bin to PATH
   lineinfile:
-    dest: ~/.zshenv
-    line: 'PATH="$PATH:$HOME/{{ cargopath }}"'
-    insertafter: "# Construct path:"
+    dest: /home/vic/.zprofile
+    line: 'export PATH="$PATH:$HOME/.cargo/bin"'
   become:  yes
   become_user: "{{ normal_user }}"
 
