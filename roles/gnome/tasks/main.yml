@@ -41,8 +41,7 @@
       - gnome-shell-extension-caffeine
       - gnome-shell-extension-impatience
       - gnome-shell-extension-system-monitor
-      - gnome-shell-extension-suspend-button
-      - gnome-shell-extension-top-icons-plus
+      - gnome-shell-extension-appindicator
       - gnome-mpv
       - vlc
       - pulseeffects
