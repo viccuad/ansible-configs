@@ -52,5 +52,6 @@
   lineinfile:
     dest: /home/vic/.zprofile
     line: 'export PATH="$PATH:$HOME/.local/bin"'
+    create: yes
   become:  yes
   become_user: "{{ normal_user }}"
