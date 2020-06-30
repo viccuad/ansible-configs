@@ -16,7 +16,7 @@
       - tcpdump
       - net-tools
       - nmap
-      - mitmproxy
+      # - mitmproxy
       - mtr # traceroute substitute
 
 
