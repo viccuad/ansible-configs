@@ -7,7 +7,7 @@
     install_recommends: yes
   vars:
     items:
-      - python-psutil # for dconf
+      - python3-psutil # for dconf
       - anacron
       # - emacs25-lucid # gui
       - task-gnome-desktop

@@ -20,7 +20,7 @@
       - virt-top
       - virt-manager
       # ansible dependencies:
-      - python-libvirt
+      - python3-libvirt
 
 
 - name: add {{ normal_user }} user to libvirt group
