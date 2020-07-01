@@ -81,7 +81,7 @@
   args:
     creates: "/home/{{ normal_user }}/.vscode/extensions/{{ item }}*"
   with_items:
-    - ms-vscode.go
+    - golang.go
     - vscodevim.vim
     - bazelbuild.vscode-bazel
     - redhat.vscode-yaml
