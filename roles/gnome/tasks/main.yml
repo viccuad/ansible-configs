@@ -18,7 +18,8 @@
       - xdg-desktop-portal-gtk
       - firefox
       - webext-https-everywhere
-      - webext-ublock-origin
+      - webext-ublock-origin-firefox
+      - webext-ublock-origin-chromium
       - thunderbird
       - enigmail
       - dconf-gsettings-backend
