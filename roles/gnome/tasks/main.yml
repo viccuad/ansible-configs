@@ -22,6 +22,7 @@
       - webext-ublock-origin-chromium
       - thunderbird
       - enigmail
+      - spamassassin
       - dconf-gsettings-backend
       - dconf-editor
       - libcanberra-gtk-module
