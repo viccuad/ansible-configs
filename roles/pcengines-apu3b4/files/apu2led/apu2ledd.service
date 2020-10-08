@@ -3,8 +3,10 @@ Description=apu2led daemon for controlling apu2/3 leds
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/apu2led eth0 -c nrt -f; \ # LED 1 as a load indicator
-        modprobe ledtrig_default_on; modprobe ledtrig_heartbeat; \ # LED 2 and 3 as net up/down
+# led 1 as load indicator
+# led 2 and 3 as network traffic indicator
+ExecStart=/usr/bin/apu2led eth0 -c nrt -f; \
+        modprobe ledtrig_default_on; modprobe ledtrig_heartbeat; \
         echo heartbeat > /sys/class/leds/apu2:green:led1/trigger
 User=root
 ExecReload=/bin/kill -HUP $MAINPID
