@@ -2,7 +2,7 @@
   - include: validate.yml
 
   - name: software raid - install raid package
-    apt: pkg=mdadm state=installed update_cache=yes cache_valid_time=3600
+    apt: pkg=mdadm state=present update_cache=yes cache_valid_time=3600
     when: software_raid_devices is defined and ansible_os_family == "Debian"
 
   - name: software raid - check existing raid devices
