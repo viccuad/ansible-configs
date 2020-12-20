@@ -6,7 +6,6 @@ dependencies:
       apt_sources:
         - buster
   - role: softwareraid
-    when: '"vagrant" in inventory_file'
   - smartd
   - cockpit
   - nfs-server
