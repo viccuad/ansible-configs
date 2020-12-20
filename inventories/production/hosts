@@ -1,19 +1,24 @@
 all:
   children:
+    backup-client:
+      children:
+        laptop:
     desktop:
+      children:
+        laptop:
       hosts:
         viccuad:
           private_content:
             - personal
             - suse
-      children:
-        laptop:
     dotfiles:
+      children:
+        desktop:
       vars:
           private_content:
             - personal
-      children:
-        desktop:
+    htpc:
+      hosts:
     laptop:
       hosts:
         clotho:
@@ -23,6 +28,10 @@ all:
           private_content:
             - personal
             - suse
+    nas:
+      hosts:
+    offlinepc:
+      hosts:
     router:
       hosts:
         iris:
