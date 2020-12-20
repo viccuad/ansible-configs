@@ -37,6 +37,9 @@
       - pandoc
       # protobuf layer:
       - protobuf-compiler
+      # doom.d:
+      - fd-find
+      - ripgrep
 
 
 - name: copy emacs files
@@ -49,7 +52,7 @@
 
 - name: clone .spacemacs.d
   git:
-    repo: https://gitlab.com/viccuad/emacs.d.git
+    repo: https://gitlab.com/viccuad/spacemacs.d.git
     dest: "/home/{{ normal_user }}/.spacemacs.d/"
     update: no
     version: master
@@ -57,13 +60,29 @@
   become_user: "{{ normal_user }}"
 
 
-- name: clone .emacs.d
+# - name: clone .emacs.d
+#   git:
+#     repo: https://github.com/syl20bnr/spacemacs.git
+#     dest: "/home/{{ normal_user }}/.emacs.d/"
+#     update: no
+#     version: develop
+#   become: yes
+#   become_user: "{{ normal_user }}"
+
+
+- name: clone .doom.d
   git:
-    repo: https://github.com/syl20bnr/spacemacs.git
-    dest: "/home/{{ normal_user }}/.emacs.d/"
+    repo: https://gitlab.com/viccuad/doom.d.git
+    dest: "/home/{{ normal_user }}/.doom.d/"
     update: no
-    version: develop
+    version: master
   become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: initialize doom emacs
+  command: ./doom.d/bin/doom install
+  become:  yes
   become_user: "{{ normal_user }}"
 
 

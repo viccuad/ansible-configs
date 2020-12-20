@@ -51,6 +51,8 @@
     - github.com/golang/protobuf/protoc-gen-go
     # debugserver deps:
     - github.com/derekparker/delve/cmd/dlv
+    # go repl client
+    - github.com/motemen/gore/cmd/gore
   become:  yes
   become_user: "{{ normal_user }}"
 
