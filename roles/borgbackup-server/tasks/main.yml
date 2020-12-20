@@ -60,6 +60,7 @@
     validate: ssh-keygen -l -f %s
   with_items: "{{ backup_auth_users }}"
   become: yes
+  notify: restart ssh
 
 
 - name: ensure perms of authorized keys for calling borgbackup
@@ -67,5 +68,6 @@
     path: "/etc/ssh/authorized_keys/{{ backup_user }}"
     owner: root
     group: root
-    mode: 0600
+    mode: 0644
   become: yes
+  notify: restart ssh
