@@ -1,0 +1,28 @@
+---
+
+software_raid_alerts_email: "root"
+software_raid_create_kwargs: "--run" # force the creation if there are any prompts
+software_raid_devices:
+  - device: /dev/md0
+    level: 10
+    components:
+      - /dev/sda
+      - /dev/sdb
+      - /dev/sdc
+      - /dev/sdd
+    filesystem_type: "ext4"
+    mount_point: "/srv"
+    mount_options: "noatime,noexec,nodiratime"
+    dump: 0
+    passno: 0
+
+
+backup_user_home: "{{ software_raid_devices[0].mount_point }}/backup"
+backup_pool: "{{ backup_user_home }}/repos"
+backup_auth_users:
+  - host: clotho
+    key: |
+      {{ normal_user_sshkey }}
+
+
+git_user_home: "{{ software_raid_devices[0].mount_point }}/data/git"

@@ -30,6 +30,8 @@ all:
             - suse
     nas:
       hosts:
+        cerberus:
+          ansible_host: 10.42.0.238
     offlinepc:
       hosts:
     router:
