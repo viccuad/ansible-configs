@@ -13,7 +13,7 @@
       - uptimed
       - unattended-upgrades
       - needrestart
-
+      # TODO logrotate
 
 - name: configure dpkg to retain old configs
   blockinfile:
