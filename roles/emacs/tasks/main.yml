@@ -60,14 +60,14 @@
   become_user: "{{ normal_user }}"
 
 
-# - name: clone .emacs.d
-#   git:
-#     repo: https://github.com/syl20bnr/spacemacs.git
-#     dest: "/home/{{ normal_user }}/.emacs.d/"
-#     update: no
-#     version: develop
-#   become: yes
-#   become_user: "{{ normal_user }}"
+- name: clone .emacs.d
+  git:
+    repo: https://github.com/syl20bnr/spacemacs.git
+    dest: "/home/{{ normal_user }}/.emacs.d.spacemacs/"
+    update: no
+    version: develop
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 - name: clone .doom.d
@@ -82,6 +82,7 @@
 
 - name: initialize doom emacs
   command: ./doom.d/bin/doom install
+  creates: "/home/vic/{{ normal_user }}/.emacs.d/.local"
   become:  yes
   become_user: "{{ normal_user }}"
 
