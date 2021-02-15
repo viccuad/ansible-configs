@@ -82,7 +82,8 @@
 
 - name: initialize doom emacs
   command: ./doom.d/bin/doom install
-  creates: "/home/{{ normal_user }}/.emacs.d/.local"
+  args:
+    creates: "/home/{{ normal_user }}/.emacs.d/.local"
   become:  yes
   become_user: "{{ normal_user }}"
 
