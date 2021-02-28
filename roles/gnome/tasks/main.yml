@@ -51,7 +51,7 @@
       - gnome-shell-extensions
       - vrms
       - pinentry-gnome3
-      # - yubioath-desktop # TODO
+      - yubioath-desktop
       - yubikey-personalization
       - yubikey-personalization-gui
       - intel-gpu-tools
