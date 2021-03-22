@@ -58,11 +58,12 @@
 
 
 - name: open firewalld for hkp
-  command: firewall-cmd --permanent --zone=public --add-service=hkp
-  register: out
-  changed_when: '"Warning: ALREADY_ENABLED: hkp" not in out.stderr'
+  firewalld:
+    zone: public
+    service: hkp
+    permanent: true
+    state: enabled
   notify: reload firewalld
-  # FIXME missing python firewalld bindings, can't use firewalld ansible module yet
 
 
 - meta: flush_handlers # for firewalld to open hkp service before importing gpg keys

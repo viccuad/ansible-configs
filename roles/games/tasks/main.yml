@@ -69,13 +69,10 @@
   become_user: "{{ normal_user }}"
 
 
-# TODO add steam-streaming service to home zone when
-# firewalld-0.6.0 ships the service file: https://github.com/firewalld/firewalld/blob/master/config/services/steam-streaming.xml
-# firewall-cmd --zone=home --permanent --add-service=steam-streaming
-# meanwhile, do it by hand:
 - name: open firewalld for steam streaming
-  command: firewall-cmd --zone=home --permanent --add-service=steam-streaming
-  register: out
-  changed_when: '"Warning: ALREADY_ENABLED: ssh" not in out.stderr'
+  firewalld:
+    zone: home
+    service: steam-streaming
+    permanent: true
+    state: enabled
   notify: reload firewalld
-  # FIXME missing python firewalld bindings, can't use firewalld ansible module yet

@@ -37,12 +37,13 @@
     enabled: yes
 
 
-- name: open firewalld for sshd
-  command: firewall-cmd --permanent --zone=public --add-service=ssh
-  register: out
-  changed_when: '"Warning: ALREADY_ENABLED: ssh" not in out.stderr'
+- name: open firewalld for ssh
+  firewalld:
+    zone: public
+    service: ssh
+    permanent: true
+    state: enabled
   notify: reload firewalld
-  # FIXME missing python firewalld bindings, can't use firewalld ansible module yet
 
 
 - name: be sure there is no deprecated host keys around
