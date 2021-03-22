@@ -32,7 +32,7 @@
 
 - name: be sure sshd is running and enabled
   service:
-    name: sshd
+    name: ssh
     state: started
     enabled: yes
 
