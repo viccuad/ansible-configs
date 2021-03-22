@@ -1,0 +1,2 @@
+# Bullseye backports
+deb http://deb.debian.org/debian/ bullseye-backports main contrib non-free
