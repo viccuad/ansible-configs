@@ -33,6 +33,7 @@
     install_recommends: no
   vars:
     items:
+      - gnupg
       - scdaemon
       - dirmngr
       - tor
