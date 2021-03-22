@@ -1,10 +1,9 @@
 ---
 
-- name: install checkinstall from backports
+- name: install checkinstall
   apt:
     name: "{{ items }}"
     state: present
-    default_release: buster-backports
     install_recommends: yes
   vars:
     items:
@@ -66,7 +65,7 @@
 
 
 - name: install leds-apu2 kernel module with DKMS
-  command: dkms install leds-apu2/1.0.0 --all
+  command: dkms install leds-apu2/1.0.0
   when: installed_module.rc > 0
 
 
