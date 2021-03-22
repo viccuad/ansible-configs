@@ -34,8 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.box = "debian/buster64"
-  # config.vm.box = "local/buster"
+  config.vm.box = "debian/bullseye64"
+  # config.vm.box = "local/bullseye"
 
   hostnames = ['router','dotfiles','offlinepc','desktop','laptop','nas','htpc']
   hostnames.each do |name|

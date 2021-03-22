@@ -124,13 +124,13 @@ playbooks locally.
 
 # Creating your own Debian image #
 
-Change the Vagrantfile so it is looking for an image called `local/buster`.
+Change the Vagrantfile so it is looking for an image called `local/bullseye`.
 Inside this repo, do:
 
 ```bash
 $ git clone https://salsa.debian.org/cloud-team/vagrant-boxes.git
-$ sudo make -C vagrant-boxes/vmdebootstrap-libvirt-vagrant buster
-$ vagrant box add vagrant-boxes/vmdebootstrap-libvirt-vagrant/buster.box --name local/buster
+$ sudo make -C vagrant-boxes/vmdebootstrap-libvirt-vagrant bullseye
+$ vagrant box add vagrant-boxes/vmdebootstrap-libvirt-vagrant/bullseye.box --name local/bullseye
 $ sudo rm -rf vagrant-boxes/vmdebootstrap-libvirt-vagrant/*.box
 ```
 
