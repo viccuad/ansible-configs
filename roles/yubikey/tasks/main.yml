@@ -13,6 +13,6 @@
 - name: add yubikey aliases
   lineinfile:
     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
-    line: "alias yubikey-codes='ykman oath code'"
+    line: "alias yubikey-codes='ykman oath accounts code'"
   become:  yes
   become_user: "{{ normal_user }}"
