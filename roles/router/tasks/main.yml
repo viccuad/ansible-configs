@@ -1,48 +1,93 @@
 ---
 
-- name: ensure network-manager packages are installed
-  apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-  with_items:
-  - network-manager
+- name: Attempt to setup networking
+  block:
+  - name: ensure network-manager packages are installed
+    apt:
+      name: "network-manager"
+      state: present
+      update_cache: yes
+  - name: remove system-connections prior to creating new ones
+    file:
+      path: "/etc/NetworkManager/system-connections/"
+      state: absent
+  - name: ensure system-connections dir exists
+    file:
+      path: "/etc/NetworkManager/system-connections"
+      state: directory
+      mode: '0755'
+  - name: set up bridges
+    template:
+      src: bridge_nm.j2
+      dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+      owner: root
+      group: root
+      mode: 0600
+    loop: "{{ bridgenets | default({}) | dict2items }}"
+    # with_dict: "{{ bridgenets | default([]) }}"
+    # loop: "{{ query('dict', bridgenets) }}"
+    notify:
+    - restart NetworkManager
+  - name: set up ethernet configs
+    template:
+      src: wired_nm.j2
+      dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+      owner: root
+      group: root
+      mode: 0600
+    loop: "{{ wirednets | default({}) | dict2items }}"
+    notify:
+    - restart NetworkManager
+  - name: set up bridged ethernet configs
+    template:
+      src: bridge-slave_nm.j2
+      dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+      owner: root
+      group: root
+      mode: 0600
+    loop: "{{ bridgeslavenets | default({}) | dict2items }}"
+    notify:
+    - restart NetworkManager
+  - name: set up wireless configs
+    template:
+      src: wireless_nm.j2
+      dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+      owner: root
+      group: root
+      mode: 0600
+    loop: "{{ wifinets | default({}) | dict2items }}"
+    notify:
+    - restart NetworkManager
+  - name: set up wan configs
+    template:
+      src: wan_nm.j2
+      dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+      owner: root
+      group: root
+      mode: 0600
+    loop: "{{ wannets | default({}) | dict2items }}"
+    notify:
+    - restart NetworkManager
+  rescue:
+  - name: print message
+    ansible.builtin.debug:
+      # TODO broken in ansible 2.9
+      # msg: "|
+      # Configuring networks has failed, in step:
+      #   {{ ansible_failed_task.name }}
+      # With error:
+      #   {{ ansible_failed_result }}"
+      msg: "Failed when settings networks, rescuing.."
+  - name: remove all network configs and let NetworkManager sort it out
+    file:
+      path: "/etc/NetworkManager/system-connections/"
+      state: absent
+    notify:
+    - restart NetworkManager
 
 
-- name: set up wireless configs
-  template:
-    src: wireless_nm.j2
-    dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
-    owner: root
-    group: root
-    mode: 0600
-  with_dict: "{{ wifinets | default([]) }}"
-  notify:
-  - restart network-manager
-
-
-- name: set up ethernet configs
-  template:
-    src: wired_nm.j2
-    dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
-    owner: root
-    group: root
-    mode: 0600
-  with_dict: "{{ wirednets | default([]) }}"
-  notify:
-  - restart network-manager
-
-
-- name: set up wan configs
-  template:
-    src: wan_nm.j2
-    dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
-    owner: root
-    group: root
-    mode: 0600
-  with_dict: "{{ wannets | default([]) }}"
-  notify:
-  - restart network-manager
+# apply the handlers now instead of waiting for the end of the playbook
+- meta: flush_handlers
 
 
 # https://developer.gnome.org/NetworkManager/1.18/

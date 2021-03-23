@@ -9,3 +9,15 @@ wirednets:
     zone: internal
     ipv4method: automatic
     ipv6method: ignore
+
+# bridgenets:
+#   ethinternal:
+#     interfacename: bridge0
+#     zone: internal
+#     ipv4method: shared
+#     ipv6method: ignore
+
+# bridgeslavenets:
+#   ethinternal:
+#     interfacename: "{{ ansible_default_ipv4.interface }}"
+#     bridgemaster: bridge0

@@ -1,0 +1,11 @@
+[connection]
+id={{ item.key }}
+uuid={{ 9999999999999999999999 | random | to_uuid }}
+type=ethernet
+interface-name={{ item.value.interfacename }}
+permissions=
+master={{ item.value.bridgemaster }}
+slave-type=bridge
+
+[ethernet]
+mac-address-blacklist=

@@ -1,0 +1,20 @@
+[connection]
+id={{ item.key }}
+uuid={{ 9999999999999999999999 | random | to_uuid }}
+type=bridge
+interface-name={{ item.value.interfacename }}
+autoconnect-slaves=1
+permissions=
+zone={{ item.value.zone }}
+
+[bridge]
+stp=false
+
+[ipv4]
+dns-search=
+method={{ item.value.ipv4method }}
+
+[ipv6]
+addr-gen-mode=stable-privacy
+dns-search=
+method={{ item.value.ipv6method }}
