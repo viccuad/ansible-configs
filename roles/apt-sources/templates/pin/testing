@@ -1,0 +1,6 @@
+Package: *
+Pin: release a=testing
+# don't use testing unless explictily selected
+# use <pkg>/testing to only install <pkg> from testing
+# use -t testing <pkg> to pull dependencies from testing
+Pin-Priority: -1
