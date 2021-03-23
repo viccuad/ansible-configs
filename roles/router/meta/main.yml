@@ -4,8 +4,8 @@ dependencies:
   - role: server
     vars:
       apt_sources:
-        - buster
-        - buster-backports # for pcengines-apu3b4
+        - bullseye
+        - bullseye-backports # for pcengines-apu3b4
   - pcengines-apu3b4
   - cockpit
   - git-server
