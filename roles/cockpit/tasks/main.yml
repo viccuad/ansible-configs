@@ -13,8 +13,8 @@
       - cockpit-packagekit
       - cockpit-machines # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=912725
       - cockpit-pcp
-
-
+      # others
+      - cockpit-podman
 
 
 - name: enable cockpit on firewalld internal zone
