@@ -11,3 +11,18 @@ wirednets:
     zone: public
     ipv4method: shared
     ipv6method: ignore
+
+bridgenets:
+  bridge0:
+    interfacename: bridge0
+    zone: internal
+    ipv4method: shared
+    ipv6method: ignore
+
+bridgeslavenets:
+  ethinternal:
+    interfacename: ens8
+    bridgemaster: bridge0
+  ethpublic:
+    interfacename: ens9
+    bridgemaster: bridge0
