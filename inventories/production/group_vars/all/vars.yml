@@ -21,3 +21,8 @@ debian_user_sshkey: "{{ normal_user_sshkey }}"
 debian_ssh_user: "{{ vault_debian_ssh_user }}"
 debian_zshenv: .zshenv
 debian_zshaliases: .zsh/aliases.zsh
+
+wifi_internal_ssid: "{{ vault_wifi_internal_ssid }}"
+wifi_internal_psk: "{{ vault_wifi_internal_psk }}"
+wifi_external_ssid: "{{ vault_wifi_external_ssid }}"
+wifi_external_psk: "{{ vault_wifi_external_psk }}"

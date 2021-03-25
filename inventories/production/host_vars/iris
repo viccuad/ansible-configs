@@ -2,8 +2,8 @@
 
 wifinets:
   wlaninternal:
-    SSID: "{{ vault_wifi_internal_ssid }}"
-    PSK: "{{ vault_wifi_internal_psk }}"
+    SSID: "{{ wifi_internal_ssid }}"
+    PSK: "{{ wifi_internal_psk }}"
     interfacename: wlp5s0
     band: a
     mode: ap
@@ -11,8 +11,8 @@ wifinets:
     ipv4method: shared
     ipv6method: auto
   wlanexternal:
-    SSID: "{{ vault_wifi_external_ssid }}"
-    PSK: "{{ vault_wifi_external_psk }}"
+    SSID: "{{ wifi_external_ssid }}"
+    PSK: "{{ wifi_external_psk }}"
     interfacename: wlp1s0
     band: a
     mode: ap
