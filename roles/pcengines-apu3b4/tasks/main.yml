@@ -33,6 +33,12 @@
       - firmware-atheros
       - firmware-linux
       - firmware-linux-nonfree
+      - firmware-misc-nonfree
+      - iucode-tool
+      - amd64-microcode
+      - firmware-amd-graphics
+      - b43-fwcutter
+      - firmware-b43-installer
 
 
 - name: install current kernel headers
