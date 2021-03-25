@@ -9,7 +9,7 @@ wifinets:
     mode: ap
     zone: internal
     ipv4method: shared
-    ipv6method: auto
+    ipv6method: ignore
   wlanexternal:
     SSID: "{{ wifi_external_ssid }}"
     PSK: "{{ wifi_external_psk }}"
@@ -18,7 +18,7 @@ wifinets:
     mode: ap
     zone: external
     ipv4method: shared
-    ipv6method: auto
+    ipv6method: ignore
 
 wirednets:
   ethinternal:
