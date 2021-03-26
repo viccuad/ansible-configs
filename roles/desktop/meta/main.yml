@@ -9,3 +9,4 @@ dependencies:
   - flatpak
   - gnome
   - games
+  - borgmatic-client

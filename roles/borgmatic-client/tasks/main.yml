@@ -1,0 +1,38 @@
+---
+
+# https://torsion.org/borgmatic/docs/how-to/set-up-backups/
+# https://torsion.org/borgmatic/
+#
+- name: install borgmatic
+  apt:
+    name: "{{ items }}"
+    install_recommends: no
+  vars:
+    items:
+      - borgmatic
+
+
+- name: create ~/.config/borgmatic folder
+  file:
+    path: "/home/{{ normal_user }}/.config/borgmatic"
+    state: directory
+    mode: 0755
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+# Generate config with: generate-borgmatic-config --destination ~/.config/borgmatic/config.yaml
+- name: copy borgmatic config
+  template:
+    src: borgmatic-config.yml.j2
+    dest: "/home/{{ normal_user }}/.config/borgmatic/config.yaml"
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
+    validate: validate-borgmatic-config
+
+
+# TODO Install systemd user unit and timer
+# as root? as user? :thinking:
+
+
+# make backups: borgmatic --verbosity 1 --files

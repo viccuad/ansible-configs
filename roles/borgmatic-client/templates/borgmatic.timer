@@ -1,0 +1,10 @@
+# from https://torsion.org/borgmatic/docs/how-to/set-up-backups/#systemd
+[Unit]
+Description=Run borgmatic backup
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
