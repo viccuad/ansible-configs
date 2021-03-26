@@ -23,25 +23,32 @@ Here is an example:
      Run 'help' for help, or 'exit' to leave.  Available commands:
      create
      list
+
      git> create sneakyproject.git
      Sorry, only root can use this command. Use sudo su git.
+
      git> list
      coolproject.git
      awesomeproject.git
+
      git> exit
      Connection to gitserver closed.
+
      $ ssh root@gitserver
      # sudo su git
      [sudo] password for user:
      Run 'help' for help, or 'exit' to leave.  Available commands:
      create
      list
+
      git> create awesomeproject2.git
      Initialized empty Git repository in /srv/data/git/awesomeproject.git/
+
      git> list
      coolproject.git
      awesomeproject.git
      awesomeproject2.git
+
      git> exit
      #
 "
