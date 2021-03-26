@@ -54,15 +54,19 @@
 
 
 - name: "set up {{ normal_user }} as git's authorized key"
-  file:
-    src: "{{ normal_user }}"
-    dest: /etc/ssh/authorized_keys/git
-    owner: root
-    group: root
-    state: link
+  blockinfile:
+    path: "/etc/ssh/authorized_keys/{{ normal_user }}"
+    block: |
+            no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty {{ normal_user_sshkey }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    create: yes
+    validate: ssh-keygen -l -f %s
+  with_items: "{{ backup_auth_users }}"
   become: yes
   notify: restart ssh
 
+
+# TODO not enough perms to run git-shell
 
 - name: copy files for git user
   synchronize:
@@ -74,3 +78,10 @@
     rsync_opts:
       - "--exclude=.git*"
       - "--chown=git:git"
+
+
+# if git-shell not working:
+# $ cd /srv/data/git
+# $ mkdir project.git
+# $ cd project.git
+# $ git init --bare
