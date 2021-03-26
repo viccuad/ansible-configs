@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:bullseye
 LABEL maintainer="Víctor Cuadrado Juan"
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
