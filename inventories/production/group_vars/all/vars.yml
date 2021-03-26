@@ -26,3 +26,5 @@ wifi_internal_ssid: "{{ vault_wifi_internal_ssid }}"
 wifi_internal_psk: "{{ vault_wifi_internal_psk }}"
 wifi_external_ssid: "{{ vault_wifi_external_ssid }}"
 wifi_external_psk: "{{ vault_wifi_external_psk }}"
+
+backup_server_host: cerberus
