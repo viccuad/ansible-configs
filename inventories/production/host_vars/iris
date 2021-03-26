@@ -1,15 +1,33 @@
 ---
 
-wifinets:
+bridgenets:
+  bridge0:
+    interfacename: bridge0
+    zone: internal
+    ipv4method: shared
+    ipv6method: ignore
+
+bridgeslavenets:
+  ethinternal1:
+    interfacename: enp3s0
+    bridgemaster: bridge0
+    zone: internal
+  ethinternal2:
+    interfacename: enp4s0
+    bridgemaster: bridge0
+    zone: internal
+
+wifislavenets:
   wlaninternal:
     SSID: "{{ wifi_internal_ssid }}"
     PSK: "{{ wifi_internal_psk }}"
     interfacename: wlp5s0
+    bridgemaster: bridge0
     band: a
     mode: ap
     zone: internal
-    ipv4method: shared
-    ipv6method: ignore
+
+wifinets:
   wlanexternal:
     SSID: "{{ wifi_external_ssid }}"
     PSK: "{{ wifi_external_psk }}"
@@ -17,20 +35,6 @@ wifinets:
     band: a
     mode: ap
     zone: external
-    ipv4method: shared
-    ipv6method: ignore
-
-wirednets:
-  ethinternal:
-    interfacename: enp3s0
-    zone: internal
-    ipv4method: shared
-    ipv6method: ignore
-  ethinternal2:
-    interfacename: enp4s0
-    zone: internal
-    ipv4method: shared
-    ipv6method: ignore
 
 wannets:
   wan:
@@ -38,3 +42,16 @@ wannets:
     zone: external
     ipv4method: shared
     ipv6method: ignore
+
+# wirednets:
+#   ethinternal:
+#     interfacename: enp3s0
+#     zone: internal
+#     ipv4method: shared
+#     ipv6method: ignore
+#   ethinternal2:
+#     interfacename: enp4s0
+#     zone: internal
+#     ipv4method: shared
+#     ipv6method: ignore
+#

@@ -4,6 +4,8 @@ id={{ item.value.SSID }}
 uuid={{ 9999999999999999999999 | random | to_uuid }}
 type=wifi
 interface-name={{ item.value.interfacename }}
+slave-type=bridge
+master={{ item.value.bridgemaster }}
 zone={{ item.value.zone }}
 
 [wifi]
@@ -15,11 +17,4 @@ mode={{ item.value.mode }}
 key-mgmt=wpa-psk
 psk={{ item.value.PSK }}
 
-[ipv4]
-dns-search=
-method={{ item.value.ipv4method }}
-
-[ipv6]
-dns-search=
-addr-gen-mode=stable-privacy
-method={{ item.value.ipv6method }}
+[bridge-port]

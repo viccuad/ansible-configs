@@ -1,5 +1,7 @@
 ---
 
+# TODO use ansible nmcli module once it supports wlan
+
 - name: Attempt to setup networking
   block:
   - name: ensure network-manager packages are installed
@@ -11,6 +13,15 @@
     file:
       path: "/etc/NetworkManager/system-connections/"
       state: absent
+  - name: mark wifi p2p-dev-* interfaces as unmanaged by nm
+    blockinfile:
+      path: /etc/NetworkManager/conf.d/unmanaged.conf
+      block: |
+              [keyfile]
+              unmanaged-devices=interface-name:p2p*;
+              #unmanaged-devices=interface-name:wlp*;
+      create: yes
+      marker: "# {mark}"
   - name: ensure system-connections dir exists
     file:
       path: "/etc/NetworkManager/system-connections"
@@ -24,8 +35,6 @@
       group: root
       mode: 0600
     loop: "{{ bridgenets | default({}) | dict2items }}"
-    # with_dict: "{{ bridgenets | default([]) }}"
-    # loop: "{{ query('dict', bridgenets) }}"
     notify:
     - restart NetworkManager
   - name: set up ethernet configs
@@ -48,6 +57,16 @@
     loop: "{{ bridgeslavenets | default({}) | dict2items }}"
     notify:
     - restart NetworkManager
+  - name: set up bridged wireless configs
+    template:
+      src: wireless-slave_nm.j2
+      dest: "/etc/NetworkManager/system-connections/{{ item.key }}.nmconnection"
+      owner: root
+      group: root
+      mode: 0600
+    loop: "{{ wifislavenets | default({}) | dict2items }}"
+    notify:
+    - restart NetworkManager
   - name: set up wireless configs
     template:
       src: wireless_nm.j2
@@ -68,6 +87,40 @@
     loop: "{{ wannets | default({}) | dict2items }}"
     notify:
     - restart NetworkManager
+  - name: enable dhcp, dns, ssh on internal zone
+    firewalld:
+      zone: internal
+      service: {{ item }}
+      permanent: true
+      state: enabled
+    loop:
+      - dhcp
+      - dns
+      - ssh
+  - name: enable dhcp, dns, ssh on dmz zone
+    firewalld:
+      zone: dmz
+      service: {{ item }}
+      permanent: true
+      state: enabled
+    loop:
+      - dhcp
+      - dns
+      - ssh
+  - name: enable ssh on external zone
+    firewalld:
+      zone: external
+      service: {{ item }}
+      permanent: true
+      state: enabled
+    loop:
+      - ssh
+  - name: enable masquerade on external zone
+    firewalld:
+      zone: external
+      masquerade: yes
+      state: enabled
+      permanent: yes
   rescue:
   - name: print message
     ansible.builtin.debug:
@@ -89,6 +142,7 @@
 # apply the handlers now instead of waiting for the end of the playbook
 - meta: flush_handlers
 
-
-# https://developer.gnome.org/NetworkManager/1.18/
-# https://developer.gnome.org/NetworkManager/1.18/nm-settings.html
+# sudo firewall-cmd --list-all --zone=internal
+# sudo firewall-cmd --change-zone=enp2s0 --zone=external
+# sudo firewall-cmd --runtime-to-permanent
+# sudo apt install ipset # for the firewalld warning
