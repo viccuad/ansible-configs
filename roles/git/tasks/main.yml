@@ -16,6 +16,7 @@
   copy:
     src: .
     dest: "/home/{{ normal_user }}/"
+    mode: 0644
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
 
@@ -24,5 +25,6 @@
   template:
     src: .gitconfig.j2
     dest: "/home/{{ normal_user }}/.gitconfig"
+    mode: 0644
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"

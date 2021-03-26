@@ -21,6 +21,7 @@
     path: /srv/data
     state: directory
     owner: root
+    mode: 0750
     group: root
 
 
@@ -29,6 +30,7 @@
     path: /tmp/empty
     state: directory
     owner: root
+    mode: 0750
     group: root
 
 

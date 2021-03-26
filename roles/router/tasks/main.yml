@@ -22,6 +22,9 @@
               #unmanaged-devices=interface-name:wlp*;
       create: yes
       marker: "# {mark}"
+      owner: root
+      group: root
+      mode: 0600
   - name: ensure system-connections dir exists
     file:
       path: "/etc/NetworkManager/system-connections"
@@ -90,7 +93,7 @@
   - name: enable dhcp, dns, ssh on internal zone
     firewalld:
       zone: internal
-      service: {{ item }}
+      service: "{{ item }}"
       permanent: true
       state: enabled
     loop:
@@ -100,7 +103,7 @@
   - name: enable dhcp, dns, ssh on dmz zone
     firewalld:
       zone: dmz
-      service: {{ item }}
+      service: "{{ item }}"
       permanent: true
       state: enabled
     loop:
@@ -110,7 +113,7 @@
   - name: enable ssh on external zone
     firewalld:
       zone: external
-      service: {{ item }}
+      service: "{{ item }}"
       permanent: true
       state: enabled
     loop:
