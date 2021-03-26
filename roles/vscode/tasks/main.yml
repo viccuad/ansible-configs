@@ -21,7 +21,7 @@
 
 
 - name: download the vscode tar
-  command: wget https://vscode-update.azurewebsites.net/latest/linux-x64/stable -O /tmp/vscode.tar.gz
+  command: wget https://update.code.visualstudio.com/latest/linux-x64/stable -O /tmp/vscode.tar.gz
   args:
     creates: "/home/{{ normal_user }}/.apps/VSCode-linux-x64"
   tags:
