@@ -1,8 +1,9 @@
 ---
-image: "registry.gitlab.com/viccuad/ansible-configs"
+image: python:3-slim
 
 before_script:
-  - ansible --version
+  - pip install ansible ansible-lint
+  - ansible-lint --version
 
 test-syntax:
   script:
@@ -12,7 +13,7 @@ test-syntax:
 test-style:
   # run ansible-lint against all
   script:
-    - ansible-lint -v *.yml
+    - ansible-lint -v
 
 # disabled, needs privileged container for systemd
 # test-idempotence-bootstrap:
