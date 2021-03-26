@@ -57,17 +57,13 @@
             command="cd {{ backup_pool }}/{{ item.host }};borg serve --restrict-to-path {{ backup_pool }}/{{ item.host }}",restrict {{ item.key }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.host }}"
     create: yes
+    owner: root
+    group: root
+    mode: 0644
     validate: ssh-keygen -l -f %s
   with_items: "{{ backup_auth_users }}"
   become: yes
   notify: restart ssh
 
 
-- name: ensure perms of authorized keys for calling borgbackup
-  file:
-    path: "/etc/ssh/authorized_keys/{{ backup_user }}"
-    owner: root
-    group: root
-    mode: 0644
-  become: yes
-  notify: restart ssh
+# TODO create ssh key for borgbackup, so I don't need to connect the yubikey to do backups

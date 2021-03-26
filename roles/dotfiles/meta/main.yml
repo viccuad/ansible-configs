@@ -3,7 +3,7 @@
 dependencies:
   - bootstrap
   - { role: unattended, when: '"vagrant" in inventory_file' }
-  - apt-sources
+  - apt_sources
   - zsh
   - emacs
   - tmux
@@ -17,9 +17,9 @@ dependencies:
   - lxc
   # - libvirt # FIXME python3-libvirt doesn't get imported correctly in ansible
   - vagrant
-  - debian-devel
+  - debian_devel
   - nvim
-  - signing-party
+  - signing_party
   - virtualenvwrapper
   - beets
   - golang
@@ -28,3 +28,14 @@ dependencies:
   - docker
   - apparmor
   - rust
+
+# TODO remove in ansible >= 2.10 when ansible-lint is not angry
+galaxy_info:
+  author: viccuad
+  description: local
+  license: "GPL3+"
+  min_ansible_version: 2.9
+  platforms:
+  - name: Debian
+    versions:
+    - all

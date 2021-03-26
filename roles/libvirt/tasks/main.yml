@@ -66,6 +66,9 @@
               StrictHostKeyChecking no
               UserKnownHostsFile=/dev/null
     marker: "# {mark} libvirt block"
+    mode: 0600
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 

@@ -12,17 +12,27 @@
 
 # TODO: list disks with ansible facts
 - name: list disks present in the system
-  shell: smartctl --scan | awk '{print $1}'
+  shell: |
+    set -o pipefail && \
+    smartctl --scan | awk '{print $1}'
+  args:
+    executable: /bin/bash
   changed_when: false
   register: disks
 
 
 - name: check if disks support SMART
-  shell: "smartctl -s on {{ item }} ; smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'"
-  with_items: "{{disks.stdout_lines}}"
+  shell: |
+    smartctl -s on {{ item }} && \
+    smartctl -i {{ item }} | grep -qc 'SMART support is: Enabled'
+  args:
+    executable: /bin/bash
+  with_items: "{{ disks.stdout_lines }}"
   register: smart
   changed_when: false
   ignore_errors: True
+  tags:
+   - skip_ansible_lint # set -o pipefail doesn't seem to work
 
 
 - name: remove smartmontools

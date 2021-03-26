@@ -2,7 +2,7 @@
 
 dependencies:
   - bootstrap
-  - apt-sources
+  - apt_sources
   - zsh
   - emacs
   - tmux
@@ -10,4 +10,4 @@ dependencies:
   - gnupg
   - git
   - pass
-  - signing-party
+  - signing_party

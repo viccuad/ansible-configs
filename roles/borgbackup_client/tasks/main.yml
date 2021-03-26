@@ -47,7 +47,12 @@
 
 
 - name: generate the backup password
-  shell: touch {{ backup_pwfile|quote }} && chmod 0600 {{ backup_pwfile|quote }} && pwgen -s -y -1 150 1 > {{ backup_pwfile|quote }} && chmod 0400 {{ backup_pwfile|quote }} && chattr +i {{ backup_pwfile|quote }}
+  shell: |
+    touch {{ backup_pwfile|quote }} && \
+    chmod 0600 {{ backup_pwfile|quote }} && \
+    pwgen -s -y -1 150 1 > {{ backup_pwfile|quote }} && \
+    chmod 0400 {{ backup_pwfile|quote }} && \
+    chattr +i {{ backup_pwfile|quote }}
   args:
     creates: "{{ backup_pwfile }}"
     warn: no

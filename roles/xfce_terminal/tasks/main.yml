@@ -12,3 +12,4 @@
     dest: "/home/{{ normal_user }}/"
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
+    mode: 0644

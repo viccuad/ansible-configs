@@ -61,6 +61,9 @@
     block: |
             no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty {{ normal_user_sshkey }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    owner: root
+    group: root
+    mode: 0644
     create: yes
     validate: ssh-keygen -l -f %s
   with_items: "{{ backup_auth_users }}"

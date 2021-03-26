@@ -4,6 +4,9 @@
   file:
     path: "/home/{{ normal_user }}/.icons"
     state: directory
+    mode: 0644
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 

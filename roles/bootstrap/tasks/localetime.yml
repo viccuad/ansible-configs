@@ -25,6 +25,9 @@
       LC_MEASUREMENT=en_DK.UTF-8
       LC_TELEPHONE=en_DK.UTF-8
     dest: /etc/default/locale
+    owner: root
+    group: root
+    mode: 0644
   notify:
     - rebuild locales database
 

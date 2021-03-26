@@ -28,6 +28,7 @@
     dest: "/home/{{ normal_user }}/.config/borgmatic/config.yaml"
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
+    mode: 0644
     validate: validate-borgmatic-config
 
 

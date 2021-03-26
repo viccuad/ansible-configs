@@ -115,6 +115,9 @@
     content: ""
     dest: "/home/{{ normal_user }}/Templates/Empty document"
     force: no
+    mode: 0755
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 

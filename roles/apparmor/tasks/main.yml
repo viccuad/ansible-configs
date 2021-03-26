@@ -21,6 +21,7 @@
     dest: /etc/apparmor.d/abstractions/read-all-no-net
     owner: root
     group: root
+    mode: 0644
 
 
 # TODO enable apparmor by default

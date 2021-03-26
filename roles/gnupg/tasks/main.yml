@@ -51,6 +51,9 @@
                 <port protocol="udp" port="11371"/>
               </service>
     dest: /etc/firewalld/services/hkp.xml
+    mode: 0644
+    owner: root
+    group: root
   become: yes
   notify: reload firewalld
 

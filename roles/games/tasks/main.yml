@@ -15,7 +15,7 @@
 
 
 - name: check if i386 is enabled
-  shell: dpkg --print-foreign-architectures | grep i386
+  shell: set -o pipefail && dpkg --print-foreign-architectures | grep i386
   register: result_i386_check
   changed_when: result_i386_check.rc == 1
   failed_when: result_i386_check.rc > 1
@@ -65,6 +65,7 @@
     dest: "/home/{{ normal_user }}/"
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
+    mode: 0644
   become: yes
   become_user: "{{ normal_user }}"
 

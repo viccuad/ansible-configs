@@ -43,10 +43,16 @@
             ethernet.cloned-mac-address=random
             wifi.cloned-mac-address=random
     marker: "# {mark} ansible block"
+    mode: 0644
+    owner: root
+    group: root
 
 
 - name: copy tlp config
   copy:
     src: tlp
     dest: /etc/tlp.conf
+    mode: 0644
+    owner: root
+    group: root
   notify: restart tlp

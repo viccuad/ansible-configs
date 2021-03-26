@@ -35,6 +35,9 @@
     block: |
             options kvm-intel nested=1
     marker: "# {mark} nested_kvm block"
+    mode: 0644
+    owner: root
+    group: root
   notify: reload kvm-intel kernel module
   when: is_intel is succeeded and nested_kvm_intel.stdout == "N"
   become: yes
@@ -47,6 +50,9 @@
     block: |
             options kvm-amd nested=y
     marker: "# {mark} nested_kvm block"
+    mode: 0644
+    owner: root
+    group: root
   notify: reload kvm-amd kernel module
   when: is_amd is succeeded and nested_kvm_amd.stdout == "0"
   become: yes

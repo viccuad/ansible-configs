@@ -23,8 +23,9 @@
   template:
     src: lxc-net.j2
     dest: /etc/default/lxc-net
-    # owner: "{{ normal_user }}"
-    # group: "{{ normal_user }}"
+    mode: 0644
+    owner: root
+    group: root
   notify: restart lxc-net
 
 
@@ -33,8 +34,9 @@
   template:
     src: default.conf.j2
     dest: /etc/lxc/default.conf
-    # owner: "{{ normal_user }}"
-    # group: "{{ normal_user }}"
+    mode: 0644
+    owner: root
+    group: root
   notify: restart lxc-net
 
 
@@ -43,6 +45,9 @@
   file:
     path: ~/.ssh
     state: directory
+    mode: 0700
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 
@@ -56,6 +61,9 @@
               StrictHostKeyChecking no
               UserKnownHostsFile=/dev/null
     marker: "# {mark} lxc block"
+    mode: 0600
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 
@@ -74,24 +82,33 @@
     create: yes
     line: '{{ normal_user }}  ALL = NOPASSWD:SETENV: /usr/bin/lxc-*'
     validate: 'visudo -cf %s'
+    mode: 0644
+    owner: root
+    group: root
 
 
-- name: give {{normal_user }} subuids for unprivileged containers
+- name: give {{ normal_user }} subuids for unprivileged containers
   lineinfile:
     path: /etc/subuid
     state: present
     regexp: "^{{ normal_user }}(.*?)$"
     line: '{{ normal_user }}:100000:65536'
+    mode: 0644
+    owner: root
+    group: root
     create: yes
   become: yes
 
 
-- name: give {{normal_user }} subgids for unprivileged containers
+- name: give {{ normal_user }} subgids for unprivileged containers
   lineinfile:
     path: /etc/subgid
     state: present
     regexp: "^{{ normal_user }}(.*?)$"
     line: '{{ normal_user }}:100000:65536'
+    mode: 0644
+    owner: root
+    group: root
     create: yes
   become: yes
 
@@ -101,6 +118,9 @@
   file:
     path: ~/.config/lxc
     state: directory
+    mode: 0700
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 
@@ -112,6 +132,9 @@
               lxc.idmap = u 0 100000 65536
               lxc.idmap = g 0 100000 65536
     dest: "/home/{{ normal_user }}/.config/lxc/default.conf"
+    mode: 0644
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
   become_user: "{{ normal_user }}"
 
@@ -123,6 +146,9 @@
               # connected the lxcbr0:
               {{ normal_user }} veth lxcbr0 10
     dest: "/etc/lxc/lxc-usernet"
+    mode: 0644
+    owner: "{{ normal_user }}"
+    group: "{{ normal_user }}"
   become: yes
 
 
@@ -138,5 +164,8 @@
               # thins the security https://lwn.net/Articles/673597/
               kernel.unprivileged_userns_clone=1
     dest: /etc/sysctl.d/80-lxc-userns.conf
+    mode: 0644
+    owner: root
+    group: root
   become: yes
   notify: reload sysctl rules
