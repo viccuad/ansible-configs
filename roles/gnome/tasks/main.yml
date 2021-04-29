@@ -11,6 +11,7 @@
       - anacron
       # - emacs25-lucid # gui
       - task-gnome-desktop
+      - paper-icon-theme
       - printer-driver-cups-pdf
       - dconf-gsettings-backend
       - fwupd
