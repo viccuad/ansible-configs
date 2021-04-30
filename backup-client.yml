@@ -3,4 +3,4 @@
 - hosts: backup-client
   become: yes
   roles:
-    - borgbackup_client
+    - borgmatic_client
