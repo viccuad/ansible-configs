@@ -61,7 +61,7 @@ $ ansible-galaxy install -r galaxy-roles.yml --roles-path ./roles --force
 and then run the playbooks:
 
 ```bash
-$ ansible-playbook --vault-password-file=vault_pass.sh --ask-become-pass -i inventories/production/hosts all.yml --limit=<host> --check
+$ ansible-playbook --vault-password-file=vault_pass.sh -i inventories/production/hosts all.yml --limit=<host> --check
 ```
 
 To decrypt/encrypt the vault:
@@ -81,7 +81,7 @@ Yadda yadda:
 
 ```bash
 $ adduser deploy # empty password to disable login by password
-                 # or set temp password, to be removed with passwd -d deploy
+                 # or set temp password, to be disabled with passwd -l deploy
 $ usermod -aG sudo deploy
 $ echo "deploy ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/deploy
 $ apt install sudo # if minimal installation
