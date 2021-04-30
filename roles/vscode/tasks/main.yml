@@ -68,13 +68,13 @@
     line: 'alias code="code --reuse-window --disable-gpu"'
 
 
-- name: copy vscode files
-  copy:
-    src: .
-    dest: "/home/{{ normal_user }}/"
-    owner: "{{ normal_user }}"
-    group: "{{ normal_user }}"
-    mode: 0644
+# - name: copy vscode files
+#   copy:
+#     src: .
+#     dest: "/home/{{ normal_user }}/"
+#     owner: "{{ normal_user }}"
+#     group: "{{ normal_user }}"
+#     mode: 0644
 
 
 - name: install vscode extensions
