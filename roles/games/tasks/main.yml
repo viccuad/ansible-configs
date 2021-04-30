@@ -15,10 +15,12 @@
 
 
 - name: check if i386 is enabled
-  shell: set -o pipefail && dpkg --print-foreign-architectures | grep i386
+  shell: dpkg --print-foreign-architectures | grep i386
   register: result_i386_check
   changed_when: result_i386_check.rc == 1
   failed_when: result_i386_check.rc > 1
+  tags:
+   - skip_ansible_lint # dash does not have set -o pipefail
 
 
 - name: enable i386 architecture for steam
