@@ -15,7 +15,7 @@
   vars:
     items:
       - docker.io
-      - docker-compose
+      # - docker-compose # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918012
 
 
 - name: add {{ normal_user }} to docker group
