@@ -41,6 +41,11 @@
     state: started
     enabled: yes
 
+- name: create firewalld internal zone
+  firewalld:
+    zone: internal
+    state: present
+    permanent: true
 
 - name: enable popularity-contest
   lineinfile:
