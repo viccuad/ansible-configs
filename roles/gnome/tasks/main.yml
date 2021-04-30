@@ -17,7 +17,7 @@
       - fwupd
       - gnome-software-plugin-flatpak
       - xdg-desktop-portal-gtk
-      - firefox
+      - firefox-esr
       - webext-https-everywhere
       - webext-ublock-origin-firefox
       - webext-ublock-origin-chromium
@@ -59,6 +59,12 @@
       - revolt
       - libratbag-tools
       - gnome-nettool
+      - v4l-utils # webcam config saving
+      - python3-nautilus # gsconnect file integration
+      - gir1.2-nautilus-3.0 # gsconnect file integration
+      - gir1.2-ebook-1.2 # gsconnect desktop contacts
+      - gir1.2-ebookcontacts-1.2 # gsconnect desktop contacts
+      - gir1.2-edataserver-1.2 # gsconnect desktop contacts
 
 
 - name: make sure some gui packages are not present
