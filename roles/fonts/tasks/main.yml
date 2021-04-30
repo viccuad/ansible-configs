@@ -23,7 +23,7 @@
     install_recommends: yes
   vars:
     items:
-      - fonts-font-awesome
+      - fonts-fork-awesome
       - fonts-powerline
       - fonts-hack-ttf
       - fonts-lmodern
