@@ -142,8 +142,8 @@
     - restart NetworkManager
 
 
-# apply the handlers now instead of waiting for the end of the playbook
-- meta: flush_handlers
+- name: apply handlers now instead of at the end of playbook
+  meta: flush_handlers
 
 # sudo firewall-cmd --list-all --zone=internal
 # sudo firewall-cmd --change-zone=enp2s0 --zone=external

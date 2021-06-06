@@ -58,7 +58,8 @@
   notify: reload firewalld
 
 
-- meta: flush_handlers # for firewalld to get the new hkp service
+- name: apply handlers now for firewalld to get the new hkp service
+  meta: flush_handlers
 
 
 - name: open firewalld for hkp
@@ -70,7 +71,8 @@
   notify: reload firewalld
 
 
-- meta: flush_handlers # for firewalld to open hkp service before importing gpg keys
+- name: apply handlers now so firewalld opens hkp before importing gpg keys
+  meta: flush_handlers
 
 
 - name: set env for gpg

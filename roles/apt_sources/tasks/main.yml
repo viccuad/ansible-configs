@@ -43,5 +43,5 @@
     notify: apt dist-upgrade
 
 
-# apply the handlers now instead of waiting for the end of the playbook
-- meta: flush_handlers
+- name: apply handlers now instead of at the end of playbook
+  meta: flush_handlers
