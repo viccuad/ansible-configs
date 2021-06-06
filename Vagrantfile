@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "debian/bullseye64"
   # config.vm.box = "local/bullseye"
 
-  hostnames = ['router','dotfiles','offlinepc','desktop','laptop','nas','htpc']
+  hostnames = ['router','dmz','dotfiles','offlinepc','desktop','laptop','nas','htpc']
   hostnames.each do |name|
   config.vm.define "#{name}" do |system|
     system.vm.host_name = "#{name}"
@@ -69,6 +69,30 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                       :libvirt__network_name => 'switch_wifi'
                       # ens9
     router.vm.provider :libvirt do |domain|
+      domain.memory = 2048
+      domain.cpus = 1
+    end
+  end
+
+  config.vm.define :dmz do |dmz|
+    dmz.vm.network :private_network,
+                      :libvirt__network_name => 'ansible-configs_mgmt',
+                      :libvirt__dhcp_enabled => false,
+                      :ip => "192.168.111.9"
+                      # ens7
+    dmz.vm.network :private_network,
+                      :auto_config => false,
+                      :libvirt__forward_mode => 'veryisolated',
+                      :libvirt__dhcp_enabled => false,
+                      :libvirt__network_name => 'switch_lan'
+                      # ens8
+    dmz.vm.network :private_network,
+                      :auto_config => false,
+                      :libvirt__forward_mode => 'veryisolated',
+                      :libvirt__dhcp_enabled => false,
+                      :libvirt__network_name => 'wan'
+                      # ens9
+    dmz.vm.provider :libvirt do |domain|
       domain.memory = 2048
       domain.cpus = 1
     end

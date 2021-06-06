@@ -2,6 +2,7 @@
 
 - import_playbook: dotfiles.yml
 - import_playbook: router.yml
+- import_playbook: dmz.yml
 - import_playbook: desktop.yml
 - import_playbook: laptop.yml
 - import_playbook: nas.yml

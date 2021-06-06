@@ -1,0 +1,6 @@
+---
+
+- hosts: dmz
+  become: yes
+  roles:
+    - router

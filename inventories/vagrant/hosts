@@ -45,13 +45,19 @@ all:
         arouter:
           ansible_host: 192.168.111.10
           ansible_private_key_file: .vagrant/machines/router/libvirt/private_key
+    dmz:
+      hosts:
+        admz:
+          ansible_host: 192.168.111.9
+          ansible_private_key_file: .vagrant/machines/dmz/libvirt/private_key
     server:
       children:
         nas:
         router:
+        dmz:
     upgradeable:
       children:
         htpc:
         nas:
         router:
-
+        dmz:
