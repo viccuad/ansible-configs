@@ -11,3 +11,14 @@ dependencies:
   - git
   - pass
   - signing_party
+
+# TODO remove in ansible >= 2.10 when ansible-lint is not angry
+galaxy_info:
+  author: viccuad
+  description: local
+  license: "GPL3+"
+  min_ansible_version: 2.9
+  platforms:
+  - name: Debian
+    versions:
+    - all
