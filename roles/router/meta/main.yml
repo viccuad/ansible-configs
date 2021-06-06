@@ -8,7 +8,6 @@ dependencies:
         - bullseye-backports # for pcengines_apu3b4
   - pcengines_apu3b4
   - cockpit
-  - git_server
 
 # TODO remove in ansible >= 2.10 when ansible-lint is not angry
 galaxy_info:
