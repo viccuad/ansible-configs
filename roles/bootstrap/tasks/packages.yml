@@ -35,6 +35,14 @@
       - popularity-contest
 
 
+- name: reconfigure debsecan for current distro
+  ansible.builtin.debconf:
+    name: debsecan
+    question: debsecan/suite
+    value: '{{ ansible_distribution_release }}'
+    vtype: select
+
+
 - name: enable and start firewalld
   service:
     name: firewalld
