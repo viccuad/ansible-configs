@@ -21,9 +21,8 @@
       - webext-https-everywhere
       - webext-ublock-origin-firefox
       - webext-ublock-origin-chromium
-      - thunderbird
-      - enigmail
-      - spamassassin
+      - evolution
+      - evolution-plugin-spamassassin
       - dconf-gsettings-backend
       - dconf-editor
       - libcanberra-gtk-module
