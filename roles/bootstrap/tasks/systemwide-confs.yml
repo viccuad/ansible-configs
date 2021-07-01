@@ -45,3 +45,15 @@
     owner: root
     group: root
     mode: 0644
+
+
+- name: Ask for root pw on sudo instead of user pw
+  lineinfile:
+    dest: /etc/sudoers
+    create: no
+    line: 'Defaults     rootpw'
+    insertafter: '^Defaults'
+    validate: 'visudo -cf %s'
+    mode: 0440
+    owner: root
+    group: root
