@@ -47,6 +47,7 @@
       - gnome-mpv
       - vlc
       - pulseeffects
+      - picard # music importing tool
       - virt-manager
       - gnome-shell-extensions
       - vrms
