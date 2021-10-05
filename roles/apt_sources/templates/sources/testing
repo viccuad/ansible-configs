@@ -2,7 +2,7 @@
 deb http://deb.debian.org/debian/ testing main contrib non-free
 deb-src http://deb.debian.org/debian/ testing main contrib non-free
 
-deb http://security.debian.org/ testing/updates main contrib non-free
-deb-src http://security.debian.org/ testing/updates main contrib non-free
+deb http://security.debian.org/ testing-security main contrib non-free
+deb-src http://security.debian.org/ testing-security main contrib non-free
 
 deb http://debug.mirrors.debian.org/debian-debug/ testing-debug main
