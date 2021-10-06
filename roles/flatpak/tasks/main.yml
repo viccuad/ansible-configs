@@ -20,16 +20,6 @@
   become_user: "{{ normal_user }}"
 
 
-- name: add the winepak flatpak repository
-  flatpak_remote:
-    name: winepak
-    state: present
-    flatpakrepo_url: https://dl.winepak.org/repo/winepak.flatpakrepo
-    method: user
-  become: yes
-  become_user: "{{ normal_user }}"
-
-
 - name: install spotify
   flatpak:
     name: com.spotify.Client
