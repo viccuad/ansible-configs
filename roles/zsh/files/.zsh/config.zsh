@@ -20,6 +20,7 @@ setopt INTERACTIVE_COMMENTS # Allow # for comments on interactive shells
 setopt PROMPT_SUBST
 setopt CORRECT # try to correct the spelling of commands
 setopt COMPLETE_IN_WORD
+setopt AUTO_CD # change to path even if you forget to type `cd`
 
 setopt HIST_VERIFY # if the user enters a line with history expansion: 1st expand 2nd execute
 setopt EXTENDED_HISTORY # add timestamps to history
