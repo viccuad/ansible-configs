@@ -1,19 +1,9 @@
 ---
-image: registry.gitlab.com/pipeline-components/ansible-lint:latest
-
-before_script:
-  - pip install ansible ansible-lint
-  - ansible-lint --version
-
-test-syntax:
+ansible-lint:
+  stage: test
+  image: registry.gitlab.com/pipeline-components/ansible-lint:latest
   script:
-    # Basic role syntax check
-    - ansible-playbook -i inventories/vagrant/hosts all.yml --syntax-check
-
-test-style:
-  # run ansible-lint against all
-  script:
-    - ansible-lint -v
+    - ansible-lint --show-relpath all.yml
 
 # disabled, needs privileged container for systemd
 # test-idempotence-bootstrap:
