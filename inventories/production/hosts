@@ -1,6 +1,6 @@
 all:
   children:
-    backup-client:
+    backup_client:
       children:
         laptop:
     desktop:

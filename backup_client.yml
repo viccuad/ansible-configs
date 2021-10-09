@@ -1,6 +1,6 @@
 ---
 
-- hosts: backup-client
+- hosts: backup_client
   become: yes
   roles:
     - borgmatic_client
