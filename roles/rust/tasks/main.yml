@@ -53,16 +53,25 @@
   become_user: "{{ normal_user }}"
 
 
-# - name: install rust-analyzer
-#   shell: |
-#     url=$(curl -s \
-#     https://api.github.com/repos/rust-analyzer/rust-analyzer/releases/latest \
-#     grep "browser_download_url*" | cut -d : -f 2,3 | tr -d \" | tr -d " ")
-#     wget "$url" -O /tmp/rust-analyzer
-#     mv /tmp/rust-analyzer "/home/{{ normal_user }}/.cargo/bin/rust-analyzer"
-#   creates: "/home/{{ normal_user }}/.cargo/bin/rust-analyzer"
-#   become:  yes
-#   become_user: "{{ normal_user }}"
+- name: install rust-analyzer
+  command: ~/.cargo/bin/rustup +nightly component add "{{ item }}"
+  args:
+    creates: "/home/{{ normal_user }}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer"
+  with_items:
+    - rust-analyzer-preview
+  become: yes
+  become_user: "{{ normal_user }}"
+
+
+- name: add rust-analyzer to path
+  # needed until it isn't nightly
+  file:
+    src: /home/{{ normal_user }}/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/bin/rust-analyzer
+    dest: /home/{{ normal_user }}/.cargo/bin/rust-analyzer
+    state: link
+    force: yes
+  become: yes
+  become_user: "{{ normal_user }}"
 
 
 # - name: install rust completions
