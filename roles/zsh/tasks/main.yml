@@ -11,7 +11,7 @@
       - trash-cli
       - zsh-syntax-highlighting
       - autojump
-      - git # for prompt
+      - git  # for prompt
       - silversearcher-ag
       - dict
       - direnv
@@ -61,5 +61,5 @@
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
     mode: 0644
-  become:  yes
+  become: yes
   become_user: "{{ normal_user }}"
