@@ -30,7 +30,7 @@
   become_user: "{{ normal_user }}"
 
 
-- name: install riot
+- name: install element
   flatpak:
     name: im.riot.Riot
     state: present
