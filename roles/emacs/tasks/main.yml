@@ -78,7 +78,7 @@
     # dest: "/home/{{ normal_user }}/.emacs.d.doom/"
     depth: 1
     update: no
-    version: develop
+    version: master
   become: yes
   become_user: "{{ normal_user }}"
 
