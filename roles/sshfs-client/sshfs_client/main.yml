@@ -1,0 +1,24 @@
+---
+
+- name: install ssh client packages
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - sshfs
+
+# sshfs myuser@mycomputer:/remote/path /local/path -o idmap=user
+# eg:
+# sshfs vic@cerberus:/srv ~/cerberus
+
+# Secure user access
+
+# When automounting via fstab, the filesystem will generally be mounted by root.
+# By default, this produces undesireable results if you wish access as an
+# ordinary user and limit access to other users.
+
+# An example mountpoint configuration:
+
+# USERNAME@HOSTNAME_OR_IP:/REMOTE/DIRECTORY  /LOCAL/MOUNTPOINT  fuse.sshfs noauto,x-systemd.automount,_netdev,user,idmap=user,follow_symlinks,identityfile=/home/USERNAME/.ssh/id_rsa,allow_other,default_permissions,uid=USER_ID_N,gid=USER_GID_N 0 0
