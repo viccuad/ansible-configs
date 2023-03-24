@@ -14,8 +14,8 @@ dependencies:
   - debuggers
   - pass
   - weechat
-  - lxc
-  # - libvirt # FIXME python3-libvirt doesn't get imported correctly in ansible
+  # - lxc
+  - libvirt # FIXME python3-libvirt doesn't get imported correctly in ansible
   - vagrant
   - debian_devel
   - nvim
