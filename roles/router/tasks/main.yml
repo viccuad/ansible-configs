@@ -142,7 +142,7 @@
     - restart NetworkManager
 
 
-- name: apply handlers now instead of at the end of playbook
+- name: apply handlers now enstead of at the end of playbook
   meta: flush_handlers
 
 # sudo firewall-cmd --list-all --zone=internal
