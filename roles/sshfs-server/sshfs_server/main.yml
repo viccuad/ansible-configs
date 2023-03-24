@@ -1,0 +1,23 @@
+---
+
+- name: install ssh server packages
+  apt:
+    name: "{{ items }}"
+    state: present
+    install_recommends: yes
+  vars:
+    items:
+      - nfs-kernel-server
+
+# create sshfs user
+
+
+# /etc/ssh/sshd_config
+
+# .....
+# Match User someuser 
+#        ChrootDirectory /chroot/%u
+#        ForceCommand internal-sftp
+#        AllowTcpForwarding no
+#        X11Forwarding no
+# .....

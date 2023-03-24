@@ -65,6 +65,7 @@
       - gir1.2-ebook-1.2 # gsconnect desktop contacts
       - gir1.2-ebookcontacts-1.2 # gsconnect desktop contacts
       - gir1.2-edataserver-1.2 # gsconnect desktop contacts
+      # - waydroid # when in repos
 
 
 - name: make sure some gui packages are not present
@@ -159,3 +160,32 @@
   vars:
     items:
       - materia-gtk-theme
+
+# - name: install scripts and udev rule for logitech c920 webcam
+
+# vic@viccuad /etc/v4l2-persistent-settings$ cat HD\ Pro\ Webcam\ C920.conf
+# brightness 128
+# contrast 128
+# saturation 128
+# white_balance_temperature_auto 1
+# gain 235
+# power_line_frequency 1
+# white_balance_temperature 2508
+# sharpness 128
+# backlight_compensation 0
+# exposure_auto 3
+# exposure_absolute 500
+# exposure_auto_priority 1
+# pan_absolute 0
+# tilt_absolute 0
+# focus_absolute 0
+# focus_auto 1
+# zoom_absolute 100
+# led1_mode 3
+# led1_frequency 0
+
+# https://git.ao2.it/v4l2-persistent-settings.git/
+
+
+# TODO make gvfs work with gpg-agent
+# https://unix.stackexchange.com/questions/616372/how-to-start-gnupg-ssh-agent-for-gvfs

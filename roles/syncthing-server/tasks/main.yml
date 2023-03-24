@@ -1,0 +1,20 @@
+---
+
+# install syncthing server package
+#
+# install configuration with variable for key and the server being always the
+# master (so no photos/data gets deleted from the server ever)
+#
+# open firewalld internal
+# sudo firewall-cmd --zone=internal --add-service=syncthing
+# sudo firewall-cmd --zone=internal --add-service=syncthing --permanent
+
+# tunneling UI via ssh to configure first time:
+# ssh -L 9999:localhost:8384 machine
+# firefox localhost:9999
+
+# disabled global discovery, relaying, telemetry
+
+# https://github.com/tmorin/homecloud-ansible/blob/735aa846911cad5e10b9b8e4f2ea2bc345a016a8/collection/roles/k3s_dnas/tasks/host_configure-syncthing.yml
+# https://github.com/mbocquet/syncthing/blob/master/tasks/main.yml
+# https://github.com/eddyhub/ansible-syncthing

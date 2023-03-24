@@ -24,3 +24,5 @@ galaxy_info:
     versions:
     - all
 
+# TODO put eth0 in internal zone
+# TODO changed the sftp backend in /etc/ssh/sshd_config
