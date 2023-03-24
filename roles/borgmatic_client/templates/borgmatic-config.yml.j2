@@ -24,7 +24,7 @@ location:
     repositories:
         # - user@backupserver:sourcehostname.borg
         # - user@backupserver:{fqdn}
-        - {{ backup_user }}@{{ backup_server_host }}:{{ normal_user }}
+        - ssh://{{ backup_user }}@{{ backup_server_host }}/./{{ normal_user }}
 
     # Stay in same file system (do not cross mount points).
     # Defaults to false. But when a database hook is used, the
