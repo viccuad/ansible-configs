@@ -31,6 +31,7 @@
 	pa = push --all --follow-tags origin
 	last = log -1 HEAD
 	unstage = reset HEAD --
+	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 [color]
 	ui = true
 	branch = auto
