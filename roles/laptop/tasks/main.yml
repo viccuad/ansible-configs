@@ -7,10 +7,10 @@
     install_recommends: yes
   vars:
     items:
-      - tlp
-      - tp-smapi-dkms
+      # - tlp
+      - tp-smapi-dkms # for battery control commands
       - acpi-call-dkms
-      - anacron
+      - systemd-cron # for anacron
 
 
 - name: install laptop-related packages from non-free
