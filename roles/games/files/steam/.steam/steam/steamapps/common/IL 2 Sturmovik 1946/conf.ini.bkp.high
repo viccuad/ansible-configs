@@ -1,0 +1,406 @@
+; https://www.sas1946.com/main/index.php?topic=9756.0
+; https://www.mission4today.com/index.php?name=Knowledge_Base&cat=7
+
+[il2]
+title=Il2-Sturmovik 1946
+hotkeys=HotKey game
+
+[window]
+width=2560
+height=1440
+ColourBits=32
+DepthBits=24
+StencilBits=8
+ChangeScreenRes=1
+FullScreen=1
+DrawIfNotFocused=1
+EnableResize=1
+EnableClose=1
+SaveAspect=0
+Use3Renders=0
+WideScreenFoV=1
+UIColor=1
+UIDetail=0
+UIBackground=rnd
+
+[GLPROVIDER]
+GL=Opengl32.dll
+
+[GLPROVIDERS]
+Open GL=Opengl32.dll
+DirectX=dx8wrap.dll
+
+[NET]
+speed=25000
+routeChannels=0
+serverChannels=31
+localPort=21000
+remotePort=21000
+SkinDownload=1
+serverName=No Name
+serverDescription=
+remoteHost=
+localHost=
+socksHost=
+checkServerTimeSpeed=1
+checkClientTimeSpeed=0
+disableNetStatStatistics=0
+showPilotNumber=1
+showPilotPing=1
+showPilotName=1
+showPilotScore=1
+showTeamScore=0
+cumulativeTeamScore=0
+showPilotArmy=1
+showPilotACDesignation=1
+showPilotACType=1
+filterUserNames=0
+reflyKIADelay=0
+maxAllowedKIA=-1
+reflyKIADelayMultiplier=0.0
+reflyDisabled=0
+allowMorseAsText=1
+allowCustomSounds=1
+
+[MaxLag]
+farMaxLagTime=10.0
+nearMaxLagTime=2.0
+cheaterWarningDelay=5.0
+cheaterWarningNum=-1
+
+[chat]
+region=(dx=0.6925,dy=0.071666665,x=0.0,y=0.0)
+
+[game]
+Arcade=0
+HighGore=0
+mapPadX=0.984375
+mapPadY=0.40625
+viewSet=57
+Intro=0
+NoSubTitles=0
+SubTitlesLines=3
+NoChatter=0
+NoHudLog=0
+NoLensFlare=0
+; mp_dotrange [FRIENDLY|FOE] [DEFAULT] [COLOR] [DOT ] [RANGE ] [TYPE ] [ID ] [NAME ]
+; This will give you friendly info at Aircraft dot at 15km range at 5km Pilot name 2.5km all other at 100metres
+; mp_dotrange FRIENDLY COLOR 0.1 DOT 15 RANGE 5 TYPE 0.1 ID 0.1 NAME 2.5
+iconTypes=3
+eventlog=eventlog.lst
+eventlogkeep=0
+3dgunners=1
+ScreenshotType=1
+RecordingIndicator=0
+MapAlpha=0.99
+SaveTrk=1
+SkipParatrooperViews=0
+NoMissionInfoHud=0
+noKillInfoHud=0
+BlockMorseChat=0
+SmallMapWPLabels=1
+ShowMorseAsText=0
+IconUnits=0
+; added by me:
+TypeClouds=1
+
+[HotKey game]
+PrintScreen=ScreenShot
+P=pause
+Pause=pause
+
+[HotKey gui]
+Escape=activate
+
+[HookViewFly Config]
+timeFirstStep=2.0
+deltaZ=10.0
+
+[HookView]
+MouseLeft=Len
+
+[HookView Config]
+AzimutSpeed=0.1
+TangageSpeed=0.1
+LenSpeed=1.0
+MinLen=1.0
+DefaultLen=20.0
+MaxLen=3000.0
+Speed=6
+LeanF=0.2
+LeanS=0.2
+Raise=0.089999996
+RubberBand=0.01
+
+[HotKey builder]
+MouseLeft=objectMove
+MouseRight=popupmenu
+Enter=freeView
+Shift MouseLeft=worldZoom
+Alt MouseLeft=select+
+Alt MouseRight=select-
+Alt Ctrl=unselect
+PageDown=change+
+PageUp=change-
+End=change++
+Home=change--
+Ctrl MouseLeft=insert+
+Insert=insert+
+NumPad-0=insert+
+F=fill
+Ctrl MouseRight=delete+
+NumPad.=delete+
+Delete=delete+
+Backspace=cursor
+Tab=cursor
+F10=land
+F11=onLand
+NumPad-=normalLand
+NumPad+=toLand
+NumPad-5=resetAngles
+NumPad-8=resetTangage90
+NumPad-7=stepAzimut-5
+NumPad-4=stepAzimut-15
+NumPad-1=stepAzimut-30
+NumPad-9=stepAzimut5
+NumPad-6=stepAzimut15
+NumPad-3=stepAzimut30
+
+[MouseXYZ]
+F1=SpeedSlow
+F2=SpeedNormal
+F3=SpeedFast
+MouseRight=XYmove
+F4 MouseRight=Zmove
+MouseMiddle=Amove
+F5 MouseRight=Amove
+F6 MouseRight=Tmove
+F7 MouseRight=Kmove
+
+[MouseXYZ Config]
+RealTime=1
+
+[HotKey Console]
+Shift Tab=Activate
+[Console]
+HISTORY=1024
+HISTORYCMD=1024
+LOAD=console.cmd
+SAVE=console.cmd
+LOG=0
+LOGTIME=0
+LOGFILE=log.lst
+LOGKEEP=0
+; START SHOW to display fps
+
+[sound]
+SoundUse=1
+SoundEngine=1
+; 0=Default 1=Headphones 2=Desktop speakers 3=Quadraphonic 4=Surround
+Speakers=0
+; 0=Default 1=Small 2=Narrow 3=Wide
+Placement=0
+SoundFlags.reversestereo=0
+RadioFlags.Enabled=1
+RadioEngine=2
+MusicVolume=8
+ObjectVolume=14
+MusState.takeoff=0
+MusState.inflight=0
+MusState.crash=1
+MusFlags.play=1
+MasterVolume=14
+Attenuation=7
+SoundMode=1
+SamplingRate=2
+; 0=Default 1=8 2=16 Best for quality vs. performance 3=32 Beware of performance hit!
+NumChannels=3
+SoundExt.occlusions=0
+SoundFlags.hardware=1
+SoundFlags.streams=1
+SoundFlags.duplex=1
+SoundExt.acoustics=0
+SoundExt.volumefx=0
+SoundFlags.voicemgr=0
+SoundFlags.static=1
+VoiceVolume=12
+Channels=2
+SoundExt.extrender=0
+SoundFlags.bugscorrect=0
+SoundSetupId=8
+ActivationLevel=0.02
+Preemphasis=0.85
+RadioLatency=0.5
+AGC=1
+PTTMode=1
+SoundFlags.UseRadioChatter=0
+SoundFlags.AutoActivation=0
+RadioFlags.PTTMode=0
+RadioFlags.PlayClicks=0
+ActLevel=0
+MicLevel=0
+SoundFlags.forceEAX1=0
+
+[rts]
+;ProcessAffinityMask=1
+mouseUse=2
+joyUse=1
+trackIRUse=1
+DisableIME=0
+locale=
+UseSmartAxis=0
+JoyProfile=0
+
+[rts_mouse]
+SensitivityX=1.0
+SensitivityY=1.0
+Invert=0
+SensitivityZ=1.0
+
+[rts_joystick]
+X=0 1 4 9 16 25 36 49 64 81 100 0
+Y=0 1 4 9 16 25 36 49 64 81 100 0
+Z=0 10 20 30 40 50 60 70 80 90 100
+RZ=0 10 20 30 40 50 60 70 80 90 100 0
+FF=0
+U=0 10 20 30 40 50 60 70 80 90 100 0
+V=0 10 20 30 40 50 60 70 80 90 100 0
+1X=0 10 20 30 40 50 60 70 80 90 100 0 0
+1Y=0 10 20 30 40 50 60 70 80 90 100 0 0
+1Z=0 100 100 100 100 100 100 100 100 100 100 0 0
+1RX=0 10 20 30 40 50 60 70 80 90 100 0 0
+1RY=0 10 20 30 40 50 60 70 80 90 100 0 0
+1RZ=0 10 20 30 40 50 60 70 80 90 100 0 0
+1U=0 10 20 30 40 50 60 70 80 90 100 0 0
+1V=0 10 20 30 40 50 60 70 80 90 100 0 0
+
+[Render_DirectX]
+TexQual=3
+TexMipFilter=3
+TexCompress=0
+TexFlags.UseDither=1
+TexFlags.UseAlpha=0
+TexFlags.UseIndex=0
+TexFlags.PolygonStipple=0
+TexFlags.UseClampedSprites=0
+TexFlags.DrawLandByTriangles=1
+TexFlags.UseVertexArrays=1
+TexFlags.DisableAPIExtensions=0
+TexFlags.ARBMultitextureExt=1
+TexFlags.TexEnvCombineExt=1
+TexFlags.SecondaryColorExt=1
+TexFlags.VertexArrayExt=1
+TexFlags.ClipHintExt=0
+TexFlags.UsePaletteExt=0
+TexFlags.TexAnisotropicExt=0
+TexFlags.TexCompressARBExt=1
+
+TexFlags.TexEnvCombine4NV=0
+TexFlags.TexEnvCombineDot3=0
+TexFlags.DepthClampNV=0
+TexFlags.SeparateSpecular=0
+TexFlags.TextureShaderNV=0
+
+; must be 1 to activate perfect mode
+HardwareShaders=1
+
+Shadows=2
+Specular=2
+SpecularLight=2
+DiffuseLight=2
+DynamicalLights=2
+MeshDetail=2
+VisibilityDistance=3
+
+Sky=2
+Forest=2
+LandShading=3
+LandDetails=2
+
+LandGeom=2
+TexLarge=1
+TexLandQual=3
+TexLandLarge=1
+
+; was selected as 15, 3dfx voodo 5. Set 2 to maximum
+;VideoSetupId=15
+VideoSetupId=2
+ForceShaders1x=0
+PolygonOffsetFactor=-0.15
+PolygonOffsetUnits=-3.0
+Water=2
+Effects=2
+
+
+[Render_OpenGL]
+TexQual=3
+TexMipFilter=3
+TexCompress=0
+TexFlags.UseDither=0
+TexFlags.UseAlpha=0
+TexFlags.UseIndex=0
+TexFlags.PolygonStipple=1
+TexFlags.UseClampedSprites=0
+TexFlags.DrawLandByTriangles=0
+TexFlags.UseVertexArrays=1
+TexFlags.DisableAPIExtensions=0
+TexFlags.ARBMultitextureExt=1
+TexFlags.TexEnvCombineExt=1
+TexFlags.SecondaryColorExt=1
+TexFlags.VertexArrayExt=1
+TexFlags.ClipHintExt=1
+TexFlags.UsePaletteExt=1
+TexFlags.TexAnisotropicExt=1
+TexFlags.TexCompressARBExt=0
+
+TexFlags.TexEnvCombine4NV=1
+TexFlags.TexEnvCombineDot3=1
+TexFlags.DepthClampNV=1
+TexFlags.SeparateSpecular=1
+TexFlags.TextureShaderNV=1
+
+HardwareShaders=1
+
+Shadows=2
+Specular=2
+SpecularLight=2
+DiffuseLight=2
+DynamicalLights=1
+MeshDetail=2
+VisibilityDistance=3
+
+Sky=2
+Forest=3
+LandShading=3
+LandDetails=2
+
+LandGeom=3
+TexLarge=1
+TexLandQual=3
+TexLandLarge=1
+
+VideoSetupId=17
+Water=3
+Effects=2
+ForceShaders1x=0
+PolygonOffsetFactor=-0.0625
+PolygonOffsetUnits=-1.0
+
+[DGen]
+HistoricalRanks=1
+CampaignLength=Medium
+AirIntensity=high
+GroundIntensity=high
+# CampaignMissions=Hard
+# CampaignAI=Hard
+# CampaignDifficulty=Hard
+[rts_joystick1]
+1X=0 100 100 100 100 100 100 100 100 100 100 0 0
+1Y=0 100 100 100 100 100 100 100 100 100 100 0 0
+1Z=0 100 100 100 100 100 100 100 100 100 100 0 0
+1RX=0 10 20 30 40 50 60 70 80 90 100 0 0
+1RY=0 10 20 30 40 50 60 70 80 90 100 0 0
+1RZ=0 100 100 100 100 100 100 100 100 100 100 0 0
+1U=0 10 20 30 40 50 60 70 80 90 100 0 0
+1V=0 10 20 30 40 50 60 70 80 90 100 0 0
+FF=0
