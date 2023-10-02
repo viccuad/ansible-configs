@@ -9,7 +9,9 @@
     items:
       - neovim
       - python3-pynvim
-
+      # optional deps:
+      - luarocks
+      - gdu
 
 - name: copy nvim files
   synchronize:
