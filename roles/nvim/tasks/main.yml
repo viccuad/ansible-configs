@@ -1,5 +1,4 @@
 ---
-
 - name: install nvim packages
   apt:
     name: "{{ items }}"
@@ -25,7 +24,6 @@
   become: yes
   become_user: "{{ normal_user }}"
 
-
 - name: set nvim env vars
   blockinfile:
     dest: "/home/{{ normal_user }}/.zshenv"
@@ -33,10 +31,9 @@
       export NVIM_TUI_ENABLE_TRUE_COLOR=1
     marker: "# {mark} nvim block"
 
-
 - name: add nvim aliases
   blockinfile:
     dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
     block: |
-            alias nv="nvim"
+      alias nv="nvim"
     marker: "# {mark} nvim block"
