@@ -7,8 +7,10 @@
   vars:
     items:
       - neovim
-      - python3-pynvim
+      - wl-clipboard
+      - nodejs # for mason plugin
       # optional deps:
+      # nerd-fonts
       - luarocks
       - gdu
 
@@ -37,3 +39,9 @@
     block: |
       alias nv="nvim"
     marker: "# {mark} nvim block"
+
+- name: change EDITOR to nvim
+  replace:
+    dest: "/home/{{ normal_user }}/.zshenv"
+    regexp: "EDITOR=(.*|$)"
+    replace: 'EDITOR="nvim"'
