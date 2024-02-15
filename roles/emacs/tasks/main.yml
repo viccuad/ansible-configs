@@ -100,20 +100,17 @@
   become:  yes
   become_user: "{{ normal_user }}"
 
+# - name: change EDITOR to emacsclient
+#   replace:
+#     dest: "/home/{{ normal_user }}/.zshenv"
+#     regexp: 'EDITOR=(.*|$)'
+#     replace: 'EDITOR="emacsclient -t"'
 
-- name: change EDITOR to emacsclient
-  replace:
-    dest: "/home/{{ normal_user }}/.zshenv"
-    regexp: 'EDITOR=(.*|$)'
-    replace: 'EDITOR="emacsclient -t"'
-
-
-- name: add emacs ALTERNATE_EDITOR=""
-  lineinfile:
-    dest: "/home/{{ normal_user }}/.zshenv"
-    line: 'export ALTERNATE_EDITOR=""'
-    insertafter: 'EDITOR=(.*|$)'
-
+# - name: add emacs ALTERNATE_EDITOR=""
+#   lineinfile:
+#     dest: "/home/{{ normal_user }}/.zshenv"
+#     line: 'export ALTERNATE_EDITOR=""'
+#     insertafter: "EDITOR=(.*|$)"
 
 - name: add emacs aliases
   blockinfile:
