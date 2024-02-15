@@ -1,12 +1,4 @@
 ---
-
-# TODO
-# To enable docker memory limitation, the kernel needs to be loaded with
-# boot parameters: cgroup_enable=memory swapaccount=1.
-# This adds runtime overhead.
-# See: /usr/share/doc/docker.io/README.Debian
-
-
 - name: install docker packages
   apt:
     name: "{{ items }}"
@@ -15,8 +7,7 @@
   vars:
     items:
       - docker.io
-      # - docker-compose # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=918012
-
+      - docker-compose
 
 - name: add {{ normal_user }} to docker group
   user:
@@ -25,8 +16,11 @@
     append: yes
   become: yes
 
-
 - name: enable swapaccount
+  # To enable docker memory limitation, the kernel needs to be loaded with
+  # boot parameters: cgroup_enable=memory swapaccount=1.
+  # This adds runtime overhead.
+  # See: /usr/share/doc/docker.io/README.Debian
   lineinfile:
     state: present
     dest: /etc/default/grub
