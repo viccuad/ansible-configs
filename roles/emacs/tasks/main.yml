@@ -1,5 +1,4 @@
 ---
-
 - name: install emacs packages
   apt:
     name: "{{ items }}"
@@ -41,7 +40,6 @@
       - fd-find
       - ripgrep
 
-
 - name: copy emacs files
   copy:
     src: .
@@ -49,7 +47,6 @@
     owner: "{{ normal_user }}"
     group: "{{ normal_user }}"
     mode: 0644
-
 
 - name: clone .spacemacs.d
   git:
@@ -60,7 +57,6 @@
   become: yes
   become_user: "{{ normal_user }}"
 
-
 - name: clone spacemacs' .emacs.d
   git:
     repo: https://github.com/syl20bnr/spacemacs.git
@@ -69,7 +65,6 @@
     version: develop
   become: yes
   become_user: "{{ normal_user }}"
-
 
 - name: clone doom's .emacs.d
   git:
@@ -82,7 +77,6 @@
   become: yes
   become_user: "{{ normal_user }}"
 
-
 - name: clone .doom.d
   git:
     repo: https://gitlab.com/viccuad/doom.d.git
@@ -92,12 +86,11 @@
   become: yes
   become_user: "{{ normal_user }}"
 
-
 - name: initialize doom emacs
   command: "/home/{{ normal_user }}/.emacs.d/bin/doom -y install"
   args:
     creates: "/home/{{ normal_user }}/.emacs.d/.local"
-  become:  yes
+  become: yes
   become_user: "{{ normal_user }}"
 
 # - name: change EDITOR to emacsclient
@@ -114,8 +107,8 @@
 
 - name: add emacs aliases
   blockinfile:
-    dest: '/home/{{ normal_user }}/.zsh/aliases.zsh'
+    dest: "/home/{{ normal_user }}/.zsh/aliases.zsh"
     block: |
-            alias e="emacsclient -t -c"
-            alias magit='emacsclient -t -c -e "(progn (magit-status) (delete-other-windows))"'
+      alias e="emacsclient -t -c"
+      alias magit='emacsclient -t -c -e "(progn (magit-status) (delete-other-windows))"'
     marker: "# {mark} emacs block"
